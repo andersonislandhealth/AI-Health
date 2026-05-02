@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIHA — Exemplary 16×4 promotional banner (1600×400)</title>
+  <link rel="stylesheet" href="https://use.typekit.net/siy6qpg.css">
+  <style>
+    /*
+      1600×400 · 16∶4. Main column: ~50% white logo field + ~50% gradient + announcement.
+      Navy CTA column unchanged in spirit. Sizes nominal at full width; scale via cqw/cqh.
+    */
+    :root {
+      --primary-bright: #18a6df;
+      --primary-dark: #0a4f8a;
+      --primary-teal: #036474;
+      --dark-teal: #00323a;
+      --donate-teal: #006378;
+      --accent-sky: #dff1fb;
+      --accent-coral: #f5a8c1;
+      --evergreen: #59a889;
+      --navy: #16324f;
+      --light-text: #ffffff;
+      --page-bg: #fdfefe;
+      --panel-white: #fdfefe;
+      --header-font: "Congenial Regular", "Congenial", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --body-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --hero-grad: linear-gradient(118deg, #0a4f8a 0%, #0c7bbd 46%, #18a6df 92%);
+      --ocean-btn: linear-gradient(135deg, #1a8fd4 0%, #0a4f8a 100%);
+      --teal-line: rgba(0, 152, 187, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--body-font);
+      background: var(--page-bg);
+      color: #253049;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+    }
+
+    .page-note {
+      max-width: 44rem;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #5d6983;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .page-note strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .page-note code {
+      font-size: 0.9em;
+      background: rgba(223, 241, 251, 0.65);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+
+    .banner-stage {
+      container-type: size;
+      width: min(1600px, 100%);
+      aspect-ratio: 16 / 4;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow:
+        0 4px 12px rgba(10, 50, 79, 0.18),
+        0 20px 50px rgba(10, 30, 50, 0.22);
+    }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      background: var(--navy);
+    }
+
+    .banner-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .banner-main-col {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    /* Logo star: large field, style-guide “paper” white */
+    .banner-hero-white {
+      container-type: size;
+      flex: 0 0 50%;
+      min-height: 0;
+      background: var(--panel-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(3 * 100cqh / 400) calc(8 * 100cqw / 1600);
+      border-bottom: 1px solid var(--teal-line);
+      box-shadow:
+        inset 0 calc(-1 * 100cqh / 400) 0 rgba(255, 255, 255, 0.85),
+        0 calc(10 * 100cqh / 400) calc(28 * 100cqh / 400) rgba(22, 50, 79, 0.08);
+    }
+
+    .banner-hero-white img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100cqw;
+      max-height: 99cqh;
+      object-fit: contain;
+    }
+
+    .banner-announcement {
+      flex: 1 1 50%;
+      min-height: 0;
+      position: relative;
+      background: var(--hero-grad);
+      padding: 0 calc(14 * 100cqw / 1600) calc(8 * 100cqh / 400) calc(18 * 100cqw / 1600);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .banner-announcement::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 100% at 8% 100%, rgba(243, 198, 177, 0.42) 0%, transparent 45%),
+        radial-gradient(ellipse 55% 80% at 92% 0%, rgba(245, 168, 193, 0.2) 0%, transparent 42%);
+      pointer-events: none;
+    }
+
+    /* Copy uses all width left of QR; row vertically centered in the blue band */
+    .announce-layout {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: calc(18 * 100cqw / 1600);
+      width: 100%;
+      flex: 0 1 auto;
+      min-height: 0;
+      padding-top: calc(10 * 100cqh / 400);
+    }
+
+    .announce-main {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .announce-inner {
+      display: grid;
+      grid-template-columns: calc(5 * 100cqw / 1600) 1fr;
+      gap: calc(12 * 100cqw / 1600);
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .announce-qr {
+      flex: 0 0 auto;
+      align-self: center;
+    }
+
+    .announce-qr img {
+      display: block;
+      width: calc(152 * 100cqw / 1600);
+      max-width: calc(176 * 100cqw / 1600);
+      height: auto;
+      max-height: calc(172 * 100cqh / 400);
+      object-fit: contain;
+      border-radius: calc(6 * 100cqh / 400);
+      box-shadow:
+        0 calc(4 * 100cqh / 400) calc(20 * 100cqh / 400) rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .announce-accent-bar {
+      width: calc(5 * 100cqw / 1600);
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--evergreen), var(--accent-coral));
+      box-shadow: 0 0 calc(14 * 100cqh / 400) rgba(89, 168, 137, 0.35);
+      align-self: stretch;
+      min-height: 0;
+    }
+
+    .announce-copy {
+      min-width: 0;
+    }
+
+    .phase-row {
+      display: flex;
+      align-items: center;
+      gap: calc(12 * 100cqw / 1600);
+      margin-bottom: calc(4 * 100cqh / 400);
+    }
+
+    .phase-label {
+      font-family: var(--body-font);
+      font-size: calc(13 * 100cqw / 1600);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-sky);
+      margin: 0;
+      line-height: 1.2;
+      text-shadow: 0 calc(2 * 100cqh / 400) calc(10 * 100cqh / 400) rgba(0, 0, 0, 0.35);
+    }
+
+    .phase-rule {
+      flex: 1 1 auto;
+      min-width: calc(24 * 100cqw / 1600);
+      height: calc(4 * 100cqh / 400);
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary-bright), var(--accent-sky));
+      opacity: 0.95;
+    }
+
+    .announce-lead {
+      font-family: var(--header-font);
+      font-weight: 400;
+      font-size: calc(28 * 100cqw / 1600);
+      line-height: 1.18;
+      color: var(--light-text);
+      margin: 0;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      text-shadow:
+        0 calc(2 * 100cqh / 400) calc(20 * 100cqh / 400) rgba(0, 0, 0, 0.4),
+        0 calc(1 * 100cqh / 400) 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .announce-cta-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: calc(12 * 100cqw / 1600);
+      align-items: baseline;
+      width: 100%;
+      margin: calc(5 * 100cqh / 400) 0 0;
+    }
+
+    .announce-cta {
+      font-family: var(--header-font);
+      font-weight: 400;
+      font-size: calc(24 * 100cqw / 1600);
+      line-height: 1.22;
+      margin: 0;
+      min-width: 0;
+      color: var(--accent-sky);
+      text-shadow: 0 calc(2 * 100cqh / 400) calc(14 * 100cqh / 400) rgba(0, 0, 0, 0.35);
+    }
+
+    .announce-cta-link {
+      font-family: var(--header-font);
+      font-weight: 400;
+      font-size: calc(24 * 100cqw / 1600);
+      line-height: 1.22;
+      color: var(--accent-sky);
+      text-decoration: none;
+      text-shadow: 0 calc(2 * 100cqh / 400) calc(14 * 100cqh / 400) rgba(0, 0, 0, 0.35);
+      white-space: nowrap;
+      text-align: right;
+      justify-self: end;
+    }
+
+    .announce-cta-link:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: calc(3 * 100cqh / 400);
+    }
+
+    /* Decorative motion cue (replace if you had something else in mind) */
+    .banner-waves {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 42%;
+      width: 100%;
+      z-index: 0;
+      opacity: 0.14;
+      pointer-events: none;
+      color: #fff;
+    }
+
+    .banner-actions {
+      flex: 0 0 auto;
+      width: calc(392 * 100cqw / 1600);
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0;
+      padding: calc(22 * 100cqh / 400) calc(26 * 100cqw / 1600) calc(8 * 100cqh / 400);
+      /* ~2× former 5px top strip: vertical coral accent on navy’s left edge */
+      border-left: calc(10 * 100cqh / 400) solid var(--accent-coral);
+      box-shadow: inset calc(10 * 100cqw / 1600) 0 calc(28 * 100cqh / 400) rgba(0, 0, 0, 0.1);
+    }
+
+    /* Buttons centered in the space above the footer only */
+    .banner-actions-stack {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: calc(12 * 100cqh / 400);
+      min-height: 0;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: var(--body-font);
+      font-size: calc(17 * 100cqw / 1600);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: calc(16 * 100cqh / 400) calc(12 * 100cqw / 1600);
+      border-radius: 999px;
+      color: var(--light-text);
+      border: none;
+      box-shadow:
+        0 calc(5 * 100cqh / 400) calc(22 * 100cqh / 400) rgba(255, 255, 255, 0.2),
+        0 calc(4 * 100cqh / 400) calc(14 * 100cqh / 400) rgba(0, 0, 0, 0.28);
+    }
+
+    .btn-donate {
+      background: var(--donate-teal);
+    }
+
+    .btn-ocean {
+      background: var(--ocean-btn);
+    }
+
+    .btn-volunteer {
+      background: var(--dark-teal);
+    }
+
+    .banner-actions-meta {
+      flex: 0 0 auto;
+      margin-top: 0;
+      font-size: calc(16 * 100cqw / 1600);
+      line-height: 1.4;
+      color: rgba(223, 241, 251, 0.88);
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+  </style>
+</head>
+<body>
+  <p class="page-note">
+    <strong>Updated layout.</strong> <code>1600×400</code> · 16∶4. Blue band copy/QR stays vertically centered. Navy: buttons centered in the panel above a footer strip pinned to the bottom of the column.
+  </p>
+
+  <div class="banner-stage" role="img" aria-label="Sample Anderson Island Healthcare Advocates wide promotional banner">
+    <article class="banner">
+      <div class="banner-inner">
+        <div class="banner-main-col">
+          <div class="banner-hero-white">
+            <img
+              src="assets/AI Health Custom Logo v9.png"
+              alt="Anderson Island Healthcare Advocates"
+              width="640"
+              height="200"
+            >
+          </div>
+
+          <div class="banner-announcement">
+            <svg class="banner-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1208 120" preserveAspectRatio="none" aria-hidden="true">
+              <path fill="currentColor" fill-opacity="1" d="M0 80 C200 20 400 120 600 60 C800 0 1000 100 1208 40 L1208 120 L0 120 Z"/>
+              <path fill="currentColor" fill-opacity="0.5" d="M0 100 C180 55 380 115 580 75 C780 35 980 105 1208 55 L1208 120 L0 120 Z"/>
+            </svg>
+
+            <div class="announce-layout">
+              <div class="announce-main">
+                <div class="announce-inner">
+                  <div class="announce-accent-bar" aria-hidden="true"></div>
+                  <div class="announce-copy">
+                    <div class="phase-row">
+                      <p class="phase-label">Phase 1</p>
+                      <div class="phase-rule" aria-hidden="true"></div>
+                    </div>
+                    <p class="announce-lead">
+                      We are excited to announce the first phase of our plan to bring primary care to Anderson Island!
+                    </p>
+                    <div class="announce-cta-row">
+                      <p class="announce-cta">Find out what&rsquo;s needed to make it happen!</p>
+                      <a class="announce-cta-link" href="https://www.andersonislandhealth.org/">andersonislandhealth.org</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="announce-qr">
+                <img
+                  src="assets/AIHA Volunteer copy.png"
+                  alt="Scan to learn about volunteering with AIHA"
+                  width="256"
+                  height="256"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner-actions">
+          <div class="banner-actions-stack">
+            <span class="btn btn-donate">Donate today</span>
+            <span class="btn btn-ocean">Learn more</span>
+            <span class="btn btn-volunteer">Volunteer</span>
+          </div>
+          <p class="banner-actions-meta">
+            501(c)(3) nonprofit<br>
+            info@andersonislandhealth.org
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
