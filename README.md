@@ -79,6 +79,7 @@ There is **no server-side application** in this repository—no Node API, no dat
 | `script.js` | Behavior: navbar, nav, sticky header, scroll reveal, parallax, events, fundraising, volunteer modal, **footer copyright year** (`[data-copyright-year]`), etc. |
 | `optional/site-login-gate/` | **Optional** client-side preview login (not wired into `index.html` by default); see `README.md` in that folder |
 | `events.json` | **Events list** consumed by the homepage |
+| `board.json` | **Board member bios** for the leadership grid (`#board`) |
 | `giving-progress.json` | **Fundraising goal** numbers for thermometers / labels |
 | `assets/` | Images, logos, favicon package |
 | `robots.txt` / `sitemap.xml` | Crawlers & SEO |
@@ -109,8 +110,18 @@ There is **no server-side application** in this repository—no Node API, no dat
 
 ### Events list
 
-- Edit **`events.json`**: array of `{ title, date, displayDate, location, description }`.
-- Homepage renders `[data-events]` automatically.
+- Edit **`events.json`**: one `"events"` array of objects `{ title, date, displayDate, location, description }`.
+- **`date`** is required for auto-sorting: use `YYYY-MM-DD` (Pacific / island calendar day).
+- **Upcoming vs past** is automatic: today and future → **Upcoming events**; earlier dates → **Past events** drawer (newest past first). No manual buckets.
+- **`displayDate`** is optional (friendly label); if omitted, the site formats `date` for you.
+- Add a new event by appending one object to the array and redeploying (or refresh locally over HTTP).
+
+### Board biographies
+
+- Edit **`board.json`**: `"members"` array of `{ name, role, bio, photo }`. Use **`board.csv`** (same columns) to collect bios in a spreadsheet, then copy values back into JSON.
+- **`bio`**: leave `""` until a biography is ready (the site shows “Biography coming soon.” in the modal).
+- **`photo`**: optional path under `assets/` (e.g. `"assets/photos/jane-fowler.jpg"`); omit or leave empty for the placeholder avatar.
+- Members are sorted **alphabetically by name** on load. Redeploy or refresh over HTTP after edits.
 
 ### Volunteer form
 

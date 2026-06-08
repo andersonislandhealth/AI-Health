@@ -980,13 +980,14 @@ header.header-shrink .nav-group {
 /* --- Leadership Cards --- */
 .leader-grid .leader-card {
     position: relative;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-    gap: 14px;
     cursor: pointer;
     padding: 18px;
     padding-bottom: 50px;
+}
+
+.leader-card--no-bio {
+    cursor: default;
+    padding-bottom: 18px;
 }
 
 .leader-grid {
@@ -1001,22 +1002,11 @@ header.header-shrink .nav-group {
     margin: 0;
 }
 
-.leader-card-meta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    align-self: stretch;
-}
-
-.avatar-placeholder {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(var(--primary-rgb), 0.22), rgba(var(--primary-dark-rgb), 0.62));
-    border: 2px solid rgba(var(--light-text), 0.6);
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2), 0 12px 20px rgba(22,50,79,0.14);
-    flex-shrink: 0;
+.board-footnote {
+    margin-top: 14px;
+    font-size: 0.95rem;
+    color: var(--muted-text);
+    text-align: center;
 }
 
 .leader-expand {
@@ -1090,19 +1080,6 @@ header.header-shrink .nav-group {
     opacity: 1;
 }
 
-.leader-modal-body {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 18px;
-    align-items: center;
-}
-
-.leader-modal-photo .avatar-placeholder {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto;
-}
-
 .leader-role {
     color: var(--navy);
     font-weight: 700;
@@ -1148,7 +1125,6 @@ header.header-shrink .nav-group {
 
 @media (max-width: 720px) {
     .leader-modal-body {
-        grid-template-columns: 1fr;
         text-align: center;
     }
 

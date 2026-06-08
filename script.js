@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     await injectNavbar(isFile);
     initNavigation();
     initStickyHeader();
+    await initBoard();
     initReveal();
-    initLeadership();
     initFloatingDonate();
     initParallaxBanner();
     await initEvents();
@@ -49,6 +49,7 @@ async function injectNavbar(skip) {
                             <li><a href="index.html#faqs">FAQs</a></li>
                             <li><a href="#" class="volunteer-trigger">Volunteer</a></li>
                             <li><a href="index.html#giving">Donate</a></li>
+                            <li><a href="index.html#board">Board</a></li>
                             <li><a href="index.html#events">Events</a></li>
                             <li><a href="index.html#plans">Plans</a></li>
                         </ul>
@@ -133,6 +134,7 @@ function initReveal() {
         '.partner-section .partner-card',
         '.volunteer-section .story-card',
         '.contact-card',
+        '.leader-card',
         '.support-preview-inner',
         '.support-actions a',
         '.impact-list li'
@@ -182,6 +184,64 @@ function initReveal() {
     }
 }
 
+let boardMembers = [];
+
+function hasBoardBio(member) {
+    return Boolean(member?.bio?.trim());
+}
+
+function escapeHtml(text) {
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function renderBoardCard(member, index) {
+    const name = member.name || 'Board member';
+    const role = member.role || 'Board Member';
+    const safeName = escapeHtml(name);
+    const safeRole = escapeHtml(role);
+    const hasBio = hasBoardBio(member);
+    const expandButton = hasBio
+        ? `<button type="button" class="leader-expand" aria-label="Open bio for ${safeName}">&#9662;</button>`
+        : '';
+
+    return `<article class="card leader-card${hasBio ? '' : ' leader-card--no-bio'}" data-member-index="${index}"${hasBio ? ' tabindex="0"' : ''}>
+        <div>
+            <h3>${safeName}</h3>
+            <p>${safeRole}</p>
+        </div>
+        ${expandButton}
+    </article>`;
+}
+
+async function initBoard() {
+    const grid = document.querySelector('[data-board-grid]');
+    if (!grid) return;
+
+    try {
+        const res = await fetch('board.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`board.json fetch failed: ${res.status}`);
+        const data = await res.json();
+        const members = Array.isArray(data.members) ? data.members.slice() : [];
+        members.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'en', { sensitivity: 'base' }));
+        boardMembers = members;
+
+        if (!members.length) {
+            grid.innerHTML = '<p class="event-message">Board information is unavailable right now.</p>';
+            return;
+        }
+
+        grid.innerHTML = members.map((member, index) => renderBoardCard(member, index)).join('');
+        initLeadership();
+    } catch (err) {
+        grid.innerHTML = '<p class="event-message">Board information is unavailable right now.</p>';
+        console.error('Could not load board.json', err);
+    }
+}
+
 function initLeadership() {
     const cards = Array.from(document.querySelectorAll('.leader-card'));
     if (!cards.length) return;
@@ -198,12 +258,22 @@ function initLeadership() {
 
     let activeIndex = 0;
 
+    const bioCardIndices = cards
+        .map((card, index) => index)
+        .filter((index) => hasBoardBio(boardMembers[Number(cards[index].dataset.memberIndex)]));
+
     const openModal = (index) => {
-        activeIndex = (index + cards.length) % cards.length;
-        const card = cards[activeIndex];
-        const name = card.dataset.name || '';
-        const role = card.dataset.role || '';
-        const bio = card.dataset.bio || 'Bio coming soon.';
+        const card = cards[index];
+        if (!card) return;
+
+        const memberIndex = Number(card.dataset.memberIndex);
+        const member = boardMembers[memberIndex] || {};
+        if (!hasBoardBio(member)) return;
+
+        activeIndex = index;
+        const name = member.name || '';
+        const role = member.role || 'Board Member';
+        const bio = member.bio.trim();
 
         if (nameEl) nameEl.textContent = name;
         if (roleEl) roleEl.textContent = role;
@@ -219,10 +289,22 @@ function initLeadership() {
         modal?.setAttribute('aria-hidden', 'true');
     };
 
-    const showPrev = () => openModal(activeIndex - 1);
-    const showNext = () => openModal(activeIndex + 1);
+    const showPrev = () => {
+        const pos = bioCardIndices.indexOf(activeIndex);
+        if (pos === -1 || bioCardIndices.length < 2) return;
+        openModal(bioCardIndices[(pos - 1 + bioCardIndices.length) % bioCardIndices.length]);
+    };
+
+    const showNext = () => {
+        const pos = bioCardIndices.indexOf(activeIndex);
+        if (pos === -1 || bioCardIndices.length < 2) return;
+        openModal(bioCardIndices[(pos + 1) % bioCardIndices.length]);
+    };
 
     cards.forEach((card, index) => {
+        const memberIndex = Number(card.dataset.memberIndex);
+        if (!hasBoardBio(boardMembers[memberIndex])) return;
+
         const trigger = card.querySelector('.leader-expand') || card;
         trigger.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -234,7 +316,6 @@ function initLeadership() {
                 openModal(index);
             }
         });
-        card.setAttribute('tabindex', '0');
     });
 
     closeBtn?.addEventListener('click', closeModal);
@@ -316,10 +397,96 @@ function initParallaxBanner() {
     update();
 }
 
+const EVENTS_TIME_ZONE = 'America/Los_Angeles';
+
+/** Parse YYYY-MM-DD as a local calendar date (no UTC day-shift). */
+function parseEventDate(isoDate) {
+    if (!isoDate || typeof isoDate !== 'string') return null;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
+    if (!match) return null;
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    if (!year || month < 1 || month > 12 || day < 1 || day > 31) return null;
+    return new Date(year, month - 1, day);
+}
+
+function getTodayInEventsTimeZone() {
+    const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: EVENTS_TIME_ZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).formatToParts(new Date());
+    const year = Number(parts.find((p) => p.type === 'year')?.value);
+    const month = Number(parts.find((p) => p.type === 'month')?.value);
+    const day = Number(parts.find((p) => p.type === 'day')?.value);
+    return new Date(year, month - 1, day);
+}
+
+function formatEventDisplayDate(isoDate) {
+    const parsed = parseEventDate(isoDate);
+    if (!parsed) return isoDate || '';
+    return parsed.toLocaleDateString('en-US', {
+        timeZone: EVENTS_TIME_ZONE,
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
+}
+
+function collectEventsFromJson(data) {
+    if (Array.isArray(data.events)) {
+        return data.events;
+    }
+    return [
+        ...(Array.isArray(data.upcoming) ? data.upcoming : []),
+        ...(Array.isArray(data.past) ? data.past : []),
+    ];
+}
+
+function partitionEventsByDate(events) {
+    const today = getTodayInEventsTimeZone();
+    const upcoming = [];
+    const past = [];
+
+    for (const ev of events) {
+        const eventDate = parseEventDate(ev.date);
+        if (!eventDate) {
+            upcoming.push(ev);
+            continue;
+        }
+        if (eventDate >= today) {
+            upcoming.push(ev);
+        } else {
+            past.push(ev);
+        }
+    }
+
+    upcoming.sort((a, b) => {
+        const da = parseEventDate(a.date);
+        const db = parseEventDate(b.date);
+        if (!da && !db) return 0;
+        if (!da) return 1;
+        if (!db) return -1;
+        return da - db;
+    });
+    past.sort((a, b) => {
+        const da = parseEventDate(a.date);
+        const db = parseEventDate(b.date);
+        if (!da && !db) return 0;
+        if (!da) return 1;
+        if (!db) return -1;
+        return db - da;
+    });
+
+    return { upcoming, past };
+}
+
 function renderEventItems(events) {
     return events.map((ev) => {
         const title = ev.title || 'Event';
-        const date = ev.displayDate || ev.date || '';
+        const date = ev.displayDate || formatEventDisplayDate(ev.date) || '';
         const loc = ev.location ? `<div class="event-location">${ev.location}</div>` : '';
         const desc = ev.description ? `<div class="event-desc">${ev.description}</div>` : '';
         return `<li class="event-item"><div class="event-date">${date}</div><div class="event-title">${title}</div>${loc}${desc}</li>`;
@@ -351,10 +518,7 @@ async function initEvents() {
         const res = await fetch('events.json', { cache: 'no-cache' });
         if (!res.ok) throw new Error(`events.json fetch failed: ${res.status}`);
         const data = await res.json();
-        const upcoming = Array.isArray(data.upcoming)
-            ? data.upcoming
-            : (Array.isArray(data.events) ? data.events : []);
-        const past = Array.isArray(data.past) ? data.past : [];
+        const { upcoming, past } = partitionEventsByDate(collectEventsFromJson(data));
 
         if (upcomingList) {
             upcomingList.innerHTML = upcoming.length
