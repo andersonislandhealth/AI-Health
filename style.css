@@ -1457,6 +1457,77 @@ header.header-shrink .nav-group {
     color: var(--muted-text);
 }
 
+.past-events-drawer {
+    margin-top: 44px;
+    text-align: center;
+}
+
+.past-events-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 0 auto;
+    padding: 4px 0 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+}
+
+.past-events-toggle:hover .section-caption,
+.past-events-toggle:focus-visible .section-caption {
+    color: var(--primary-color);
+}
+
+.past-events-toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+
+.past-events-chevron {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--primary-dark);
+    border-bottom: 2px solid var(--primary-dark);
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    margin-top: 2px;
+}
+
+.past-events-toggle[aria-expanded="true"] .past-events-chevron {
+    transform: rotate(-135deg);
+    margin-top: 6px;
+}
+
+.past-events-panel {
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.past-events-panel[hidden] {
+    display: none;
+}
+
+.past-events-panel.is-opening,
+.past-events-panel:not([hidden]) {
+    animation: past-events-open 0.28s ease;
+}
+
+@keyframes past-events-open {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* --- Support Page --- */
 .support-summary .impact-list {
     list-style: none;

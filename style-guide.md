@@ -165,7 +165,6 @@ If you replicate this in Canva or PowerPoint: small caps label + thin gradient u
 - **Short forms:** AIHA; also referenced in structured data as Anderson Island Health, AI Health (verify context before using shorthand).  
 - **Website:** https://www.andersonislandhealth.org/  
 - **General email:** info@andersonislandhealth.org  
-- **Fundraising:** giving@andersonislandhealth.org  
 
 ---
 

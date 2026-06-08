@@ -62,7 +62,7 @@ There is **no server-side application** in this repository—no Node API, no dat
 - **Website** does not host mail.
 - **MX records** stay in DNS (Network Solutions or wherever DNS is delegated) and target your **email provider’s** servers.
 - Common pattern: **Google Workspace** or **Microsoft 365** MX records + SPF/DKIM in TXT.
-- Published addresses on the site (e.g. `info@`, `giving@`) must match the provider you configure.
+- Published addresses on the site (e.g. `info@`) must match the provider you configure.
 
 ---
 

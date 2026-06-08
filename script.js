@@ -316,28 +316,66 @@ function initParallaxBanner() {
     update();
 }
 
+function renderEventItems(events) {
+    return events.map((ev) => {
+        const title = ev.title || 'Event';
+        const date = ev.displayDate || ev.date || '';
+        const loc = ev.location ? `<div class="event-location">${ev.location}</div>` : '';
+        const desc = ev.description ? `<div class="event-desc">${ev.description}</div>` : '';
+        return `<li class="event-item"><div class="event-date">${date}</div><div class="event-title">${title}</div>${loc}${desc}</li>`;
+    }).join('');
+}
+
+function initPastEventsDrawer() {
+    const toggle = document.querySelector('[data-past-events-toggle]');
+    const panel = document.querySelector('[data-past-events-panel]');
+    if (!toggle || !panel) return;
+
+    toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        panel.hidden = isOpen;
+        if (!isOpen) {
+            panel.classList.add('is-opening');
+            panel.addEventListener('animationend', () => panel.classList.remove('is-opening'), { once: true });
+        }
+    });
+}
+
 async function initEvents() {
-    const list = document.querySelector('[data-events]');
-    if (!list) return;
+    const upcomingList = document.querySelector('[data-events]');
+    const pastList = document.querySelector('[data-past-events]');
+    if (!upcomingList && !pastList) return;
 
     try {
         const res = await fetch('events.json', { cache: 'no-cache' });
         if (!res.ok) throw new Error(`events.json fetch failed: ${res.status}`);
         const data = await res.json();
-        const events = Array.isArray(data.events) ? data.events : [];
-        if (!events.length) {
-            list.innerHTML = '<li class="event-message">No events posted yet.</li>';
-            return;
+        const upcoming = Array.isArray(data.upcoming)
+            ? data.upcoming
+            : (Array.isArray(data.events) ? data.events : []);
+        const past = Array.isArray(data.past) ? data.past : [];
+
+        if (upcomingList) {
+            upcomingList.innerHTML = upcoming.length
+                ? renderEventItems(upcoming)
+                : '<li class="event-message">No upcoming events posted yet.</li>';
         }
-        list.innerHTML = events.map(ev => {
-            const title = ev.title || 'Event';
-            const date = ev.displayDate || ev.date || '';
-            const loc = ev.location ? `<div class="event-location">${ev.location}</div>` : '';
-            const desc = ev.description ? `<div class="event-desc">${ev.description}</div>` : '';
-            return `<li class="event-item"><div class="event-date">${date}</div><div class="event-title">${title}</div>${loc}${desc}</li>`;
-        }).join('');
+
+        if (pastList) {
+            pastList.innerHTML = past.length
+                ? renderEventItems(past)
+                : '<li class="event-message">No past events to show yet.</li>';
+        }
+
+        initPastEventsDrawer();
     } catch (err) {
-        list.innerHTML = '<li class="event-message">Events are unavailable right now.</li>';
+        if (upcomingList) {
+            upcomingList.innerHTML = '<li class="event-message">Events are unavailable right now.</li>';
+        }
+        if (pastList) {
+            pastList.innerHTML = '<li class="event-message">Past events are unavailable right now.</li>';
+        }
         console.error('Could not load events.json', err);
     }
 }
