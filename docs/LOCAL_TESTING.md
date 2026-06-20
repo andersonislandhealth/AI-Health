@@ -17,6 +17,8 @@ Open **http://127.0.0.1:8765/index.html** (or the port you chose). Stop with **C
 
 Hard refresh after edits: **Cmd+Shift+R** (Mac) / **Ctrl+Shift+R** (Windows).
 
+**CMS admin (local):** [http://127.0.0.1:8765/admin/](http://127.0.0.1:8765/admin/) loads the editor UI; GitHub login still requires Netlify OAuth configured on production. See [`CMS.md`](CMS.md).
+
 ---
 
 ## Under Construction vs live site (manual)
