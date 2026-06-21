@@ -129,10 +129,9 @@ Most homepage copy lives in **`content/*.json`**. Board, events, and fundraising
 
 ### Events list
 
-- Edit via **CMS** → Events, or **`events.json`**: one `"events"` array of objects `{ title, date, displayDate, location, description }`.
-- **`date`** is required for auto-sorting: use `YYYY-MM-DD` (Pacific / island calendar day).
+- Edit via **CMS** → Events, or **`events.json`**: one `"events"` array of objects `{ title, date, location, description }`.
+- **`date`** is required for auto-sorting: use `YYYY-MM-DD` (Pacific / island calendar day). The site displays it as a full date (e.g. **April 29, 2026**).
 - **Upcoming vs past** is automatic: today and future → **Upcoming events**; earlier dates → **Past events** drawer (newest past first). No manual buckets.
-- **`displayDate`** is optional (friendly label); if omitted, the site formats `date` for you.
 - Add a new event by appending one object to the array and redeploying (or refresh locally over HTTP).
 
 ### Board biographies

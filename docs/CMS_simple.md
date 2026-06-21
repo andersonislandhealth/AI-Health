@@ -122,9 +122,8 @@ Members appear **alphabetically by name** on the live site.
 
 1. Sidebar → **Events** → **Event listings**.
 2. Add or open an event.
-3. **Date** is required (`YYYY-MM-DD`, e.g. `2026-04-29`). Future dates show under **Upcoming**; past dates move to **Past events**.
-4. **Display date** is optional (e.g. `April 29, 2026`) — use a friendly label if you want.
-5. Save.
+3. **Date** is required (`YYYY-MM-DD`, e.g. `2026-04-29`). The site shows it as a full date (e.g. **April 29, 2026**). Future dates appear under **Upcoming**; past dates move to **Past events**.
+4. Save.
 
 ### Update fundraising numbers
 

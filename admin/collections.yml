@@ -278,8 +278,7 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: Title, name: title, widget: string }
-              - { label: Date, name: date, widget: datetime, type: date, hint: "YYYY-MM-DD — auto-sorts upcoming vs past." }
-              - { label: Display date, name: displayDate, widget: string, required: false }
+              - { label: Date, name: date, widget: datetime, type: date, hint: "YYYY-MM-DD — shown on the site as e.g. April 29, 2026. Upcoming vs past is automatic." }
               - { label: Location, name: location, widget: string }
               - { label: Description, name: description, widget: text }
 

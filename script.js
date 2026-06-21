@@ -490,7 +490,7 @@ function partitionEventsByDate(events) {
 function renderEventItems(events) {
     return events.map((ev) => {
         const title = ev.title || 'Event';
-        const date = ev.displayDate || formatEventDisplayDate(ev.date) || '';
+        const date = formatEventDisplayDate(ev.date) || '';
         const loc = ev.location ? `<div class="event-location">${ev.location}</div>` : '';
         const desc = ev.description ? `<div class="event-desc">${ev.description}</div>` : '';
         return `<li class="event-item"><div class="event-date">${date}</div><div class="event-title">${title}</div>${loc}${desc}</li>`;

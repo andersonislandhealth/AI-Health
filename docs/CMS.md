@@ -186,8 +186,7 @@ Members are sorted **alphabetically by name** on the live site.
 
 ### Events
 
-- **Date** is required (`YYYY-MM-DD`). The site automatically puts today/future events under **Upcoming** and older dates under **Past events**.
-- **Display date** is optional (e.g. `April 29, 2026`).
+- **Date** is required (`YYYY-MM-DD`). The site formats it automatically (e.g. **April 29, 2026**) and puts today/future events under **Upcoming** and older dates under **Past events**.
 
 ### Fundraising
 
