@@ -195,8 +195,8 @@ function renderPlanCard(card) {
 function renderPlansTimeline(plans) {
     if (!plans) return '';
     const cards = plans.cards || [];
-    const heroCard = cards.find((c) => c.placement === 'hero');
-    const timelineCards = cards.filter((c) => c.placement !== 'hero');
+    const heroCard = cards[0];
+    const timelineCards = cards.slice(1);
     const graphic = plans.graphic || {};
 
     const heroWrap = heroCard
@@ -204,7 +204,9 @@ function renderPlansTimeline(plans) {
                     <img class="plan-hero-graphic" src="${escapeHtml(graphic.src || '')}" alt="${escapeHtml(graphic.alt || '')}" loading="lazy">
                     ${renderPlanCard(heroCard)}
                 </div>`
-        : '';
+        : `<div class="plan-hero-wrap">
+                    <img class="plan-hero-graphic" src="${escapeHtml(graphic.src || '')}" alt="${escapeHtml(graphic.alt || '')}" loading="lazy">
+                </div>`;
 
     return `${heroWrap}
                 ${timelineCards.map(renderPlanCard).join('\n                ')}`;

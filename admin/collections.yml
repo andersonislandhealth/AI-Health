@@ -122,6 +122,7 @@ collections:
             widget: list
             label_singular: Card
             summary: "{{fields.status}}"
+            hint: "The first card always appears beside the van illustration — keep your intro card at the top of the list."
             fields:
               - { label: Card label, name: status, widget: string }
               - { label: Body, name: body, widget: markdown }
@@ -130,12 +131,6 @@ collections:
                 widget: select
                 options: [in-progress, future]
                 default: in-progress
-              - label: Layout
-                name: placement
-                widget: select
-                options: ["", hero]
-                default: ""
-                hint: "Choose hero for the card shown beside the van image."
               - label: Optional link
                 name: link
                 widget: object

@@ -151,9 +151,6 @@ def check_required_keys(errors: list[str]) -> None:
         for key in ("status", "body", "variant"):
             if key not in card:
                 errors.append(f"content/plans.json: cards[{i}] missing `{key}`")
-        placement = card.get("placement", "")
-        if placement not in ("", "hero"):
-            errors.append(f"content/plans.json: cards[{i}].placement must be '' or 'hero'")
 
     faqs = load_json(ROOT / "content/faqs.json")
     for i, item in enumerate(faqs.get("items", [])):

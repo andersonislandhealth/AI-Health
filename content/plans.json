@@ -15,14 +15,12 @@
     {
       "status": "Why this approach",
       "body": "After exploring multiple options, a mobile clinic is the most practical and cost-effective way to begin care on the island.",
-      "variant": "in-progress",
-      "placement": "hero"
+      "variant": "in-progress"
     },
     {
       "status": "Who will provide care",
       "body": "PCHS is under contract with AIHA to staff and operate the mobile van. They are a federally qualified health center with deep experience serving rural communities.",
       "variant": "in-progress",
-      "placement": "",
       "link": {
         "label": "About PCHS",
         "href": "https://www.pchsweb.org/about/",
@@ -32,20 +30,17 @@
     {
       "status": "What the van offers",
       "body": "Provider visits, physical exams, lab draws, and more. Established patients receive 24/7 access to PCHS' provider-staffed phone line.",
-      "variant": "in-progress",
-      "placement": ""
+      "variant": "in-progress"
     },
     {
       "status": "When services start",
       "body": "Services begin once AIHA raises sufficient funds to underwrite each van day on the island. Target: fall launch once fundraising goals are reached.",
-      "variant": "future",
-      "placement": ""
+      "variant": "future"
     },
     {
       "status": "More information",
       "body": "A public \"Meet and Greet\" with PCHS staff will be scheduled on-island. Questions? Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org); we respond within two business days.",
-      "variant": "future",
-      "placement": ""
+      "variant": "future"
     }
   ]
 }
