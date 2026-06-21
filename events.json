@@ -6,6 +6,13 @@
       "displayDate": "April 29, 2026",
       "location": "Lakeshore",
       "description": "Join us for community bingo at the Lakeshore. All proceeds support AIHA’s mobile clinic launch."
+    },
+    {
+      "title": "Test Event",
+      "date": "2026-06-20",
+      "displayDate": "June 20, 2026",
+      "location": "Yep, it's still Anderson Island",
+      "description": "Uh huh"
     }
   ]
 }
