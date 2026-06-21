@@ -6,11 +6,7 @@
   },
   "principles": {
     "heading": "Guiding Principles",
-    "items": [
-      { "text": "Community-Led" },
-      { "text": "Sustainable" },
-      { "text": "Accessible" }
-    ]
+    "items": ["Community-Led", "Sustainable", "Accessible"]
   },
   "contact": {
     "heading": "Contact Us",
