@@ -279,7 +279,7 @@ function initLeadership() {
         if (nameEl) nameEl.textContent = name;
         if (roleEl) roleEl.textContent = role;
         if (bioEl) {
-            const render = window.renderCmsInlineBlock || ((value) => value);
+            const render = window.renderCmsRichTextBlocks || window.renderCmsInlineBlock || ((value) => value);
             bioEl.innerHTML = render(bio);
         }
 

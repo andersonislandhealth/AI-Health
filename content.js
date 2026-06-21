@@ -51,16 +51,28 @@ function renderInlineBold(text) {
     return renderInlineEmphasis(text);
 }
 
-function renderInlineMarkdown(text) {
-    if (!text) return '';
+function safeImageSrc(src) {
+    const href = String(src ?? '').trim();
+    if (/^\/assets\//.test(href)) return href;
+    if (/^assets\//.test(href)) return href;
+    if (/^https?:\/\//.test(href)) return href;
+    return '';
+}
 
+function renderMarkdownImage(alt, src) {
+    const safeSrc = safeImageSrc(src);
+    if (!safeSrc) return escapeHtml(`![${alt}](${src})`);
+    return `<img class="cms-inline-image" src="${escapeHtml(safeSrc)}" alt="${escapeHtml(alt || '')}" loading="lazy">`;
+}
+
+function renderInlineLinksAndEmphasis(text) {
     const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
     let result = '';
     let lastIndex = 0;
     let match;
 
     while ((match = linkPattern.exec(text)) !== null) {
-        result += renderInlineBold(text.slice(lastIndex, match.index));
+        result += renderInlineEmphasis(text.slice(lastIndex, match.index));
         const label = escapeHtml(match[1]);
         const href = match[2].trim();
         const safeHref = /^(https?:|mailto:|#|\/)/.test(href) ? href : '#';
@@ -69,24 +81,73 @@ function renderInlineMarkdown(text) {
         lastIndex = match.index + match[0].length;
     }
 
-    result += renderInlineBold(text.slice(lastIndex));
+    result += renderInlineEmphasis(text.slice(lastIndex));
     return result;
+}
+
+function renderInlineMarkdown(text) {
+    if (!text) return '';
+
+    const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
+    let result = '';
+    let lastIndex = 0;
+    let match;
+
+    while ((match = imagePattern.exec(text)) !== null) {
+        result += renderInlineLinksAndEmphasis(text.slice(lastIndex, match.index));
+        result += renderMarkdownImage(match[1], match[2]);
+        lastIndex = match.index + match[0].length;
+    }
+
+    result += renderInlineLinksAndEmphasis(text.slice(lastIndex));
+    return result;
+}
+
+const IMAGE_MARKDOWN = /^!\[([^\]]*)\]\(([^)]+)\)$/;
+
+function splitRichTextBlocks(text) {
+    return String(text ?? '')
+        .split(/\n\n+|\n(?=!\[[^\]]*\]\()/)
+        .map((block) => block.trim())
+        .filter(Boolean);
+}
+
+function renderRichTextBlocks(text) {
+    if (!text) return '';
+
+    return splitRichTextBlocks(text)
+        .map((block) => {
+            const imageMatch = block.match(IMAGE_MARKDOWN);
+            if (imageMatch) {
+                return `<figure class="cms-image-block">${renderMarkdownImage(imageMatch[1], imageMatch[2])}</figure>`;
+            }
+            return `<p>${renderInlineMarkdown(block).replace(/\n/g, '<br>')}</p>`;
+        })
+        .join('\n                        ');
 }
 
 function renderInlineBlock(text) {
     if (!text) return '';
-    return renderInlineMarkdown(text).replace(/\n\n+/g, '<br><br>').replace(/\n/g, '<br>');
+
+    const blocks = splitRichTextBlocks(text);
+    if (blocks.length <= 1 && !IMAGE_MARKDOWN.test(blocks[0] || '')) {
+        return renderInlineMarkdown(text).replace(/\n/g, '<br>');
+    }
+
+    return blocks
+        .map((block) => {
+            const imageMatch = block.match(IMAGE_MARKDOWN);
+            if (imageMatch) {
+                return renderMarkdownImage(imageMatch[1], imageMatch[2]);
+            }
+            return renderInlineMarkdown(block);
+        })
+        .join('<br><br>');
 }
 
 function renderBlockHtml(text) {
     if (!text) return '';
-    if (text.includes('\n\n')) {
-        return text
-            .split(/\n\n+/)
-            .map((block) => `<p>${renderInlineMarkdown(block).replace(/\n/g, '<br>')}</p>`)
-            .join('');
-    }
-    return renderInlineBlock(text);
+    return renderRichTextBlocks(text);
 }
 
 function heroActionClass(variant) {
@@ -126,7 +187,7 @@ function renderPlanCard(card) {
         : '';
     return `<article class="phase-card ${variant}">
                     <span class="status">${escapeHtml(card.status || '')}</span>
-                    <p>${renderInlineMarkdown(card.body || '')}</p>
+                    ${renderRichTextBlocks(card.body || '')}
                     ${link}
                 </article>`;
 }
@@ -151,7 +212,7 @@ function renderPlansTimeline(plans) {
 
 function renderMissionParagraphs(paragraphs) {
     return listTextItems(paragraphs)
-        .map((p) => `<p>${renderInlineMarkdown(p)}</p>`)
+        .map((p) => renderRichTextBlocks(p))
         .join('\n                        ');
 }
 
@@ -160,7 +221,7 @@ function renderFaqItems(items) {
         .map(
             (item) => `<article class="phase-card">
                     <h3>${escapeHtml(item.question || '')}</h3>
-                    <p>${renderInlineMarkdown(item.answer || '')}</p>
+                    ${renderRichTextBlocks(item.answer || '')}
                 </article>`
         )
         .join('\n                ');
@@ -171,7 +232,7 @@ function renderContactCards(cards) {
         .map(
             (card) => `<div class="contact-card">
                     <h3>${escapeHtml(card.heading || '')}</h3>
-                    <p>${renderInlineMarkdown(card.body || '')}</p>
+                    ${renderRichTextBlocks(card.body || '')}
                 </div>`
         )
         .join('\n                ');
@@ -342,3 +403,4 @@ async function initContent(skip) {
 
 window.renderCmsInlineMarkdown = renderInlineMarkdown;
 window.renderCmsInlineBlock = renderInlineBlock;
+window.renderCmsRichTextBlocks = renderRichTextBlocks;

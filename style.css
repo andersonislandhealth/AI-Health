@@ -556,6 +556,32 @@ header.header-shrink .nav-group {
     text-align: left;
 }
 
+.cms-inline-image {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 16px auto;
+    border-radius: var(--radius);
+}
+
+.cms-image-block {
+    margin: 24px 0 8px;
+    padding: 0;
+}
+
+.cms-image-block .cms-inline-image {
+    margin: 0 auto;
+}
+
+.strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block {
+    margin-left: 0;
+}
+
+.strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block .cms-inline-image {
+    margin-left: 0;
+}
+
 .strategic-pillars.mission-purpose .mission-purpose-col .link-arrow {
     justify-content: flex-start;
 }

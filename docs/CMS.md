@@ -86,7 +86,9 @@ The admin sidebar mirrors the homepage structure. Each group maps to JSON under 
 Several fields use a **Word-style toolbar** (Bold, Italic, Link):
 
 1. Highlight the text you want to format.
-2. Click **B** for bold, **I** for italic, or the link button for hyperlinks.
+2. Click **B** for bold, **I** for italic, the link button for hyperlinks, or the image button to insert a photo from `/assets/photos/`.
+
+Images must live under `assets/photos/` or `assets/icons/`. The site renders them automatically — you do not need to type the `![](...)` syntax by hand.
 
 Keyboard shortcuts also work: **⌘B** / **Ctrl+B** (bold), **⌘I** / **Ctrl+I** (italic).
 
