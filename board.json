@@ -21,7 +21,8 @@
     {
       "name": "Emily Martin",
       "role": "Board Member",
-      "bio": ""
+      "bio": "",
+      "photo": ""
     },
     {
       "name": "Glenn Kasman",
@@ -50,11 +51,6 @@
     {
       "name": "Therese Pasquier",
       "role": "Board Member",
-      "bio": ""
-    },
-    {
-      "name": "Test",
-      "role": "Test",
       "bio": "",
       "photo": ""
     }
