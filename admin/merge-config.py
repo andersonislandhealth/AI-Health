@@ -30,6 +30,20 @@ def main() -> int:
     collections = collections_path.read_text(encoding="utf-8").rstrip()
     output_path.write_text(f"{header}\n\n{collections}\n", encoding="utf-8")
     print(f"Wrote {output_path} ({env})")
+
+    validate_script = ADMIN / "validate-content.py"
+    if validate_script.is_file():
+        import subprocess
+
+        result = subprocess.run(
+            [sys.executable, str(validate_script)],
+            cwd=ADMIN.parent,
+            check=False,
+        )
+        if result.returncode != 0:
+            print("CMS content validation failed.", file=sys.stderr)
+            return result.returncode
+
     return 0
 
 

@@ -92,6 +92,18 @@ Keyboard shortcuts also work: **⌘B** / **Ctrl+B** (bold), **⌘I** / **Ctrl+I*
 
 The site renders this formatting safely on load via [`content.js`](../content.js). Existing content saved as `**bold**` or `[link label](url)` continues to work.
 
+### List fields (important for developers)
+
+Some lists store **plain strings** in JSON (Mission paragraphs, plan pills, giving bullets, footer principles). Do not wrap them as `{ "text": "..." }` — Sveltia will show empty fields if you do.
+
+Run the validator before deploy:
+
+```bash
+python3 admin/validate-content.py
+```
+
+This also runs automatically when `merge-config.py` builds `admin/config.yml` for Netlify.
+
 ### Not in the CMS (developer-only)
 
 - Page layout, colors, fonts (`index.html`, `style.css`)
