@@ -99,7 +99,7 @@ Many fields show a small toolbar like a word processor:
 
 1. Place your cursor where you want the image.
 2. Press **Enter twice** (blank line) so the image sits **below** the paragraph, not inline with the sentence.
-3. Click the **image** button and choose a file from **assets/photos**.
+3. Click the **image** button and choose a file from the **assets** library (photos, icons, logos).
 4. Save.
 
 If a photo shows as a text path instead of an image on the site, contact your developer — the site may need an update.

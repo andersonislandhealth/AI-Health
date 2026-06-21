@@ -12,5 +12,5 @@ site_url: https://www.andersonislandhealth.org
 display_url: https://www.andersonislandhealth.org
 logo_url: https://www.andersonislandhealth.org/assets/AI%20Health%20Custom%20Logo%20v9.png
 
-media_folder: assets/photos
-public_folder: /assets/photos
+media_folder: assets
+public_folder: /assets

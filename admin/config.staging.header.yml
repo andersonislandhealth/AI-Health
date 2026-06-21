@@ -12,5 +12,5 @@ site_url: https://incredible-cannoli-8dd540.netlify.app
 display_url: https://incredible-cannoli-8dd540.netlify.app
 logo_url: https://incredible-cannoli-8dd540.netlify.app/assets/AI%20Health%20Custom%20Logo%20v9.png
 
-media_folder: assets/photos
-public_folder: /assets/photos
+media_folder: assets
+public_folder: /assets
