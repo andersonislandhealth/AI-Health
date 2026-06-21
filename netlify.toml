@@ -8,6 +8,10 @@
 [context.cms]
   command = "python3 admin/merge-config.py staging"
 
+# cms-2 is the active staging branch; overrides production merge when Netlify builds it.
+[context.cms-2]
+  command = "python3 admin/merge-config.py staging"
+
 [[redirects]]
   from = "/admin"
   to = "/admin/"

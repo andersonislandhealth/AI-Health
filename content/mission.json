@@ -3,8 +3,12 @@
   "leftColumn": {
     "heading": "Grounded in community wellness",
     "paragraphs": [
-      "**Connecting our community to the care it needs.** We work hand-in-hand with local health organizations and providers to solve access challenges and bring meaningful healthcare closer to home for every Anderson Island resident.",
-      "**We have great news!** We are excited to announce the first phase of our multiyear plan to bring primary care to Anderson Island via a mobile medical van."
+      {
+        "text": "**Connecting our community to the care it needs.** We work hand-in-hand with local health organizations and providers to solve access challenges and bring meaningful healthcare closer to home for every Anderson Island resident."
+      },
+      {
+        "text": "**We have great news!** We are excited to announce the first phase of our multiyear plan to bring primary care to Anderson Island via a mobile medical van."
+      }
     ],
     "link": {
       "label": "Learn more about Phase 1",

@@ -5,7 +5,7 @@ Board members and staff with GitHub access can update **homepage copy**, **board
 | Environment | Admin URL | CMS commits to | Public site |
 |-------------|-----------|----------------|-------------|
 | **Production** | [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) | `main` branch | [andersonislandhealth.org](https://www.andersonislandhealth.org/) |
-| **Staging** | [incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/) | `cms` branch | Same Netlify preview URL |
+| **Staging** | [incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/) | `cms-2` branch | Same Netlify preview URL |
 
 These URLs are not linked from the public site. Bookmark the one you use.
 
@@ -18,7 +18,7 @@ Sveltia saves content **directly to GitHub**, not to “whichever Netlify URL yo
 | File | Purpose |
 |------|---------|
 | [`admin/config.production.header.yml`](../admin/config.production.header.yml) | Production backend — `branch: main`, production URLs |
-| [`admin/config.staging.header.yml`](../admin/config.staging.header.yml) | Staging backend — `branch: cms`, preview Netlify URL |
+| [`admin/config.staging.header.yml`](../admin/config.staging.header.yml) | Staging backend — `branch: cms-2`, preview Netlify URL |
 | [`admin/collections.yml`](../admin/collections.yml) | **Shared** CMS sections, fields, and hierarchy (edit once) |
 | [`admin/merge-config.py`](../admin/merge-config.py) | Builds `config.yml` from header + collections |
 | [`admin/config.yml`](../admin/config.yml) | Generated active config loaded by Sveltia at `/admin/` |
@@ -26,7 +26,8 @@ Sveltia saves content **directly to GitHub**, not to “whichever Netlify URL yo
 **Netlify merges the correct config on deploy** ([`netlify.toml`](../netlify.toml)):
 
 - **Production deploy** (typically `main`) → `python3 admin/merge-config.py production`
-- **`cms` branch deploy** → `python3 admin/merge-config.py staging`
+- **`cms-2` branch deploy** → `python3 admin/merge-config.py staging`
+- **`cms` branch deploy** → same staging merge (legacy branch name)
 
 ```mermaid
 flowchart LR
