@@ -17,6 +17,11 @@ public_folder: /assets/photos
 
 # Shared Sveltia CMS collections — merged into config.yml by admin/merge-config.py
 
+field_defaults:
+  richtext:
+    minimal: true
+    buttons: [bold, italic, link]
+
 collections:
   - name: site_settings
     label: Site settings
@@ -81,7 +86,7 @@ collections:
                 name: paragraphs
                 widget: list
                 label_singular: Paragraph
-                field: { label: Text, name: text, widget: text, hint: "Use **bold** for emphasis." }
+                field: { label: Text, name: text, widget: markdown }
                 summary: "{{fields.text}}"
               - label: Link
                 name: link
@@ -95,7 +100,7 @@ collections:
             widget: object
             fields:
               - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: text, hint: "Markdown-style — **bold**, [link text](#board), blank line between paragraphs." }
+              - { label: Body, name: body, widget: markdown }
               - label: Donate button
                 name: cta
                 widget: object
@@ -116,7 +121,7 @@ collections:
         fields:
           - { label: Section label, name: sectionCaption, widget: string }
           - { label: Heading, name: heading, widget: string }
-          - { label: Intro, name: intro, widget: text, hint: "**bold** and line breaks supported." }
+          - { label: Intro, name: intro, widget: markdown }
           - label: Highlight pills
             name: pills
             widget: list
@@ -136,7 +141,7 @@ collections:
             summary: "{{fields.status}}"
             fields:
               - { label: Card label, name: status, widget: string }
-              - { label: Body, name: body, widget: text, hint: "Links — [label](mailto:info@...) or [label](https://...)" }
+              - { label: Body, name: body, widget: markdown }
               - label: Style
                 name: variant
                 widget: select
@@ -177,7 +182,7 @@ collections:
             label_singular: Bullet
             field: { label: Text, name: text, widget: string }
             summary: "{{fields.text}}"
-          - { label: Giving note, name: givingNote, widget: text, hint: "Supports [email links](mailto:...)." }
+          - { label: Giving note, name: givingNote, widget: markdown }
           - label: Photo
             name: photo
             widget: object
@@ -204,7 +209,7 @@ collections:
               - { label: Progress heading, name: progressHeading, widget: string }
               - { label: Zeffy embed URL, name: zeffyUrl, widget: string }
               - { label: Zeffy note, name: zeffyNote, widget: string }
-              - { label: Mail-in donation text, name: mailDonate, widget: text, hint: "**bold** and line breaks." }
+              - { label: Mail-in donation text, name: mailDonate, widget: markdown }
       - name: giving_progress
         label: Fundraising numbers
         file: giving-progress.json
@@ -243,7 +248,7 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
-              - { label: Biography, name: bio, widget: text, required: false, hint: "Leave empty until ready — no expand arrow without a bio." }
+              - { label: Biography, name: bio, widget: markdown, required: false, hint: "Leave empty until ready — no expand arrow without a bio." }
               - { label: Photo path, name: photo, widget: string, required: false }
 
   - divider: true
@@ -266,7 +271,7 @@ collections:
             summary: "{{fields.question}}"
             fields:
               - { label: Question, name: question, widget: string }
-              - { label: Answer, name: answer, widget: text, hint: "Supports [links](url) and **bold**." }
+              - { label: Answer, name: answer, widget: markdown }
 
   - divider: true
 
@@ -318,7 +323,7 @@ collections:
             summary: "{{fields.heading}}"
             fields:
               - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: text, hint: "[email links](mailto:...) supported." }
+              - { label: Body, name: body, widget: markdown }
       - name: footer
         label: Footer
         file: content/footer.json
@@ -330,7 +335,7 @@ collections:
             fields:
               - { label: Heading, name: heading, widget: string }
               - { label: Tagline, name: tagline, widget: string }
-              - { label: Design credit, name: credit, widget: text }
+              - { label: Design credit, name: credit, widget: markdown }
           - label: Guiding principles
             name: principles
             widget: object
@@ -347,8 +352,8 @@ collections:
             widget: object
             fields:
               - { label: Heading, name: heading, widget: string }
-              - { label: General inquiries line, name: generalLine, widget: text }
-              - { label: Address line, name: addressLine, widget: text }
+              - { label: General inquiries line, name: generalLine, widget: markdown }
+              - { label: Address line, name: addressLine, widget: markdown }
           - { label: Copyright name, name: copyrightName, widget: string }
       - name: volunteer_modal
         label: Volunteer modal
@@ -363,4 +368,4 @@ collections:
         file: content/charity-disclosure.json
         format: json
         fields:
-          - { label: Disclosure text, name: body, widget: text, hint: "Supports [links](https://...)." }
+          - { label: Disclosure text, name: body, widget: markdown }

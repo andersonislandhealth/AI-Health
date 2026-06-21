@@ -81,15 +81,16 @@ The admin sidebar mirrors the homepage structure. Each group maps to JSON under 
 | **Events** | Section intro; individual events | `content/events-section.json`, `events.json` |
 | **Contact, footer & legal** | Contact cards, footer, volunteer modal, tax disclosure | `content/contact.json`, `content/footer.json`, `content/volunteer-modal.json`, `content/charity-disclosure.json` |
 
-### Rich text hints
+### Rich text editor
 
-Several fields support lightweight formatting in the CMS:
+Several fields use a **Word-style toolbar** (Bold, Italic, Link):
 
-- **Bold:** wrap text in `**double asterisks**`
-- **Links:** `[link label](https://example.com)` or `[email us](mailto:info@andersonislandhealth.org)`
-- **Paragraph breaks:** blank line between blocks
+1. Highlight the text you want to format.
+2. Click **B** for bold, **I** for italic, or the link button for hyperlinks.
 
-The site renders these safely on load via [`content.js`](../content.js).
+Keyboard shortcuts also work: **⌘B** / **Ctrl+B** (bold), **⌘I** / **Ctrl+I** (italic).
+
+The site renders this formatting safely on load via [`content.js`](../content.js). Existing content saved as `**bold**` or `[link label](url)` continues to work.
 
 ### Not in the CMS (developer-only)
 

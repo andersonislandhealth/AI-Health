@@ -41,8 +41,14 @@ function listTextItems(items) {
         .filter(Boolean);
 }
 
+function renderInlineEmphasis(text) {
+    return escapeHtml(text)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/_(.+?)_/g, '<em>$1</em>');
+}
+
 function renderInlineBold(text) {
-    return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return renderInlineEmphasis(text);
 }
 
 function renderInlineMarkdown(text) {
@@ -333,3 +339,6 @@ async function initContent(skip) {
         console.error('Could not initialize homepage content', err);
     }
 }
+
+window.renderCmsInlineMarkdown = renderInlineMarkdown;
+window.renderCmsInlineBlock = renderInlineBlock;

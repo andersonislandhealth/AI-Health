@@ -278,7 +278,10 @@ function initLeadership() {
 
         if (nameEl) nameEl.textContent = name;
         if (roleEl) roleEl.textContent = role;
-        if (bioEl) bioEl.textContent = bio;
+        if (bioEl) {
+            const render = window.renderCmsInlineBlock || ((value) => value);
+            bioEl.innerHTML = render(bio);
+        }
 
         modal?.classList.add('active');
         modal?.setAttribute('aria-hidden', 'false');
