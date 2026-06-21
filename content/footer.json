@@ -1,0 +1,17 @@
+{
+  "organization": {
+    "heading": "Anderson Island Healthcare Advocates",
+    "tagline": "a nonprofit organization established in 2022.",
+    "credit": "Website and AIHA logo locally designed and produced by Kolbi Christianson, Owner of AI Design Tech"
+  },
+  "principles": {
+    "heading": "Guiding Principles",
+    "items": ["Community-Led", "Sustainable", "Accessible"]
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "generalLine": "**General inquiries:** [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org)",
+    "addressLine": "**P.O. Box 88973, Steilacoom, WA 98388**"
+  },
+  "copyrightName": "Anderson Island Healthcare Advocates"
+}

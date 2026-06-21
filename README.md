@@ -79,6 +79,8 @@ There is **no server-side application** in this repository—no Node API, no dat
 | `script.js` | Behavior: navbar, nav, sticky header, scroll reveal, parallax, events, fundraising, volunteer modal, **footer copyright year** (`[data-copyright-year]`), etc. |
 | `optional/site-login-gate/` | **Optional** client-side preview login (not wired into `index.html` by default); see `README.md` in that folder |
 | `events.json` | **Events list** consumed by the homepage |
+| `content/` | **Homepage copy** (hero, mission, plans, giving, FAQs, contact, footer, etc.) — see [`docs/CMS.md`](docs/CMS.md) |
+| `content.js` | Renders `content/*.json` into homepage sections |
 | `board.json` | **Board member bios** for the leadership grid (`#board`) |
 | `admin/` | **Sveltia CMS** content editor at `/admin/` — see [`docs/CMS.md`](docs/CMS.md) |
 | `giving-progress.json` | **Fundraising goal** numbers for thermometers / labels |
@@ -97,11 +99,11 @@ There is **no server-side application** in this repository—no Node API, no dat
 
 - **Production admin:** [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) — saves to **`main`**
 - **Staging admin:** preview Netlify URL `/admin/` — saves to **`cms`** (see [`docs/CMS.md`](docs/CMS.md))
-- **Config files:** `admin/config.production.yml` (prod) and `admin/config.staging.yml` (staging); Netlify copies the right one on deploy
+- **Config files:** `admin/collections.yml` (shared fields), `admin/config.*.header.yml` (prod vs staging branch), merged by `admin/merge-config.py`
 - **Who:** GitHub collaborators on `andersonislandhealth/AI-Health` with Write access
 - **Setup & editor guide:** [`docs/CMS.md`](docs/CMS.md)
 
-For board, events, and fundraising numbers, prefer the CMS over hand-editing JSON in the repo. **Test on staging before using production admin.**
+Most homepage copy lives in **`content/*.json`**. Board, events, and fundraising numbers use their existing JSON files. **Test on staging before using production admin.**
 
 ### Navigation (`partials/navbar.html`)
 
@@ -114,6 +116,12 @@ For board, events, and fundraising numbers, prefer the CMS over hand-editing JSO
 - **URLs and iframe** live in `index.html` (fundraising section). Update if Zeffy changes the campaign slug or form URL.
 - Embedded iframe may show **third-party console warnings** (CSP); that’s on Zeffy’s side.
 
+### Homepage copy (`content/`)
+
+- Edit via **CMS** (Hero, Mission, Plans, FAQs, etc.) or JSON files in **`content/`**.
+- Regenerate CMS config after editing collections: `python3 admin/merge-config.py staging` (or `production`).
+- Rich text fields support `**bold**`, `[links](url)`, and blank lines between paragraphs.
+
 ### Fundraising numbers & thermometers
 
 - Edit via **CMS** → Fundraising Progress, or **`giving-progress.json`**: `goal`, `current`, `updated`, optional `tickLabelOffset`, `divisions`.
@@ -121,10 +129,9 @@ For board, events, and fundraising numbers, prefer the CMS over hand-editing JSO
 
 ### Events list
 
-- Edit via **CMS** → Events, or **`events.json`**: one `"events"` array of objects `{ title, date, displayDate, location, description }`.
-- **`date`** is required for auto-sorting: use `YYYY-MM-DD` (Pacific / island calendar day).
+- Edit via **CMS** → Events, or **`events.json`**: one `"events"` array of objects `{ title, date, location, description }`.
+- **`date`** is required for auto-sorting: use `YYYY-MM-DD` (Pacific / island calendar day). The site displays it as a full date (e.g. **April 29, 2026**).
 - **Upcoming vs past** is automatic: today and future → **Upcoming events**; earlier dates → **Past events** drawer (newest past first). No manual buckets.
-- **`displayDate`** is optional (friendly label); if omitted, the site formats `date` for you.
 - Add a new event by appending one object to the array and redeploying (or refresh locally over HTTP).
 
 ### Board biographies

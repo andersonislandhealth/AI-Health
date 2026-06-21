@@ -1,0 +1,11 @@
+{
+  "headlineLine1": "Primary care is coming to",
+  "headlineLine2": "Anderson Island!",
+  "tagline": "Anderson Island Healthcare Advocates (AIHA) is bringing community-supported primary care to Anderson Island, Washington starting with a mobile medical van contracted with Peninsula Community Health Services (PCHS).",
+  "actions": [
+    { "label": "Our Purpose", "href": "#mission", "variant": "secondary" },
+    { "label": "Read FAQs", "href": "#faqs", "variant": "outline" },
+    { "label": "Volunteer", "href": "#", "variant": "volunteer" },
+    { "label": "Donate today", "href": "#giving", "variant": "primary" }
+  ]
+}

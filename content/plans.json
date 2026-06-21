@@ -1,0 +1,46 @@
+{
+  "sectionCaption": "Phase 1",
+  "heading": "Mobile medical van launch",
+  "intro": "**Peninsula Community Health Services (PCHS)** will provide care through a mobile van twice a month once fundraising targets are met.\nThe van will be staffed by a PCHS primary care provider accepting new patients **RIGHT NOW!**",
+  "pills": [
+    "Most insurance accepted",
+    "Uninsured patients accepted",
+    "Access to 24/7 provider phone line"
+  ],
+  "graphic": {
+    "src": "assets/icons/PCHS-bus.png",
+    "alt": "Illustration of the PCHS mobile medical van"
+  },
+  "cards": [
+    {
+      "status": "Why this approach",
+      "body": "After exploring multiple options, a mobile clinic is the most practical and cost-effective way to begin care on the island.",
+      "variant": "in-progress"
+    },
+    {
+      "status": "Who will provide care",
+      "body": "PCHS is under contract with AIHA to staff and operate the mobile van. They are a federally qualified health center with deep experience serving rural communities.",
+      "variant": "in-progress",
+      "link": {
+        "label": "About PCHS",
+        "href": "https://www.pchsweb.org/about/",
+        "external": true
+      }
+    },
+    {
+      "status": "What the van offers",
+      "body": "Provider visits, physical exams, lab draws, and more. Established patients receive 24/7 access to PCHS' provider-staffed phone line.",
+      "variant": "in-progress"
+    },
+    {
+      "status": "When services start",
+      "body": "Services begin once AIHA raises sufficient funds to underwrite each van day on the island. Target: fall launch once fundraising goals are reached.",
+      "variant": "future"
+    },
+    {
+      "status": "More information",
+      "body": "A public \"Meet and Greet\" with PCHS staff will be scheduled on-island. Questions? Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org); we respond within two business days.",
+      "variant": "future"
+    }
+  ]
+}

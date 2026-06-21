@@ -101,15 +101,15 @@
         <section class="hero hero-gradient">
             <div class="hero-content">
                 
-                <h1>Primary care is coming to<br>
-                Anderson Island!</h1>
-                <p class="hero-tagline">Anderson Island Healthcare Advocates (AIHA) is bringing community-supported primary care to Anderson Island, Washington starting with a mobile medical van contracted with Peninsula Community Health Services (PCHS).</p>
-                <div class="hero-actions">
-                    <a class="cta-button-secondary" href="#mission">Our Purpose</a> <!-- Change back to Mission once written -->
+                <h1><span data-cms-text="hero.headlineLine1">Primary care is coming to</span><br>
+                <span data-cms-text="hero.headlineLine2">Anderson Island!</span></h1>
+                <p class="hero-tagline" data-cms-text="hero.tagline">Anderson Island Healthcare Advocates (AIHA) is bringing community-supported primary care to Anderson Island, Washington starting with a mobile medical van contracted with Peninsula Community Health Services (PCHS).</p>
+                <div class="hero-actions" data-cms-mount="hero.actions">
+                    <a class="cta-button-secondary" href="#mission">Our Purpose</a>
                     <a class="cta-button-outline" href="#faqs">Read FAQs</a>
                     <a class="cta-button volunteer-trigger volunteer-cta" href="#" aria-label="Volunteer">Volunteer</a>
                     <a class="cta-button donate-primary" href="#giving">Donate today</a>
-            </div>
+                </div>
                <!---- <p style="margin-top:18px; color: rgba(255,255,255,0.86);">Anderson Island Healthcare Advocates (AIHA) is a facilitator of health care
                     delivery. We source professional services to bring health care to our
                     neighbors. While AIHA is not a healthcare provider and does not offer
@@ -119,22 +119,20 @@
         </section>
 
         <section class="page-content strategic-pillars mission-purpose" id="mission">
-            <p class="section-caption mission-purpose-lead">Our Mission</p>
+            <p class="section-caption mission-purpose-lead" data-cms-text="mission.sectionCaption">Our Mission</p>
             <div class="grid-2-col reverse-mobile mission-purpose-grid">
                 <div class="mission-purpose-col">
-                    <h2>Grounded in community wellness</h2>
-                    <p><strong>Connecting our community to the care it needs.</strong> We
-                        work hand-in-hand with local health organizations and
-                        providers to solve access challenges and bring
-                        meaningful healthcare closer to home for every
-                        Anderson Island resident.
-                    <p><strong>We have great news!</strong> We are excited to announce the first phase of our multiyear plan to bring primary care to Anderson Island via a mobile medical van.</p>
-                    <p><a class="link-arrow" href="#plans">Learn more about Phase 1</a></p>
+                    <h2 data-cms-text="mission.leftColumn.heading">Grounded in community wellness</h2>
+                    <div data-cms-mount="mission.leftColumn.paragraphs">
+                        <p><strong>Connecting our community to the care it needs.</strong> We work hand-in-hand with local health organizations and providers to solve access challenges and bring meaningful healthcare closer to home for every Anderson Island resident.</p>
+                        <p><strong>We have great news!</strong> We are excited to announce the first phase of our multiyear plan to bring primary care to Anderson Island via a mobile medical van.</p>
+                    </div>
+                    <p><a class="link-arrow" data-cms-link="mission.leftColumn.link" href="#plans">Learn more about Phase 1</a></p>
                 </div>
                 <div class="mission-purpose-col cta-panel">
-                    <h2>On-island presence</h2>
-                    <p>We are dedicated to improving quality of life by facilitating exceptional healthcare, advancing optimal health outcomes, and fostering community engagement.<br><br> AIHA is governed by a <a href="#board">board of directors</a> made up of island residents who have deep experience with clinical practice, community outreach, and healthcare administration.</p>
-                    <a class="cta-button donate-primary" href="#giving">Donate today</a>
+                    <h2 data-cms-text="mission.rightColumn.heading">On-island presence</h2>
+                    <p data-cms-html="mission.rightColumn.body">We are dedicated to improving quality of life by facilitating exceptional healthcare, advancing optimal health outcomes, and fostering community engagement.<br><br> AIHA is governed by a <a href="#board">board of directors</a> made up of island residents who have deep experience with clinical practice, community outreach, and healthcare administration.</p>
+                    <a class="cta-button donate-primary" data-cms-link="mission.rightColumn.cta" href="#giving">Donate today</a>
                 </div>
             </div>
         </section>
@@ -143,19 +141,19 @@
 
         <section class="page-content timeline-section" id="plans">
             <div class="plan-header">
-                <p class="section-caption">Phase 1</p>
-                <h2>Mobile medical van launch</h2>
-                <p><strong>Peninsula Community Health Services (PCHS)</strong> will provide care through a mobile van twice a month once fundraising targets are met.<br>The van will be staffed by a PCHS primary care provider accepting new patients.</p>
-                    <ul class="pill-list">
+                <p class="section-caption" data-cms-text="plans.sectionCaption">Phase 1</p>
+                <h2 data-cms-text="plans.heading">Mobile medical van launch</h2>
+                <p data-cms-html="plans.intro"><strong>Peninsula Community Health Services (PCHS)</strong> will provide care through a mobile van twice a month once fundraising targets are met.<br>The van will be staffed by a PCHS primary care provider accepting new patients.</p>
+                    <ul class="pill-list" data-cms-mount="plans.pills">
                         <li class="pill">Most insurance accepted</li>
                         <li class="pill">Uninsured patients accepted</li>
                         <li class="pill">Access to 24/7 provider phone line</li>
                     </ul>
                 <br>
             </div>
-            <div class="timeline">
+            <div class="timeline" data-cms-mount="plans.timeline">
                 <div class="plan-hero-wrap">
-                    <img class="plan-hero-graphic" src="assets/icons/PCHS-bus.png" alt="Illustration of the PCHS mobile medical van" loading="lazy">
+                    <img class="plan-hero-graphic" data-cms-src="plans.graphic.src" src="assets/icons/PCHS-bus.png" data-cms-alt="plans.graphic.alt" alt="Illustration of the PCHS mobile medical van" loading="lazy">
                     <article class="phase-card in-progress">
                         <span class="status">Why this approach</span>
                         <p>After exploring multiple options, a mobile clinic is the most practical and cost-effective way to begin care on the island.</p>
@@ -182,31 +180,31 @@
         </section>
 
         <section class="page-content support-summary" id="giving">
-            <p class="section-caption">Jump In With Us</p>
+            <p class="section-caption" data-cms-text="giving.sectionCaption">Jump In With Us</p>
             <div class="grid-2-col reverse-mobile">
                 <div>
-                    <h2>We can’t do this without you</h2>
-                    <p>AIHA is applying for multiple grants and expects substantial support over the next year, but immediate community giving is essential to start services and demonstrate island commitment. Every dollar helps—no contribution is too small.</p>
-                    <ul class="impact-list">
+                    <h2 data-cms-text="giving.heading">We can’t do this without you</h2>
+                    <p data-cms-text="giving.intro">AIHA is applying for multiple grants and expects substantial support over the next year, but immediate community giving is essential to start services and demonstrate island commitment. Every dollar helps—no contribution is too small.</p>
+                    <ul class="impact-list" data-cms-mount="giving.impactItems">
                         <li>Launch services this fall by underwriting mobile clinic days.</li>
                         <li>Show grant foundations strong local backing.</li>
                         <li>Keep care close to home for every neighbor.</li>
                     </ul>
-                    <p style="margin-top:8px;">Give securely via Zeffy (100% fee-free) to help us reach launch. Questions about giving? Email <a href="mailto:info@andersonislandhealth.org">info@andersonislandhealth.org</a>.</p>
+                    <p style="margin-top:8px;" data-cms-html="giving.givingNote">Give securely via Zeffy (100% fee-free) to help us reach launch. Questions about giving? Email <a href="mailto:info@andersonislandhealth.org">info@andersonislandhealth.org</a>.</p>
                     <div class="giving-photo">
-                        <img src="assets/photos/DSC03466.JPG" alt="Community scene supporting Anderson Island Health" loading="lazy">
+                        <img data-cms-src="giving.photo.src" data-cms-alt="giving.photo.alt" src="assets/photos/DSC03466.JPG" alt="Community scene supporting Anderson Island Health" loading="lazy">
                     </div>
-                    <div class="giving-actions">
+                    <div class="giving-actions" data-cms-mount="giving.actions">
                         <a class="cta-button donate-primary" href="https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates" target="_blank" rel="noopener noreferrer">Give on Zeffy</a>
                         <a class="cta-button-outline" href="mailto:info@andersonislandhealth.org?subject=AIHA%20Donation">Email about giving</a>
                     </div>
                 </div>
                 <div class="giving-side">
                     <div class="zeffy-embed-card">
-                        <h4>Live goal progress</h4>
-                        <iframe src="https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates" title="Zeffy donation form" allowfullscreen></iframe>
-                        <p class="zeffy-note">Zeffy keeps this progress live and fee-free.</p>
-                        <div class="mail-donate">
+                        <h4 data-cms-text="giving.sidebar.progressHeading">Live goal progress</h4>
+                        <iframe src="https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates" data-cms-iframe-src="giving.sidebar.zeffyUrl" title="Zeffy donation form" allowfullscreen></iframe>
+                        <p class="zeffy-note" data-cms-text="giving.sidebar.zeffyNote">Zeffy keeps this progress live and fee-free.</p>
+                        <div class="mail-donate" data-cms-html="giving.sidebar.mailDonate">
                             <strong>Prefer to mail a donation?</strong><br>
                             Anderson Island Healthcare Advocates<br>
                             P.O. Box 88973<br>
@@ -217,16 +215,16 @@
             </div>
         </section>
         <section class="page-content charity-disclosure" aria-label="Tax and charity registration">
-            <p>AIHA is a nonprofit 501(c)(3) corporation and registered as a charity with the Washington Secretary of State. All contributions to AIHA are tax deductible to the extent permitted by law. Please see <a href="https://www.sos.wa.gov/corporations-charities" target="_blank" rel="noopener noreferrer">https://www.sos.wa.gov/corporations-charities</a> for further information.</p>
+            <p data-cms-html="charityDisclosure.body">AIHA is a nonprofit 501(c)(3) corporation and registered as a charity with the Washington Secretary of State. All contributions to AIHA are tax deductible to the extent permitted by law. Please see <a href="https://www.sos.wa.gov/corporations-charities" target="_blank" rel="noopener noreferrer">https://www.sos.wa.gov/corporations-charities</a> for further information.</p>
         </section>
 
         <section class="page-content" id="board">
-            <p class="section-caption">Board members (alphabetical)</p>
-            <h2>Leadership on the island</h2>
+            <p class="section-caption" data-cms-text="boardSection.sectionCaption">Board members (alphabetical)</p>
+            <h2 data-cms-text="boardSection.heading">Leadership on the island</h2>
             <div class="grid-3-col leader-grid" data-board-grid>
                 <p class="event-message">Loading board members…</p>
             </div>
-            <p class="board-footnote">Select a board member to read their biography.</p>
+            <p class="board-footnote" data-cms-text="boardSection.footnote">Select a board member to read their biography.</p>
         </section>
 
         <div id="leader-modal" class="leader-modal" aria-hidden="true">
@@ -249,9 +247,9 @@
         </div>
 
         <section class="page-content survey-section timeline-section" id="faqs">
-            <p class="section-caption">FAQs</p>
-            <h2>Answers to common questions</h2>
-            <div class="timeline">
+            <p class="section-caption" data-cms-text="faqs.sectionCaption">FAQs</p>
+            <h2 data-cms-text="faqs.heading">Answers to common questions</h2>
+            <div class="timeline" data-cms-mount="faqs.items">
                 <article class="phase-card">
                     <h3>Are AIHA and PCHS partners or affiliates?</h3>
                     <p>No. AIHA is contracting with PCHS to bring the mobile clinic to the island. AIHA is not a medical provider.</p>
@@ -265,7 +263,7 @@
                     <p>Private and public grants are in progress. If successful, we may consider a referendum for steady funding in the future.</p>
                 </article>
                 <article class="phase-card">
-                    <h3>If I don’t like the PCHS provider, can I switch?</h3>
+                    <h3>If I don't like the PCHS provider, can I switch?</h3>
                     <p>Yes. You can seek care elsewhere at any time. Note that primary care wait times elsewhere can be six months or longer.</p>
                 </article>
                 <article class="phase-card">
@@ -284,16 +282,16 @@
         </section>
 
         <section class="page-content callout-panel" id="events">
-            <p class="section-caption">Upcoming events</p>
-            <h2>Meet and connect</h2>
-            <p>We will host a public “Meet and Greet” with PCHS later this year on the island (location TBD). More event details will be posted here.</p>
+            <p class="section-caption" data-cms-text="eventsSection.sectionCaption">Upcoming events</p>
+            <h2 data-cms-text="eventsSection.heading">Meet and connect</h2>
+            <p data-cms-text="eventsSection.intro">We will host a public “Meet and Greet” with PCHS later this year on the island (location TBD). More event details will be posted here.</p>
             <ul class="event-list" data-events>
                 <li class="event-item">Loading events…</li>
             </ul>
 
             <div class="past-events-drawer" data-past-events-drawer>
                 <button type="button" class="past-events-toggle" data-past-events-toggle aria-expanded="false" aria-controls="past-events-panel">
-                    <span class="section-caption">Past events</span>
+                    <span class="section-caption" data-cms-text="eventsSection.pastEventsLabel">Past events</span>
                     <span class="past-events-chevron" aria-hidden="true"></span>
                 </button>
                 <div id="past-events-panel" class="past-events-panel" data-past-events-panel hidden>
@@ -305,7 +303,7 @@
         </section>
 
         <section class="page-content contact-band" id="contact">
-            <div class="grid-2-col">
+            <div class="grid-2-col" data-cms-mount="contact.cards">
                 <div class="contact-card">
                     <h3>General inquiries</h3>
                     <p>Email <a href="mailto:info@andersonislandhealth.org">info@andersonislandhealth.org</a>. We aim to respond within two business days.</p>
@@ -317,8 +315,8 @@
             </div>
         </section>
 
-        <a class="floating-donate donate-primary" href="#giving" aria-label="Donate today">Donate today</a>
-        <a class="floating-donate volunteer-trigger" href="#" aria-label="Volunteer">Volunteer</a>
+        <a class="floating-donate donate-primary" href="#giving" data-cms-text="siteMeta.floatingDonateLabel" aria-label="Donate today">Donate today</a>
+        <a class="floating-donate volunteer-trigger" href="#" data-cms-text="siteMeta.floatingVolunteerLabel" aria-label="Volunteer">Volunteer</a>
 
     </main>
 
@@ -326,10 +324,10 @@
         <div class="volunteer-backdrop" data-volunteer-close></div>
         <div class="volunteer-dialog" role="dialog" aria-modal="true" aria-label="Volunteer sign-up">
             <button class="volunteer-close" type="button" data-volunteer-close aria-label="Close volunteer form">&times;</button>
-            <h3>Volunteer with AIHA</h3>
-            <p>Share your contact info and tell us how you’d like to help.</p>
+            <h3 data-cms-text="volunteerModal.heading">Volunteer with AIHA</h3>
+            <p data-cms-text="volunteerModal.intro">Share your contact info and tell us how you’d like to help.</p>
             <div class="volunteer-embed">
-                <iframe src="https://forms.gle/Mp36wZS8MKAF8osj6?embedded=true" title="Volunteer form" allowfullscreen></iframe>
+                <iframe data-cms-iframe-src="volunteerModal.formUrl" src="https://forms.gle/Mp36wZS8MKAF8osj6?embedded=true" title="Volunteer form" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -337,8 +335,8 @@
     <footer class="theme-dark">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Anderson Island Healthcare Advocates</h4>
-                <p>a nonprofit organization established in 2022.</p>
+                <h4 data-cms-text="footer.organization.heading">Anderson Island Healthcare Advocates</h4>
+                <p data-cms-text="footer.organization.tagline">a nonprofit organization established in 2022.</p>
                 
                 <div class="footer-credit">
                     <div class="footer-credit-logo">
@@ -347,29 +345,30 @@
                         </a>
                     </div>
                     <div class="footer-credit-text">
-                        <p>Website and AIHA logo locally designed and produced by Kolbi Christianson, Owner of <br>AI Design Tech</p>
+                        <p data-cms-html="footer.organization.credit">Website and AIHA logo locally designed and produced by Kolbi Christianson, Owner of <br>AI Design Tech</p>
                     </div>
                 </div>
             </div>
             <div class="footer-section">
-                <h4>Guiding Principles</h4>
-                <ul>
+                <h4 data-cms-text="footer.principles.heading">Guiding Principles</h4>
+                <ul data-cms-mount="footer.principles.items">
                     <li>Community-Led</li>
                     <li>Sustainable</li>
                     <li>Accessible</li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p><strong>General inquiries:</strong> <a href="mailto:info@andersonislandhealth.org">info@andersonislandhealth.org</a></p>
-                <p><strong>P.O. Box 88973, Steilacoom, WA 98388</strong></p>
+                <h4 data-cms-text="footer.contact.heading">Contact Us</h4>
+                <p data-cms-html="footer.contact.generalLine"><strong>General inquiries:</strong> <a href="mailto:info@andersonislandhealth.org">info@andersonislandhealth.org</a></p>
+                <p data-cms-html="footer.contact.addressLine"><strong>P.O. Box 88973, Steilacoom, WA 98388</strong></p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; <span data-copyright-year></span> Anderson Island Healthcare Advocates. All rights reserved.
+            &copy; <span data-copyright-year></span> <span data-cms-text="footer.copyrightName">Anderson Island Healthcare Advocates</span>. All rights reserved.
         </div>
     </footer>
 
+    <script src="content.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

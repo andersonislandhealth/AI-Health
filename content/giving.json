@@ -1,0 +1,35 @@
+{
+  "sectionCaption": "Jump In With Us",
+  "heading": "We can’t do this without you",
+  "intro": "AIHA is applying for multiple grants and expects substantial support over the next year, but immediate community giving is essential to start services and demonstrate island commitment. Every dollar helps—no contribution is too small.",
+  "impactItems": [
+    "Launch services this fall by underwriting mobile clinic days.",
+    "Show grant foundations strong local backing.",
+    "Keep care close to home for every neighbor."
+  ],
+  "givingNote": "Give securely via Zeffy (100% fee-free) to help us reach launch. Questions about giving? Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org).",
+  "photo": {
+    "src": "assets/photos/DSC03466.JPG",
+    "alt": "Community scene supporting Anderson Island Health"
+  },
+  "actions": [
+    {
+      "label": "Give on Zeffy",
+      "href": "https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates",
+      "variant": "primary",
+      "external": true
+    },
+    {
+      "label": "Email about giving",
+      "href": "mailto:info@andersonislandhealth.org?subject=AIHA%20Donation",
+      "variant": "outline",
+      "external": false
+    }
+  ],
+  "sidebar": {
+    "progressHeading": "Live goal progress",
+    "zeffyUrl": "https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates",
+    "zeffyNote": "Zeffy keeps this progress live and fee-free.",
+    "mailDonate": "**Prefer to mail a donation?**\n\nAnderson Island Healthcare Advocates\nP.O. Box 88973\nSteilacoom, WA 98388"
+  }
+}

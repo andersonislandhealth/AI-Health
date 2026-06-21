@@ -1,0 +1,22 @@
+{
+  "sectionCaption": "Our Mission",
+  "leftColumn": {
+    "heading": "Grounded in community wellness",
+    "paragraphs": [
+      "**Connecting our community to the care it needs.** We work hand-in-hand with local health organizations and providers to solve access challenges and bring meaningful healthcare closer to home for every Anderson Island resident.",
+      "**We have great news!** We are excited to announce the first phase of our multiyear plan to bring primary care to Anderson Island via a mobile medical van.\n\n![](/assets/photos/PCHS-bus.jpeg)"
+    ],
+    "link": {
+      "label": "Learn more about Phase 1",
+      "href": "#plans"
+    }
+  },
+  "rightColumn": {
+    "heading": "On-island presence",
+    "body": "We are dedicated to improving quality of life by facilitating exceptional healthcare, advancing optimal health outcomes, and fostering community engagement.\n\nAIHA is governed by a [board of directors](#board) made up of island residents who have deep experience with clinical practice, community outreach, and healthcare administration.",
+    "cta": {
+      "label": "Donate today",
+      "href": "#giving"
+    }
+  }
+}
