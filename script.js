@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await injectNavbar(isFile);
     initNavigation();
     initStickyHeader();
+    await initContent(isFile);
     await initBoard();
     initReveal();
     initFloatingDonate();

@@ -1,6 +1,6 @@
 # Content editor (Sveltia CMS)
 
-Board members and staff with GitHub access can update **board bios**, **events**, and **fundraising numbers** through a web form—no code editor required.
+Board members and staff with GitHub access can update **homepage copy**, **board bios**, **events**, and **fundraising numbers** through a web form—no code editor required.
 
 | Environment | Admin URL | CMS commits to | Public site |
 |-------------|-----------|----------------|-------------|
@@ -17,14 +17,16 @@ Sveltia saves content **directly to GitHub**, not to “whichever Netlify URL yo
 
 | File | Purpose |
 |------|---------|
-| [`admin/config.production.yml`](../admin/config.production.yml) | Production — `branch: main`, production URLs |
-| [`admin/config.staging.yml`](../admin/config.staging.yml) | Staging — `branch: cms`, preview Netlify URL |
-| [`admin/config.yml`](../admin/config.yml) | Active config loaded by Sveltia at `/admin/` |
+| [`admin/config.production.header.yml`](../admin/config.production.header.yml) | Production backend — `branch: main`, production URLs |
+| [`admin/config.staging.header.yml`](../admin/config.staging.header.yml) | Staging backend — `branch: cms`, preview Netlify URL |
+| [`admin/collections.yml`](../admin/collections.yml) | **Shared** CMS sections, fields, and hierarchy (edit once) |
+| [`admin/merge-config.py`](../admin/merge-config.py) | Builds `config.yml` from header + collections |
+| [`admin/config.yml`](../admin/config.yml) | Generated active config loaded by Sveltia at `/admin/` |
 
-**Netlify copies the correct file on deploy** ([`netlify.toml`](../netlify.toml)):
+**Netlify merges the correct config on deploy** ([`netlify.toml`](../netlify.toml)):
 
-- **Production deploy** (typically `main`) → `config.production.yml` → `config.yml`
-- **`cms` branch deploy** → `config.staging.yml` → `config.yml`
+- **Production deploy** (typically `main`) → `python3 admin/merge-config.py production`
+- **`cms` branch deploy** → `python3 admin/merge-config.py staging`
 
 ```mermaid
 flowchart LR
@@ -38,8 +40,8 @@ flowchart LR
     CmsBranch["GitHub cms"]
     StgSite[Preview site]
   end
-  ProdAdmin -->|"config.production.yml"| MainBranch
-  StgAdmin -->|"config.staging.yml"| CmsBranch
+  ProdAdmin -->|"merge-config production"| MainBranch
+  StgAdmin -->|"merge-config staging"| CmsBranch
   MainBranch --> ProdSite
   CmsBranch --> StgSite
 ```
@@ -49,17 +51,51 @@ flowchart LR
 - **Test content changes on staging first** — use the preview `/admin/` URL so saves go to the `cms` branch.
 - **Production admin** only after CMS is merged to `main` and you intend to go live.
 - Opening staging admin while `config.yml` still pointed at `main` will update production (that was the “Test” board member issue). The split above prevents that after redeploy.
-- When the preview Netlify URL changes, update `site_url` and `display_url` in `config.staging.yml`.
+- When the preview Netlify URL changes, update `site_url` and `display_url` in `admin/config.staging.header.yml`.
 - To promote staging content: merge `cms` → `main` on GitHub (or copy JSON changes manually), then deploy production.
 
-### Local development
-
-On the **`cms`** branch, `admin/config.yml` matches staging. On **`main`**, it should match production. After switching branches, copy if needed:
+After switching branches or editing `collections.yml`, regenerate config locally:
 
 ```bash
-cp admin/config.staging.yml admin/config.yml    # cms branch / staging test
-cp admin/config.production.yml admin/config.yml # main branch / production test
+python3 admin/merge-config.py staging     # cms branch / preview test
+python3 admin/merge-config.py production  # main branch / production test
 ```
+
+---
+
+## CMS content hierarchy
+
+The admin sidebar mirrors the homepage structure. Each group maps to JSON under [`content/`](../content/) (plus existing data files).
+
+| CMS group | What you edit | JSON file |
+|-----------|---------------|-----------|
+| **Site settings** | Page title, meta description, floating button labels | `content/site-meta.json` |
+| **Hero** | Headline, tagline, CTA buttons | `content/hero.json` |
+| **Mission** | Two-column mission copy and donate CTA | `content/mission.json` |
+| **Phase 1 plans** | Section intro, pills, timeline **cards** | `content/plans.json` |
+| **Donate & giving** | Giving copy, impact bullets, Zeffy sidebar | `content/giving.json` |
+| **Donate & giving → Fundraising numbers** | Goal thermometer data | `giving-progress.json` |
+| **Board** | Section headings; member list & bios | `content/board-section.json`, `board.json` |
+| **FAQs** | Section intro and FAQ **cards** | `content/faqs.json` |
+| **Events** | Section intro; individual events | `content/events-section.json`, `events.json` |
+| **Contact, footer & legal** | Contact cards, footer, volunteer modal, tax disclosure | `content/contact.json`, `content/footer.json`, `content/volunteer-modal.json`, `content/charity-disclosure.json` |
+
+### Rich text hints
+
+Several fields support lightweight formatting in the CMS:
+
+- **Bold:** wrap text in `**double asterisks**`
+- **Links:** `[link label](https://example.com)` or `[email us](mailto:info@andersonislandhealth.org)`
+- **Paragraph breaks:** blank line between blocks
+
+The site renders these safely on load via [`content.js`](../content.js).
+
+### Not in the CMS (developer-only)
+
+- Page layout, colors, fonts (`index.html`, `style.css`)
+- Navigation links (`partials/navbar.html`)
+- JSON-LD structured data (inline in `index.html`)
+- Logo and photo **files** in `assets/` (paths in CMS point to existing files)
 
 ---
 
@@ -115,10 +151,13 @@ Push commits that include the `admin/` folder and `netlify.toml`. After deploy, 
 
 ## What you can edit
 
-| CMS section | File updated | Appears on site |
-|-------------|--------------|-----------------|
-| **Board Members** | `board.json` | [Board section](https://www.andersonislandhealth.org/#board) — names, roles, bios |
-| **Events** | `events.json` | [Events section](https://www.andersonislandhealth.org/#events) — upcoming and past lists |
+Most visible homepage copy is CMS-managed. The table below highlights major sections; see [CMS content hierarchy](#cms-content-hierarchy) for the full list.
+
+| CMS section | File(s) updated | Appears on site |
+|-------------|-----------------|-----------------|
+| **Hero, Mission, Plans, Giving, FAQs, Contact, Footer** | `content/*.json` | Matching homepage sections |
+| **Board Members** | `board.json` + `content/board-section.json` | [Board section](https://www.andersonislandhealth.org/#board) |
+| **Events** | `events.json` + `content/events-section.json` | [Events section](https://www.andersonislandhealth.org/#events) |
 | **Fundraising Progress** | `giving-progress.json` | Donate section thermometers / goal labels |
 
 ### Board members
@@ -191,9 +230,13 @@ For offline config testing without saving to GitHub, see [Sveltia local developm
 | Path | Purpose |
 |------|---------|
 | `admin/index.html` | CMS shell (loads Sveltia from CDN) |
-| `admin/config.yml` | Active config at runtime (copied from prod or staging on Netlify deploy) |
-| `admin/config.production.yml` | Production template — `branch: main` |
-| `admin/config.staging.yml` | Staging template — `branch: cms` |
+| `admin/collections.yml` | Shared field definitions (all sections) |
+| `admin/config.production.header.yml` | Production GitHub branch + URLs |
+| `admin/config.staging.header.yml` | Staging GitHub branch + URLs |
+| `admin/merge-config.py` | Builds `admin/config.yml` |
+| `admin/config.yml` | Generated — active CMS config at runtime |
+| `content.js` | Loads `content/*.json` and renders homepage copy |
+| `content/*.json` | Homepage section copy (CMS-managed) |
 | `board.json` | Board roster and bios |
 | `events.json` | Event list |
 | `giving-progress.json` | Fundraising goal numbers |
@@ -210,6 +253,7 @@ Optional: `board.csv` can still be used offline to collect bios before pasting i
 | Save fails / permission denied | Confirm your GitHub user is a repo collaborator with Write access |
 | Changes not on site | Wait for Netlify deploy to finish; hard refresh the homepage |
 | Changes on wrong site | Check which `/admin/` URL you used; verify `backend.branch` in deployed `/admin/config.yml` |
-| Staging save hit production | Redeploy `cms` branch; confirm `config.staging.yml` has `branch: cms` and Netlify `context.cms` build ran |
+| Staging save hit production | Redeploy `cms` branch; confirm `config.staging.header.yml` has `branch: cms` and Netlify build ran `merge-config.py staging` |
+| Page shows “Loading…” | Check `content/*.json` deployed; open browser console for fetch errors |
 
 For CMS product questions, see [Sveltia CMS documentation](https://sveltiacms.app/en/docs).
