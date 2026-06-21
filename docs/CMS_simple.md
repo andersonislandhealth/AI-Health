@@ -28,8 +28,8 @@ There are **two separate editors**. Always know which one you are using.
 
 | | **Test site (staging)** | **Live site (production)** |
 |---|-------------------------|----------------------------|
-| **Editor link** | [incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/) | [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) |
-| **Public website** | [incredible-cannoli-8dd540.netlify.app](https://incredible-cannoli-8dd540.netlify.app) | [andersonislandhealth.org](https://www.andersonislandhealth.org) |
+| **Editor link** | [test-aiha.netlify.app/admin/](https://test-aiha.netlify.app/admin/) | [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) |
+| **Public website** | [test-aiha.netlify.app](https://test-aiha.netlify.app) | [andersonislandhealth.org](https://www.andersonislandhealth.org) |
 | **When to use** | Try changes here first | Only when you want the world to see the change |
 
 **Rule:** Practice on the **test** editor. When everything looks right, either use the **live** editor for the same change, or ask your developer to publish test changes to the live site.

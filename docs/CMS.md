@@ -5,7 +5,7 @@ Board members and staff with GitHub access can update **homepage copy**, **board
 | Environment | Admin URL | CMS commits to | Public site |
 |-------------|-----------|----------------|-------------|
 | **Production** | [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) | `main` branch | [andersonislandhealth.org](https://www.andersonislandhealth.org/) |
-| **Staging** | [incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/) | `cms-2` branch | Same Netlify preview URL |
+| **Staging** | [test-aiha.netlify.app/admin/](https://test-aiha.netlify.app/admin/) | `cms-2` branch | [test-aiha.netlify.app](https://test-aiha.netlify.app/) |
 
 These URLs are not linked from the public site. Bookmark the one you use.
 
@@ -37,7 +37,7 @@ flowchart LR
     ProdSite[Live site]
   end
   subgraph staging [Staging]
-    StgAdmin["preview.netlify.app/admin"]
+    StgAdmin["test-aiha.netlify.app/admin"]
     CmsBranch["GitHub cms"]
     StgSite[Preview site]
   end
@@ -209,7 +209,7 @@ Members are sorted **alphabetically by name** on the live site.
 
 ### Staging (safe testing)
 
-1. Open [https://incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/).
+1. Open [https://test-aiha.netlify.app/admin/](https://test-aiha.netlify.app/admin/).
 2. Sign in with **GitHub** (same OAuth setup).
 3. Edit and save — commits go to the **`cms`** branch only.
 4. Hard refresh the **preview** site URL to verify (not andersonislandhealth.org).

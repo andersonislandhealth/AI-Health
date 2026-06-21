@@ -8,9 +8,9 @@ backend:
   auth_methods:
     - oauth
 
-site_url: https://incredible-cannoli-8dd540.netlify.app
-display_url: https://incredible-cannoli-8dd540.netlify.app
-logo_url: https://incredible-cannoli-8dd540.netlify.app/assets/AI%20Health%20Custom%20Logo%20v9.png
+site_url: https://test-aiha.netlify.app
+display_url: https://test-aiha.netlify.app
+logo_url: https://test-aiha.netlify.app/assets/AI%20Health%20Custom%20Logo%20v9.png
 
 media_folder: assets
 public_folder: /assets
