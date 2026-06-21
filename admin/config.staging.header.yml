@@ -14,3 +14,21 @@ logo_url: https://incredible-cannoli-8dd540.netlify.app/assets/AI%20Health%20Cus
 
 media_folder: assets
 public_folder: /assets
+
+# Asset Library folders — match repo layout (assets/photos, assets/icons, etc.)
+asset_collections:
+  - name: photos
+    label: Photos
+    icon: photo_library
+    media_folder: /assets/photos
+    public_folder: /assets/photos
+  - name: icons
+    label: Icons
+    icon: imagesmode
+    media_folder: /assets/icons
+    public_folder: /assets/icons
+  - name: site_assets
+    label: Site assets
+    icon: brand_family
+    media_folder: /assets
+    public_folder: /assets
