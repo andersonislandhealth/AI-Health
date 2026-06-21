@@ -95,12 +95,13 @@ There is **no server-side application** in this repository—no Node API, no dat
 
 ### Content editor (Sveltia CMS)
 
-- **URL:** [https://www.andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) (not linked from the public site).
-- **Who:** GitHub collaborators on `andersonislandhealth/AI-Health` with Write access.
-- **Edits:** `board.json`, `events.json`, `giving-progress.json` via forms; saves commit to `main` and Netlify redeploys.
-- **Setup & editor guide:** [`docs/CMS.md`](docs/CMS.md).
+- **Production admin:** [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) — saves to **`main`**
+- **Staging admin:** preview Netlify URL `/admin/` — saves to **`cms`** (see [`docs/CMS.md`](docs/CMS.md))
+- **Config files:** `admin/config.production.yml` (prod) and `admin/config.staging.yml` (staging); Netlify copies the right one on deploy
+- **Who:** GitHub collaborators on `andersonislandhealth/AI-Health` with Write access
+- **Setup & editor guide:** [`docs/CMS.md`](docs/CMS.md)
 
-For board, events, and fundraising numbers, prefer the CMS over hand-editing JSON in the repo.
+For board, events, and fundraising numbers, prefer the CMS over hand-editing JSON in the repo. **Test on staging before using production admin.**
 
 ### Navigation (`partials/navbar.html`)
 

@@ -1,6 +1,13 @@
 [build]
   publish = "."
 
+# Sveltia CMS: copy the right config before deploy (see docs/CMS.md).
+[context.production]
+  command = "cp admin/config.production.yml admin/config.yml"
+
+[context.cms]
+  command = "cp admin/config.staging.yml admin/config.yml"
+
 [[redirects]]
   from = "/admin"
   to = "/admin/"

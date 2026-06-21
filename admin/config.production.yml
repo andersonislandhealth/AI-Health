@@ -1,17 +1,16 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
-# Staging CMS — commits go to cms branch. Used by Netlify branch/preview deploys.
-# Update site_url / display_url if the preview Netlify URL changes.
+# Production CMS — commits go to main. Used by andersonislandhealth.org.
 
 backend:
   name: github
   repo: andersonislandhealth/AI-Health
-  branch: cms
+  branch: main
   auth_methods:
     - oauth
 
-site_url: https://incredible-cannoli-8dd540.netlify.app
-display_url: https://incredible-cannoli-8dd540.netlify.app
-logo_url: https://incredible-cannoli-8dd540.netlify.app/assets/AI%20Health%20Custom%20Logo%20v9.png
+site_url: https://www.andersonislandhealth.org
+display_url: https://www.andersonislandhealth.org
+logo_url: https://www.andersonislandhealth.org/assets/AI%20Health%20Custom%20Logo%20v9.png
 
 media_folder: assets/photos
 public_folder: /assets/photos

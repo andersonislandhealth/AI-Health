@@ -2,9 +2,64 @@
 
 Board members and staff with GitHub access can update **board bios**, **events**, and **fundraising numbers** through a web form—no code editor required.
 
-**Admin URL:** [https://www.andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/)
+| Environment | Admin URL | CMS commits to | Public site |
+|-------------|-----------|----------------|-------------|
+| **Production** | [andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/) | `main` branch | [andersonislandhealth.org](https://www.andersonislandhealth.org/) |
+| **Staging** | [incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/) | `cms` branch | Same Netlify preview URL |
 
-This URL is not linked from the public site. Bookmark it if you edit content regularly.
+These URLs are not linked from the public site. Bookmark the one you use.
+
+---
+
+## Production vs staging (important)
+
+Sveltia saves content **directly to GitHub**, not to “whichever Netlify URL you opened.” The **`backend.branch`** setting in the CMS config decides where saves go.
+
+| File | Purpose |
+|------|---------|
+| [`admin/config.production.yml`](../admin/config.production.yml) | Production — `branch: main`, production URLs |
+| [`admin/config.staging.yml`](../admin/config.staging.yml) | Staging — `branch: cms`, preview Netlify URL |
+| [`admin/config.yml`](../admin/config.yml) | Active config loaded by Sveltia at `/admin/` |
+
+**Netlify copies the correct file on deploy** ([`netlify.toml`](../netlify.toml)):
+
+- **Production deploy** (typically `main`) → `config.production.yml` → `config.yml`
+- **`cms` branch deploy** → `config.staging.yml` → `config.yml`
+
+```mermaid
+flowchart LR
+  subgraph prod [Production]
+    ProdAdmin["andersonislandhealth.org/admin"]
+    MainBranch["GitHub main"]
+    ProdSite[Live site]
+  end
+  subgraph staging [Staging]
+    StgAdmin["preview.netlify.app/admin"]
+    CmsBranch["GitHub cms"]
+    StgSite[Preview site]
+  end
+  ProdAdmin -->|"config.production.yml"| MainBranch
+  StgAdmin -->|"config.staging.yml"| CmsBranch
+  MainBranch --> ProdSite
+  CmsBranch --> StgSite
+```
+
+### Rules of thumb
+
+- **Test content changes on staging first** — use the preview `/admin/` URL so saves go to the `cms` branch.
+- **Production admin** only after CMS is merged to `main` and you intend to go live.
+- Opening staging admin while `config.yml` still pointed at `main` will update production (that was the “Test” board member issue). The split above prevents that after redeploy.
+- When the preview Netlify URL changes, update `site_url` and `display_url` in `config.staging.yml`.
+- To promote staging content: merge `cms` → `main` on GitHub (or copy JSON changes manually), then deploy production.
+
+### Local development
+
+On the **`cms`** branch, `admin/config.yml` matches staging. On **`main`**, it should match production. After switching branches, copy if needed:
+
+```bash
+cp admin/config.staging.yml admin/config.yml    # cms branch / staging test
+cp admin/config.production.yml admin/config.yml # main branch / production test
+```
 
 ---
 
@@ -33,7 +88,7 @@ These steps are done once per site, not by every editor.
 
 - Repo: **`andersonislandhealth/AI-Health`** on GitHub.
 - Netlify must deploy from this org repo (not an old fork).
-- CMS config lives in [`admin/config.yml`](../admin/config.yml) — update `backend.repo` if the repo name changes.
+- CMS config lives in [`admin/config.production.yml`](../admin/config.production.yml) and [`admin/config.staging.yml`](../admin/config.staging.yml) — see [Production vs staging](#production-vs-staging-important) below.
 
 ### 2. GitHub OAuth app
 
@@ -88,13 +143,23 @@ Members are sorted **alphabetically by name** on the live site.
 
 ## Saving changes
 
+### Production
+
 1. Open [https://www.andersonislandhealth.org/admin/](https://www.andersonislandhealth.org/admin/).
 2. Sign in with **GitHub**.
 3. Choose **Site Content** → Board Members, Events, or Fundraising Progress.
 4. Edit fields and click **Save** (or **Publish**).
-5. Sveltia commits to the `main` branch on GitHub.
-6. Netlify rebuilds the site (usually **1–2 minutes**).
-7. Hard refresh the public homepage to see updates (`Cmd+Shift+R` / `Ctrl+Shift+R`).
+5. Sveltia commits to the **`main`** branch on GitHub.
+6. Netlify rebuilds production (usually **1–2 minutes**).
+7. Hard refresh the homepage (`Cmd+Shift+R` / `Ctrl+Shift+R`).
+
+### Staging (safe testing)
+
+1. Open [https://incredible-cannoli-8dd540.netlify.app/admin/](https://incredible-cannoli-8dd540.netlify.app/admin/).
+2. Sign in with **GitHub** (same OAuth setup).
+3. Edit and save — commits go to the **`cms`** branch only.
+4. Hard refresh the **preview** site URL to verify (not andersonislandhealth.org).
+5. Merge `cms` → `main` when ready for production.
 
 ---
 
@@ -126,7 +191,9 @@ For offline config testing without saving to GitHub, see [Sveltia local developm
 | Path | Purpose |
 |------|---------|
 | `admin/index.html` | CMS shell (loads Sveltia from CDN) |
-| `admin/config.yml` | Collections, fields, GitHub backend |
+| `admin/config.yml` | Active config at runtime (copied from prod or staging on Netlify deploy) |
+| `admin/config.production.yml` | Production template — `branch: main` |
+| `admin/config.staging.yml` | Staging template — `branch: cms` |
 | `board.json` | Board roster and bios |
 | `events.json` | Event list |
 | `giving-progress.json` | Fundraising goal numbers |
@@ -142,6 +209,7 @@ Optional: `board.csv` can still be used offline to collect bios before pasting i
 | Login fails | Confirm Netlify OAuth provider is installed with correct GitHub OAuth app credentials |
 | Save fails / permission denied | Confirm your GitHub user is a repo collaborator with Write access |
 | Changes not on site | Wait for Netlify deploy to finish; hard refresh the homepage |
-| Wrong repo | Check `repo:` in `admin/config.yml` matches GitHub and Netlify’s connected repo |
+| Changes on wrong site | Check which `/admin/` URL you used; verify `backend.branch` in deployed `/admin/config.yml` |
+| Staging save hit production | Redeploy `cms` branch; confirm `config.staging.yml` has `branch: cms` and Netlify `context.cms` build ran |
 
 For CMS product questions, see [Sveltia CMS documentation](https://sveltiacms.app/en/docs).
