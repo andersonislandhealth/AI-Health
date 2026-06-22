@@ -4,7 +4,7 @@
 backend:
   name: github
   repo: andersonislandhealth/AI-Health
-  branch: cms-2
+  branch: cms
   auth_methods:
     - oauth
 
