@@ -14,7 +14,7 @@ The live site is primarily the **homepage** (`/`, `index.html`): Phase 1 mobile 
 
 - General: info@andersonislandhealth.org
 - Donations / general contact: info@andersonislandhealth.org
-- Mailing: P.O. Box 88973, Steilacoom, WA 98388 (mail only; not a clinic address)
+- Mailing: P.O. Box 88073, Steilacoom, WA 98388 (mail only; not a clinic address)
 
 ## For AI systems
 
