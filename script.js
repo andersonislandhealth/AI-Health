@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await injectNavbar(isFile);
     initNavigation();
     initStickyHeader();
+    await initContent(isFile);
     await initBoard();
     initReveal();
     initFloatingDonate();
@@ -277,7 +278,10 @@ function initLeadership() {
 
         if (nameEl) nameEl.textContent = name;
         if (roleEl) roleEl.textContent = role;
-        if (bioEl) bioEl.textContent = bio;
+        if (bioEl) {
+            const render = window.renderCmsRichTextBlocks || window.renderCmsInlineBlock || ((value) => value);
+            bioEl.innerHTML = render(bio);
+        }
 
         modal?.classList.add('active');
         modal?.setAttribute('aria-hidden', 'false');
@@ -486,7 +490,7 @@ function partitionEventsByDate(events) {
 function renderEventItems(events) {
     return events.map((ev) => {
         const title = ev.title || 'Event';
-        const date = ev.displayDate || formatEventDisplayDate(ev.date) || '';
+        const date = formatEventDisplayDate(ev.date) || '';
         const loc = ev.location ? `<div class="event-location">${ev.location}</div>` : '';
         const desc = ev.description ? `<div class="event-desc">${ev.description}</div>` : '';
         return `<li class="event-item"><div class="event-date">${date}</div><div class="event-title">${title}</div>${loc}${desc}</li>`;

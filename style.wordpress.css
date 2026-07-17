@@ -1,5 +1,18 @@
+/*
+ * AIHA site styles — paste AFTER your existing WordPress Additional CSS.
+ *
+ * Setup:
+ *   1. Wrap homepage markup in a div with class aiha-site
+ *   2. Add class aiha-header to the site header; aiha-footer to the footer
+ *   3. Enqueue Adobe Fonts: https://use.typekit.net/siy6qpg.css
+ *   4. Update parallax image URL (search FERRY.2.JPG) to your WP media URL
+ *
+ * WordPress rejects angle brackets in this field — do not add HTML or style tags.
+ */
+
 /* --- Design Tokens --- */
 :root {
+
     --primary-color: #0c7bbd;
     --primary-dark: #0a4f8a;
     --primary-rgb: 12, 123, 189;
@@ -39,80 +52,85 @@
     --cta-hover-overlay: rgba(255,255,255,0.14);
     --cta-shadow: 6px 12px 24px rgba(0, 0, 0, 0.2);
 }
-
 /* --- Typography --- */
 /* Congenial is loaded via Adobe Fonts (Typekit) in HTML — do not reference missing local /assets/fonts files (avoids 404 on deploy). */
-
 /* --- Global Reset --- */
-* {
+.aiha-site *, .aiha-site *::before, .aiha-site *::after {
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+body:has(.aiha-site) {
 
-body {
     font-family: var(--body-font);
     line-height: 1.65;
     background-color: var(--background-color);
     color: var(--dark-text);
-    padding-top: 120px;
 }
+html:has(.aiha-site) {
 
-html {
     font-size: 115%;
 }
+.aiha-site img {
 
-img {
     max-width: 100%;
     height: auto;
     display: block;
 }
+.aiha-site h1, .aiha-site h2, .aiha-site h3, .aiha-site h4, .aiha-site h5, .aiha-site h6 {
 
-h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
     color: var(--navy);
     margin-bottom: 15px;
     line-height: 1.25;
 }
+.aiha-site h2 {
 
-h2 {
     color: var(--primary-teal);
 }
+.aiha-site h1 {
+ font-size: 2.9rem; 
+}
+.aiha-site h2 {
+ font-size: 2.15rem; margin-top: 25px; 
+}
+.aiha-site h3 {
+ font-size: 1.55rem; 
+}
+.aiha-site h4 {
+ font-size: 1.25rem; 
+}
+.aiha-site p {
 
-h1 { font-size: 2.9rem; }
-h2 { font-size: 2.15rem; margin-top: 25px; }
-h3 { font-size: 1.55rem; }
-h4 { font-size: 1.25rem; }
-
-p {
     margin-bottom: 16px;
     color: var(--muted-text);
     font-size: 1.02rem;
 }
+.aiha-site ul, .aiha-site ol {
 
-ul, ol {
     margin: 0 0 16px 22px;
     color: var(--muted-text);
 }
+.aiha-site a {
 
-a {
     color: var(--primary-color);
     text-decoration: none;
 }
+.aiha-site a:hover {
 
-a:hover {
     text-decoration: underline;
 }
+.aiha-site hr {
 
-hr {
     border: 0;
     height: 1px;
     background: var(--border-color);
     margin: 40px 0;
 }
-
 /* --- Motion Utilities --- */
-.reveal {
+.aiha-site .reveal {
+
     opacity: 0;
     transform: translate3d(0, 48px, 0) scale(0.96);
     filter: blur(16px);
@@ -123,44 +141,45 @@ hr {
     transition-delay: var(--reveal-delay, 0s);
     will-change: opacity, transform, filter;
 }
+.aiha-site .reveal[data-reveal-variant="lift"] {
 
-.reveal[data-reveal-variant="lift"] {
     transform: translate3d(0, 56px, 0) scale(0.94);
 }
+.aiha-site .reveal[data-reveal-variant="slide-left"] {
 
-.reveal[data-reveal-variant="slide-left"] {
     transform: translate3d(-52px, 36px, 0) scale(0.94);
 }
+.aiha-site .reveal[data-reveal-variant="slide-right"] {
 
-.reveal[data-reveal-variant="slide-right"] {
     transform: translate3d(52px, 36px, 0) scale(0.94);
 }
+.aiha-site .reveal[data-reveal-variant="zoom"] {
 
-.reveal[data-reveal-variant="zoom"] {
     transform: translate3d(0, 64px, 0) scale(0.9);
 }
+.aiha-site .reveal.reveal-visible {
 
-.reveal.reveal-visible {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
     filter: blur(0);
 }
-
 /* --- Layout Utilities --- */
-.page-content {
+.aiha-site .page-content {
+
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 24px;
 }
+.aiha-site .large-text {
 
-.large-text {
     font-size: 1.18rem;
     color: var(--dark-text);
 }
+.aiha-site .text-center {
+ text-align: center; 
+}
+.aiha-site .section-caption {
 
-.text-center { text-align: center; }
-
-.section-caption {
     position: relative;
     display: inline-block;
     text-transform: uppercase;
@@ -171,8 +190,8 @@ hr {
     margin-bottom: 18px;
     padding-right: 18px;
 }
+.aiha-site .section-caption::after {
 
-.section-caption::after {
     content: '';
     position: absolute;
     left: 0;
@@ -182,58 +201,50 @@ hr {
     border-radius: 999px;
     background: var(--gradient-primary);
 }
+.aiha-site .theme-dark {
 
-.theme-dark {
     color: rgba(255,255,255,0.92);
 }
+.aiha-site .theme-dark h1, .aiha-site .theme-dark h2, .aiha-site .theme-dark h3, .aiha-site .theme-dark h4, .aiha-site .theme-dark h5, .aiha-site .theme-dark h6 {
 
-.theme-dark h1,
-.theme-dark h2,
-.theme-dark h3,
-.theme-dark h4,
-.theme-dark h5,
-.theme-dark h6 {
     color: var(--accent-sky);
 }
+.aiha-site .theme-dark p, .aiha-site .theme-dark li, .aiha-site .theme-dark a, .aiha-site .theme-dark span {
 
-.theme-dark p,
-.theme-dark li,
-.theme-dark a,
-.theme-dark span {
     color: rgba(255,255,255,0.82);
 }
+.aiha-site .theme-dark strong {
 
-.theme-dark strong {
     color: #ffffff;
 }
+.aiha-site .theme-dark a:hover {
 
-.theme-dark a:hover {
     color: var(--accent-sky);
 }
+.aiha-site .grid-2-col {
 
-.grid-2-col {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 40px;
     align-items: start;
 }
+.aiha-site .grid-3-col {
 
-.grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
     align-items: stretch;
 }
+.aiha-site .pill-list {
 
-.pill-list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 20px;
 }
+.aiha-site .pill {
 
-.pill {
     background: var(--accent-sky);
     color: var(--navy);
     padding: 10px 16px;
@@ -241,15 +252,15 @@ hr {
     font-weight: 600;
     border: 1px solid rgba(0,152,187,0.18);
 }
+.aiha-site #links .cta-panel .pill {
 
-#links .cta-panel .pill {
     background: #ffffff;
     color: var(--navy);
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 6px 14px rgba(22,50,79,0.08);
 }
+.aiha-site .card {
 
-.card {
     background: #ffffff;
     border-radius: var(--radius);
     border: 1px solid var(--border-color);
@@ -257,29 +268,27 @@ hr {
     box-shadow: 0 12px 30px rgba(22,50,79,0.08);
     height: 100%;
 }
+.aiha-site .simple-list {
 
-.simple-list {
     list-style: none;
     padding: 0;
 }
+.aiha-site .simple-list li {
 
-.simple-list li {
     margin-bottom: 10px;
     padding-left: 18px;
     position: relative;
 }
+.aiha-site .simple-list li::before {
 
-.simple-list li::before {
     content: '\2022';
     color: var(--accent-teal);
     position: absolute;
     left: 0;
 }
-
 /* --- Buttons & Links --- */
-.cta-button,
-.cta-button-secondary,
-.cta-button-outline {
+.aiha-site .cta-button, .aiha-site .cta-button-secondary, .aiha-site .cta-button-outline {
+
     display: inline-block;
     padding: 12px 28px;
     border-radius: var(--radius);
@@ -288,45 +297,46 @@ hr {
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
     box-shadow: var(--cta-shadow);
 }
+.aiha-site .cta-button {
 
-.cta-button {
     background: var(--gradient-ocean);
     color: var(--light-text);
     border: 2px solid rgba(var(--primary-rgb), 0.4);
     box-shadow: 0 12px 26px rgba(var(--primary-dark-rgb), 0.22);
 }
+.aiha-site .cta-button-secondary {
 
-.cta-button-secondary {
     background: var(--gradient-rose);
     color: var(--light-text);
     border: 2px solid rgba(var(--accent-coral-rgb), 0.42);
     box-shadow: 0 12px 26px rgba(158, 61, 111, 0.22);
 }
+.aiha-site .cta-button-outline {
 
-.cta-button-outline {
     background: transparent;
     color: var(--primary-dark);
     border: 2px solid rgba(var(--primary-rgb), 0.45);
 }
+.aiha-site .link-arrow {
 
-.link-arrow {
     font-weight: 700;
     color: var(--primary-dark);
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
+.aiha-site .link-arrow::after {
 
-.link-arrow::after {
     content: '\2192';
     font-size: 1rem;
     transition: transform 0.2s ease;
 }
-
-.link-arrow:hover::after { transform: translateX(4px); }
-
+.aiha-site .link-arrow:hover::after {
+ transform: translateX(4px); 
+}
 /* --- Header & Navigation --- */
-header {
+.aiha-header, header.aiha-header {
+
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.04);
@@ -338,8 +348,8 @@ header {
     z-index: 1000;
     transition: padding 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
+.aiha-header .header-container {
 
-.header-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px 0 4px;
@@ -350,11 +360,14 @@ header {
     min-height: 88px;
     transition: min-height 0.25s ease, padding 0.25s ease;
 }
+.aiha-header .logo img {
+ max-height: 102px; 
+}
+.aiha-header .logo img {
+ transition: max-height 0.25s ease, transform 0.25s ease; 
+}
+.aiha-header .nav-group {
 
-.logo img { max-height: 102px; }
-.logo img { transition: max-height 0.25s ease, transform 0.25s ease; }
-
-.nav-group {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -362,55 +375,52 @@ header {
     padding-top: 40px;
     transition: padding-top 0.25s ease;
 }
+.aiha-header.header-shrink, header.aiha-header.header-shrink {
 
-header.header-shrink {
     padding: 6px 0;
     border-bottom: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 4px 18px rgba(0,0,0,0.08);
 }
+.aiha-header.header-shrink .header-container, header.aiha-header.header-shrink .header-container {
 
-header.header-shrink .header-container {
     min-height: 64px;
 }
+.aiha-header.header-shrink .logo img, header.aiha-header.header-shrink .logo img {
 
-header.header-shrink .logo img {
     max-height: 78px;
 }
+.aiha-header.header-shrink .nav-group, header.aiha-header.header-shrink .nav-group {
 
-header.header-shrink .nav-group {
     padding-top: 16px;
 }
+.aiha-header .nav-links a, .aiha-header .nav-links a:hover, .aiha-header .nav-links a:focus {
 
-.nav-links a,
-.nav-links a:hover,
-.nav-links a:focus {
     text-decoration: none;
 }
+.aiha-header .nav-links ul {
 
-.nav-links ul {
     list-style: none;
     display: flex;
     gap: 30px;
     align-items: center;
     white-space: nowrap;
 }
+.aiha-header .nav-links a {
 
-.nav-links a {
     font-weight: 600;
     color: var(--dark-text);
     padding: 8px 0 10px 0;
     border-bottom: 2px solid transparent;
     line-height: 1.4;
 }
+.aiha-header .nav-links a:hover, .aiha-header .nav-links a.active {
 
-.nav-links a:hover,
-.nav-links a.active {
     color: var(--primary-teal);
     border-bottom-color: var(--primary-teal);
     text-decoration: none;
 }
+.aiha-header .hamburger-menu {
 
-.hamburger-menu {
     display: none;
     background: none;
     border: none;
@@ -418,36 +428,36 @@ header.header-shrink .nav-group {
     flex-direction: column;
     gap: 5px;
 }
+.aiha-header .hamburger-menu span {
 
-.hamburger-menu span {
     width: 26px;
     height: 3px;
     background: var(--dark-text);
     transition: all 0.3s ease;
 }
-
 /* --- Hero Sections --- */
-.hero {
+.aiha-site .hero {
+
     text-align: center;
     padding: 96px 24px;
     color: var(--light-text);
     position: relative;
     overflow: hidden;
 }
+.aiha-site .hero-gradient {
 
-.hero-gradient {
     background: linear-gradient(135deg, var(--primary-bright), var(--primary-dark));
 }
+.aiha-site .hero-wellness {
 
-.hero-wellness {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
 }
+.aiha-site .hero-plans {
 
-.hero-plans {
     background: linear-gradient(135deg, var(--navy), var(--primary-dark));
 }
+.aiha-site .hero-support {
 
-.hero-support {
     background: linear-gradient(
         135deg,
         rgba(var(--accent-teal-rgb), 0.9) 0%,
@@ -455,108 +465,107 @@ header.header-shrink .nav-group {
         rgba(var(--accent-coral-rgb), 0.9) 100%
     );
 }
+.aiha-site .hero.hero-support .hero-content {
 
-.hero.hero-support .hero-content {
     color: var(--slate);
 }
+.aiha-site .hero.hero-support h1 {
 
-.hero.hero-support h1 {
     color: var(--slate);
 }
+.aiha-site .hero.hero-support p {
 
-.hero.hero-support p {
     color: var(--slate);
 }
+.aiha-site .hero h1 {
+ color: var(--light-text); margin: 0; 
+}
+.aiha-site .hero p {
 
-.hero h1 { color: var(--light-text); margin: 0; }
-
-.hero p {
     color: rgba(255,255,255,0.93);
     font-size: 1.22rem;
     max-width: 720px;
     margin: 12px auto 28px;
 }
+.aiha-site .hero-actions {
 
-.hero-actions {
     display: flex;
     justify-content: center;
     gap: 14px;
     flex-wrap: wrap;
 }
+.aiha-site .hero-actions .cta-button, .aiha-site .hero-actions .cta-button-secondary, .aiha-site .hero-actions .cta-button-outline {
 
-.hero-actions .cta-button,
-.hero-actions .cta-button-secondary,
-.hero-actions .cta-button-outline {
     min-width: 182px;
     text-align: center;
     box-shadow: var(--cta-shadow);
     border: none;
 }
+.aiha-site .hero-actions .cta-button {
 
-.hero-actions .cta-button {
     background: linear-gradient(135deg, rgba(var(--primary-bright-rgb), 0.98), rgba(var(--primary-dark-rgb), 0.92));
 }
+.aiha-site .hero-actions .cta-button-outline {
 
-.hero-actions .cta-button-outline {
     background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.1));
     color: var(--light-text);
     border: 2px solid rgba(var(--light-text), 0.25);
 }
+.aiha-site .hero-actions .cta-button-secondary {
 
-.hero-actions .cta-button-secondary {
     background: linear-gradient(135deg, rgba(var(--accent-coral-rgb), 0.98), rgba(220, 130, 163, 0.9));
 }
-
 /* --- Home Specific Sections --- */
 /* Mission / Our Purpose only (see index.html); keep copy left-aligned */
-.strategic-pillars {
+.aiha-site .strategic-pillars {
+
     text-align: left;
     background: linear-gradient(160deg, rgba(224,243,248,0.58), rgba(244,240,234,0.6));
     border-radius: 32px;
     box-shadow: 0 24px 48px rgba(22,50,79,0.08);
     overflow: hidden;
 }
-
 /*
  * Gap from hero: padding alone sits *inside* the gradient, so the panel still touched the blue hero.
  * margin-top lets the page background show between sections (matches .parallax-banner margin: 40px 0).
  */
-#mission.strategic-pillars.page-content {
+.aiha-site #mission.strategic-pillars.page-content {
+
     margin-top: 40px;
 }
-
 /* Our Purpose: full-width caption, then two columns with matching h2 */
-.strategic-pillars.mission-purpose .mission-purpose-lead {
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-lead {
+
     display: block;
     width: 100%;
     box-sizing: border-box;
     text-align: left;
     margin-bottom: 22px;
 }
-
 /* Button label stays centered inside the pill; block sits in left-aligned column */
-#mission.strategic-pillars .cta-button {
+.aiha-site #mission.strategic-pillars .cta-button {
+
     text-align: center;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-grid {
 
-.strategic-pillars.mission-purpose .mission-purpose-grid {
     align-items: start;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col {
 
-.strategic-pillars.mission-purpose .mission-purpose-col {
     text-align: left;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col h2 {
 
-.strategic-pillars.mission-purpose .mission-purpose-col h2 {
     margin-top: 0;
     text-align: left;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col p {
 
-.strategic-pillars.mission-purpose .mission-purpose-col p {
     text-align: left;
 }
+.aiha-site .cms-inline-image {
 
-.cms-inline-image {
     display: block;
     width: 100%;
     max-width: 420px;
@@ -564,41 +573,41 @@ header.header-shrink .nav-group {
     margin: 16px auto;
     border-radius: var(--radius);
 }
+.aiha-site .cms-image-block {
 
-.cms-image-block {
     margin: 24px 0 8px;
     padding: 0;
 }
+.aiha-site .cms-image-block .cms-inline-image {
 
-.cms-image-block .cms-inline-image {
     margin: 0 auto;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block {
 
-.strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block {
     margin-left: 0;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block .cms-inline-image {
 
-.strategic-pillars.mission-purpose .mission-purpose-col .cms-image-block .cms-inline-image {
     margin-left: 0;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col .link-arrow {
 
-.strategic-pillars.mission-purpose .mission-purpose-col .link-arrow {
     justify-content: flex-start;
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col.cta-panel {
 
-.strategic-pillars.mission-purpose .mission-purpose-col.cta-panel {
     background: linear-gradient(172deg, rgba(255,255,255,0.98), rgba(224,243,248,0.82));
     border-radius: var(--radius);
     padding: 28px 26px;
     border: 1px solid rgba(0,152,187,0.14);
     box-shadow: 0 18px 36px rgba(22,50,79,0.08);
 }
+.aiha-site .strategic-pillars.mission-purpose .mission-purpose-col .cta-button {
 
-.strategic-pillars.mission-purpose .mission-purpose-col .cta-button {
     margin-top: 8px;
 }
+.aiha-site .pillar-card {
 
-.pillar-card {
     position: relative;
     background: linear-gradient(172deg, rgba(255,255,255,0.98), rgba(224,243,248,0.82));
     padding: 36px 26px;
@@ -607,8 +616,8 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 36px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .pillar-card::before {
 
-.pillar-card::before {
     content: '';
     position: absolute;
     top: 22px;
@@ -619,34 +628,35 @@ header.header-shrink .nav-group {
     background: linear-gradient(90deg, rgba(0,152,187,0.55), rgba(240,113,103,0.45));
     opacity: 0.85;
 }
+.aiha-site .pillar-card * {
 
-.pillar-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .pillar-card h3 {
+ color: var(--navy); 
+}
+.aiha-site .metrics-band {
 
-.pillar-card h3 { color: var(--navy); }
-
-.metrics-band {
     background: var(--accent-sky);
     border-radius: var(--radius);
     padding: 64px 28px;
     margin-top: 20px;
 }
+.aiha-site .metrics-intro {
 
-.metrics-intro {
     max-width: 760px;
     margin: 0 auto 40px;
     text-align: center;
 }
+.aiha-site .stats-grid {
 
-.stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 30px;
 }
+.aiha-site .stat-card {
 
-.stat-card {
     position: relative;
     background: linear-gradient(170deg, rgba(255,255,255,0.96), rgba(224,243,248,0.8));
     border-radius: var(--radius);
@@ -656,8 +666,8 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 34px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .stat-card::after {
 
-.stat-card::after {
     content: '';
     position: absolute;
     bottom: 22px;
@@ -667,29 +677,29 @@ header.header-shrink .nav-group {
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(0,152,187,0.45), rgba(58,183,149,0.45));
 }
+.aiha-site .stat-card * {
 
-.stat-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .stat-number {
 
-.stat-number {
     font-size: 3.6rem;
     font-weight: 700;
     color: var(--primary-color);
     line-height: 1.05;
     margin-bottom: 12px;
 }
+.aiha-site .stat-label {
 
-.stat-label {
     font-size: 1.05rem;
     font-family: var(--header-font);
     font-weight: 600;
     color: var(--navy);
     margin-bottom: 8px;
 }
+.aiha-site .plan-highlight .cta-panel {
 
-.plan-highlight .cta-panel {
     position: relative;
     background: linear-gradient(165deg, rgba(244,240,234,0.94), rgba(224,243,248,0.88));
     border-radius: var(--radius);
@@ -698,40 +708,40 @@ header.header-shrink .nav-group {
     box-shadow: 0 20px 36px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .plan-highlight .cta-panel::before {
 
-.plan-highlight .cta-panel::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top left, rgba(0,152,187,0.18), transparent 62%);
     pointer-events: none;
 }
+.aiha-site .plan-highlight .cta-panel * {
 
-.plan-highlight .cta-panel > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .support-preview {
 
-.support-preview {
     background: linear-gradient(120deg, rgba(0,152,187,0.12), rgba(58,183,149,0.12));
     padding: 60px 0 80px;
 }
+.aiha-site .support-preview-inner {
 
-.support-preview-inner {
     display: flex;
     justify-content: space-between;
     gap: 40px;
     align-items: center;
 }
+.aiha-site .support-actions {
 
-.support-actions {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
 }
-
 /* --- Wellness Page --- */
-.mission-grid .card {
+.aiha-site .mission-grid .card {
+
     position: relative;
     text-align: left;
     background: linear-gradient(170deg, rgba(255,255,255,0.98), rgba(224,243,248,0.82));
@@ -739,28 +749,28 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 32px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .mission-grid .card::before {
 
-.mission-grid .card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top right, rgba(240,113,103,0.22), transparent 58%);
     pointer-events: none;
 }
+.aiha-site .mission-grid .card * {
 
-.mission-grid .card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .island-snapshot {
 
-.island-snapshot {
     background: var(--accent-sand);
     border-radius: 32px;
     margin: 40px auto;
     padding: 60px 28px;
 }
+.aiha-site .services-grid .service-card {
 
-.services-grid .service-card {
     position: relative;
     background: linear-gradient(168deg, rgba(255,255,255,0.98), rgba(224,243,248,0.82));
     border-radius: 16px;
@@ -770,56 +780,56 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 32px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .services-grid .service-card::before {
 
-.services-grid .service-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top left, rgba(0,152,187,0.18), transparent 60%);
     pointer-events: none;
 }
+.aiha-site .services-grid .service-card * {
 
-.services-grid .service-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .services-grid .service-card:nth-child(odd) {
 
-.services-grid .service-card:nth-child(odd) {
     border-left-color: var(--primary-color);
 }
+.aiha-site .survey-section {
 
-.survey-section {
     background: #ffffff;
     border-radius: 24px;
     box-shadow: 0 15px 36px rgba(22,50,79,0.1);
 }
+.aiha-site .survey-note {
 
-.survey-note {
     background: var(--accent-sky);
     border-radius: 18px;
     padding: 24px;
     color: var(--navy);
 }
+.aiha-site .survey-charts {
 
-.survey-charts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
+.aiha-site .bar-chart {
 
-.bar-chart {
     margin-top: 12px;
 }
+.aiha-site .bar-label {
 
-.bar-label {
     font-weight: 700;
     color: var(--navy);
     font-size: 0.92rem;
     margin-bottom: 4px;
 }
+.aiha-site .bar {
 
-.bar {
     position: relative;
     color: var(--light-text);
     padding: 10px 14px;
@@ -828,27 +838,32 @@ header.header-shrink .nav-group {
     font-weight: 700;
     text-align: right;
 }
+.aiha-site .bar::after {
 
-.bar::after {
     content: attr(data-percent);
 }
+.aiha-site .bar-primary {
+ background: var(--primary-color); 
+}
+.aiha-site .bar-secondary {
+ background: var(--accent-teal); 
+}
+.aiha-site .bar-tertiary {
+ background: var(--accent-coral); 
+}
+.aiha-site .testimonial-section {
 
-.bar-primary { background: var(--primary-color); }
-.bar-secondary { background: var(--accent-teal); }
-.bar-tertiary { background: var(--accent-coral); }
-
-.testimonial-section {
     background: var(--accent-sand);
     border-radius: 30px;
 }
+.aiha-site .testimonial-grid {
 
-.testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 24px;
 }
+.aiha-site .testimonial {
 
-.testimonial {
     background: #ffffff;
     border-left: 5px solid var(--primary-color);
     border-radius: 12px;
@@ -857,67 +872,46 @@ header.header-shrink .nav-group {
     color: var(--navy);
     box-shadow: 0 12px 24px rgba(0,0,0,0.08);
 }
-
 /* --- Interactive Elements --- */
-.pillar-card,
-.stat-card,
-.mission-grid .card,
-.services-grid .service-card,
-.plan-highlight .cta-panel,
-.phase-card,
-.survey-to-action .data-card,
-.giving-card,
-.partner-section .partner-card,
-.volunteer-section .story-card,
-.contact-card,
-.testimonial {
+.aiha-site .pillar-card, .aiha-site .stat-card, .aiha-site .mission-grid .card, .aiha-site .services-grid .service-card, .aiha-site .plan-highlight .cta-panel, .aiha-site .phase-card, .aiha-site .survey-to-action .data-card, .aiha-site .giving-card, .aiha-site .partner-section .partner-card, .aiha-site .volunteer-section .story-card, .aiha-site .contact-card, .aiha-site .testimonial {
+
     transition: transform 0.45s ease, box-shadow 0.45s ease, filter 0.45s ease;
 }
-
 @media (hover: hover) {
-    .pillar-card:hover,
-    .stat-card:hover,
-    .mission-grid .card:hover,
-    .services-grid .service-card:hover,
-    .plan-highlight .cta-panel:hover,
-    .phase-card:hover,
-    .survey-to-action .data-card:hover,
-    .giving-card:hover,
-    .partner-section .partner-card:hover,
-    .volunteer-section .story-card:hover,
-    .contact-card:hover,
-    .testimonial:hover {
+    .aiha-site .pillar-card:hover, .aiha-site .stat-card:hover, .aiha-site .mission-grid .card:hover, .aiha-site .services-grid .service-card:hover, .aiha-site .plan-highlight .cta-panel:hover, .aiha-site .phase-card:hover, .aiha-site .survey-to-action .data-card:hover, .aiha-site .giving-card:hover, .aiha-site .partner-section .partner-card:hover, .aiha-site .volunteer-section .story-card:hover, .aiha-site .contact-card:hover, .aiha-site .testimonial:hover {
+
         transform: translateY(-10px);
         box-shadow: 0 28px 52px rgba(22,50,79,0.18);
         filter: brightness(1.02);
+
     }
 }
+.aiha-site .contact-band .contact-card {
 
-.contact-band .contact-card {
     background: var(--navy);
     color: var(--light-text);
 }
+.aiha-site .contact-band .contact-card h3 {
 
-.contact-band .contact-card h3 {
     color: #ffffff;
 }
+.aiha-site .contact-band .contact-card p {
 
-.contact-band .contact-card p {
     color: rgba(255, 255, 255, 0.9);
 }
+.aiha-site .contact-band .contact-card a {
 
-.contact-band .contact-card a {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
 }
-
 /* --- Plans Page --- */
-.plan-overview .insight-list {
+.aiha-site .plan-overview .insight-list {
+
     list-style: none;
     padding: 0;
 }
+.aiha-site .plan-overview .insight-list li {
 
-.plan-overview .insight-list li {
     margin-bottom: 12px;
     background: var(--accent-sky);
     padding: 12px 18px;
@@ -925,19 +919,19 @@ header.header-shrink .nav-group {
     font-weight: 600;
     color: var(--navy);
 }
+.aiha-site .timeline-section .timeline {
 
-.timeline-section .timeline {
     display: grid;
     gap: 24px;
 }
-
 /* Allow timeline layout anywhere */
-.timeline {
+.aiha-site .timeline {
+
     display: grid;
     gap: 24px;
 }
+.aiha-site .timeline-section {
 
-.timeline-section {
     position: relative;
     background: transparent;
     border-radius: 0;
@@ -945,41 +939,56 @@ header.header-shrink .nav-group {
     box-shadow: none;
     overflow: visible;
 }
+.aiha-site .timeline-section::before {
 
-.timeline-section::before {
     content: none;
 }
+.aiha-site .timeline-section * {
 
-.timeline-section > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .timeline .phase-card {
 
-.timeline .phase-card {
     border-top: 3px solid rgba(var(--primary-rgb), 0.22);
 }
-
 /* First card (wrapped with graphic) */
-.plan-hero-wrap .phase-card {
+.aiha-site .plan-hero-wrap .phase-card {
+
     border-top-color: rgba(var(--evergreen-teal-rgb), 0.5);
 }
-.plan-hero-wrap .phase-card .status {
+.aiha-site .plan-hero-wrap .phase-card .status {
+
     background: rgba(var(--primary-rgb), 0.18); /* blue pill */
     color: var(--navy);
 }
-
 /* Remaining cards in order: blue, coral, peach, blue */
-.timeline > .phase-card:nth-of-type(1) { border-top-color: rgba(var(--primary-rgb), 0.3); }
-.timeline > .phase-card:nth-of-type(2) { border-top-color: rgba(var(--sunrise-coral-rgb), 0.48); }
-.timeline > .phase-card:nth-of-type(3) { border-top-color: rgba(var(--peach-light-rgb), 0.55); }
-.timeline > .phase-card:nth-of-type(4) { border-top-color: rgba(var(--primary-rgb), 0.3); }
+.aiha-site .timeline .phase-card:nth-of-type(1) {
+ border-top-color: rgba(var(--primary-rgb), 0.3); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(2) {
+ border-top-color: rgba(var(--sunrise-coral-rgb), 0.48); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(3) {
+ border-top-color: rgba(var(--peach-light-rgb), 0.55); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(4) {
+ border-top-color: rgba(var(--primary-rgb), 0.3); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(1) .status {
+ background: rgba(var(--sunrise-coral-rgb), 0.24); color: var(--navy); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(2) .status {
+ background: rgba(var(--evergreen-teal-rgb), 0.2); color: var(--navy); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(3) .status {
+ background: rgba(var(--peach-light-rgb), 0.26); color: var(--navy); 
+}
+.aiha-site .timeline .phase-card:nth-of-type(4) .status {
+ background: rgba(var(--primary-rgb), 0.18); color: var(--navy); 
+}
+.aiha-site .plan-header {
 
-.timeline > .phase-card:nth-of-type(1) .status { background: rgba(var(--sunrise-coral-rgb), 0.24); color: var(--navy); }
-.timeline > .phase-card:nth-of-type(2) .status { background: rgba(var(--evergreen-teal-rgb), 0.2); color: var(--navy); }
-.timeline > .phase-card:nth-of-type(3) .status { background: rgba(var(--peach-light-rgb), 0.26); color: var(--navy); }
-.timeline > .phase-card:nth-of-type(4) .status { background: rgba(var(--primary-rgb), 0.18); color: var(--navy); }
-
-.plan-header {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -988,8 +997,8 @@ header.header-shrink .nav-group {
     gap: 6px;
     margin-bottom: 16px;
 }
+.aiha-site .plan-hero-graphic {
 
-.plan-hero-graphic {
     position: absolute;
     top: -142px;
     right: -48px;
@@ -1002,40 +1011,40 @@ header.header-shrink .nav-group {
     z-index: 2;
     transition: transform 0.35s ease, filter 0.35s ease;
 }
-
 /* --- Leadership Cards --- */
-.leader-grid .leader-card {
+.aiha-site .leader-grid .leader-card {
+
     position: relative;
     cursor: pointer;
     padding: 18px;
     padding-bottom: 50px;
 }
+.aiha-site .leader-card--no-bio {
 
-.leader-card--no-bio {
     cursor: default;
     padding-bottom: 18px;
 }
+.aiha-site .leader-grid {
 
-.leader-grid {
     gap: 20px;
 }
+.aiha-site .leader-card h3 {
 
-.leader-card h3 {
     margin-bottom: 6px;
 }
+.aiha-site .leader-card p {
 
-.leader-card p {
     margin: 0;
 }
+.aiha-site .board-footnote {
 
-.board-footnote {
     margin-top: 14px;
     font-size: 0.95rem;
     color: var(--muted-text);
     text-align: center;
 }
+.aiha-site .leader-expand {
 
-.leader-expand {
     position: absolute;
     left: 50%;
     bottom: 16px;
@@ -1051,15 +1060,15 @@ header.header-shrink .nav-group {
     box-shadow: 0 10px 22px rgba(22,50,79,0.18);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
+.aiha-site .leader-expand:hover {
 
-.leader-expand:hover {
     transform: translate(-50%, -2px);
     background: var(--primary-dark);
     box-shadow: 0 14px 26px rgba(var(--primary-dark-rgb), 0.26);
 }
-
 /* --- Leadership Modal --- */
-.leader-modal {
+.aiha-site .leader-modal {
+
     position: fixed;
     inset: 0;
     display: none;
@@ -1067,12 +1076,12 @@ header.header-shrink .nav-group {
     justify-content: center;
     z-index: 2000;
 }
+.aiha-site .leader-modal.active {
 
-.leader-modal.active {
     display: flex;
 }
+.aiha-site .leader-modal-backdrop {
 
-.leader-modal-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(22, 50, 79, 0.62);
@@ -1080,12 +1089,12 @@ header.header-shrink .nav-group {
     opacity: 0;
     transition: opacity 0.25s ease;
 }
+.aiha-site .leader-modal.active .leader-modal-backdrop {
 
-.leader-modal.active .leader-modal-backdrop {
     opacity: 1;
 }
+.aiha-site .leader-modal-content {
 
-.leader-modal-content {
     position: relative;
     background: #ffffff;
     border-radius: 18px;
@@ -1100,27 +1109,25 @@ header.header-shrink .nav-group {
     display: grid;
     gap: 20px;
 }
+.aiha-site .leader-modal.active .leader-modal-content {
 
-.leader-modal.active .leader-modal-content {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
+.aiha-site .leader-role {
 
-.leader-role {
     color: var(--navy);
     font-weight: 700;
     margin-top: -6px;
 }
+.aiha-site .leader-modal-actions {
 
-.leader-modal-actions {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
 }
+.aiha-site .leader-prev, .aiha-site .leader-next, .aiha-site .leader-close {
 
-.leader-prev,
-.leader-next,
-.leader-close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1135,15 +1142,13 @@ header.header-shrink .nav-group {
     box-shadow: 0 10px 24px rgba(22,50,79,0.22);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.aiha-site .leader-prev:hover, .aiha-site .leader-next:hover, .aiha-site .leader-close:hover {
 
-.leader-prev:hover,
-.leader-next:hover,
-.leader-close:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 28px rgba(22,50,79,0.26);
 }
+.aiha-site .leader-close {
 
-.leader-close {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -1153,20 +1158,22 @@ header.header-shrink .nav-group {
     border-radius: 50%;
     font-size: 1.55rem;
 }
-
 @media (max-width: 720px) {
-    .leader-modal-body {
-        text-align: center;
-    }
+    .aiha-site .leader-modal-body {
 
-    .leader-modal-actions {
+        text-align: center;
+
+    }
+    .aiha-site .leader-modal-actions {
+
         justify-content: center;
+
     }
 }
-
 /* --- Parallax Banner --- */
 /* Background on ::before with inset bleed (~10% zoom vs cover) + overflow hidden = no empty bands */
-.parallax-banner {
+.aiha-site .parallax-banner {
+
     position: relative;
     isolation: isolate;
     min-height: 360px;
@@ -1178,8 +1185,8 @@ header.header-shrink .nav-group {
     --parallax-y: 0px;
     background: transparent;
 }
+.aiha-site .parallax-banner::before {
 
-.parallax-banner::before {
     content: '';
     position: absolute;
     z-index: 0;
@@ -1196,44 +1203,48 @@ header.header-shrink .nav-group {
     background-position: center calc(50% + var(--parallax-y, 0px));
     pointer-events: none;
 }
-
 @media (max-width: 768px) {
-    .parallax-banner::before {
+    .aiha-site .parallax-banner::before {
+
         background-position: left calc(50% + var(--parallax-y, 0px));
+
     }
 }
-
 @media (max-width: 900px) {
-    .plan-header {
+    .aiha-site .plan-header {
+
         flex-direction: column;
         align-items: flex-start;
-    }
 
-    .plan-hero-graphic {
+    }
+    .aiha-site .plan-hero-graphic {
+
         position: static;
         width: 78vw;
         max-width: 320px;
         margin: -12px 0 -24px auto;
         align-self: flex-end;
         filter: drop-shadow(0 12px 24px rgba(22,50,79,0.2));
+
     }
 }
+.aiha-site .plan-hero-wrap {
 
-.plan-hero-wrap {
     position: relative;
 }
+.aiha-site .plan-hero-wrap .phase-card {
 
-.plan-hero-wrap .phase-card {
     padding-top: 38px;
     border-left: none;
 }
+.aiha-site .plan-hero-wrap:hover .plan-hero-graphic {
 
-.plan-hero-wrap:hover .plan-hero-graphic {
     transform: translateY(-8px) scale(1.02);
     filter: drop-shadow(0 20px 40px rgba(22,50,79,0.28));
 }
 /* --- Floating Donate Button --- */
-.floating-donate {
+.aiha-site .floating-donate {
+
     position: fixed;
     right: 22px;
     bottom: 22px;
@@ -1254,96 +1265,80 @@ header.header-shrink .nav-group {
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
+.aiha-site .floating-donate.volunteer-trigger {
 
-.floating-donate.volunteer-trigger {
     bottom: 96px;
     background: var(--dark-teal) !important;
     border: none;
 }
+.aiha-site .floating-donate.donate-primary {
 
-.floating-donate.donate-primary {
     background: var(--donate-teal) !important;
     border: none !important;
     color: #ffffff !important;
 }
+.aiha-site .floating-donate.active {
 
-.floating-donate.active {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
+.aiha-site .cta-button.donate-primary {
 
-.cta-button.donate-primary {
     background: var(--donate-teal) !important;
     border: none !important;
     color: #ffffff !important;
 }
+.aiha-site .volunteer-cta {
 
-.volunteer-cta {
     background: var(--dark-teal) !important;
     border: none !important;
     color: #ffffff !important;
 }
+.aiha-site .volunteer-cta:hover {
 
-.volunteer-cta:hover {
     background: var(--dark-teal) !important;
     color: #ffffff !important;
     text-decoration: none !important;
 }
-
 /* Ensure volunteer buttons override other CTA styles */
-.cta-button.volunteer-trigger,
-.cta-button-secondary.volunteer-trigger,
-.volunteer-trigger {
+.aiha-site .cta-button.volunteer-trigger, .aiha-site .cta-button-secondary.volunteer-trigger, .aiha-site .volunteer-trigger {
+
     background: var(--dark-teal) !important;
     color: #ffffff !important;
     border: none !important;
     box-shadow: 0 10px 24px rgba(0,0,0,0.18);
 }
+.aiha-site .cta-button.volunteer-trigger:hover, .aiha-site .cta-button-secondary.volunteer-trigger:hover, .aiha-site .volunteer-trigger:hover {
 
-.cta-button.volunteer-trigger:hover,
-.cta-button-secondary.volunteer-trigger:hover,
-.volunteer-trigger:hover {
     background: var(--dark-teal) !important;
     color: #ffffff !important;
     text-decoration: none !important;
 }
-
 /* Reset volunteer link inside nav to match other items */
-.nav-links a.volunteer-trigger,
-.nav-links a.volunteer-trigger:hover,
-.nav-links a.volunteer-trigger:focus,
-.nav-links a.volunteer-trigger.active {
+.aiha-header .nav-links a.volunteer-trigger, .aiha-header .nav-links a.volunteer-trigger:hover, .aiha-header .nav-links a.volunteer-trigger:focus, .aiha-header .nav-links a.volunteer-trigger.active {
+
     background: transparent !important;
     color: var(--dark-text) !important;
     border-bottom: 2px solid transparent;
     box-shadow: none !important;
     padding: 8px 0 10px 0;
 }
+.aiha-header .nav-links a.volunteer-trigger:hover, .aiha-header .nav-links a.volunteer-trigger:focus, .aiha-header .nav-links a.volunteer-trigger.active {
 
-.nav-links a.volunteer-trigger:hover,
-.nav-links a.volunteer-trigger:focus,
-.nav-links a.volunteer-trigger.active {
     color: var(--primary-teal) !important;
     border-bottom: 2px solid var(--primary-teal) !important;
 }
-
 /* Unified hover/active overlay for all CTAs and floating buttons */
-.cta-button:hover,
-.cta-button-secondary:hover,
-.cta-button-outline:hover,
-.cta-button.donate-primary:hover,
-.cta-button.volunteer-trigger:hover,
-.floating-donate:hover,
-.floating-donate.donate-primary:hover,
-.floating-donate.volunteer-trigger:hover {
+.aiha-site .cta-button:hover, .aiha-site .cta-button-secondary:hover, .aiha-site .cta-button-outline:hover, .aiha-site .cta-button.donate-primary:hover, .aiha-site .cta-button.volunteer-trigger:hover, .aiha-site .floating-donate:hover, .aiha-site .floating-donate.donate-primary:hover, .aiha-site .floating-donate.volunteer-trigger:hover {
+
     box-shadow: var(--cta-shadow), inset 0 0 0 999px var(--cta-hover-overlay);
     color: #ffffff !important;
     transform: translateY(-2px);
     text-decoration: none !important;
 }
+.aiha-site .phase-card {
 
-.phase-card {
     position: relative;
     padding: 28px;
     border-radius: 18px;
@@ -1352,17 +1347,17 @@ header.header-shrink .nav-group {
     background: #ffffff;
     overflow: hidden;
 }
+.aiha-site .phase-card::before {
 
-.phase-card::before {
     content: none;
 }
+.aiha-site .phase-card * {
 
-.phase-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .phase-card .status {
 
-.phase-card .status {
     display: inline-block;
     padding: 8px 16px;
     border-radius: 999px;
@@ -1370,27 +1365,27 @@ header.header-shrink .nav-group {
     font-weight: 700;
     margin-bottom: 14px;
 }
+.aiha-site .phase-card.completed .status {
 
-.phase-card.completed .status {
     background: rgba(58,183,149,0.18);
     color: var(--accent-teal);
 }
+.aiha-site .phase-card.in-progress .status {
 
-.phase-card.in-progress .status {
     background: rgba(0,152,187,0.16);
     color: var(--primary-dark);
 }
+.aiha-site .phase-card.future .status {
 
-.phase-card.future .status {
     background: rgba(33,41,51,0.08);
     color: var(--muted-text);
 }
+.aiha-site .phase-card ul {
 
-.phase-card ul {
     margin-left: 18px;
 }
+.aiha-site .survey-to-action .data-card {
 
-.survey-to-action .data-card {
     position: relative;
     text-align: center;
     background: linear-gradient(165deg, rgba(244,240,234,0.94), rgba(224,243,248,0.88));
@@ -1400,45 +1395,45 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 32px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .survey-to-action .data-card::before {
 
-.survey-to-action .data-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top left, rgba(58,183,149,0.2), transparent 62%);
     pointer-events: none;
 }
+.aiha-site .survey-to-action .data-card * {
 
-.survey-to-action .data-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .callout-panel {
 
-.callout-panel {
     background: linear-gradient(120deg, rgba(0,152,187,0.16), rgba(240,113,103,0.16));
     text-align: center;
     border-radius: 28px;
 }
+.aiha-site #events {
 
-#events {
     margin-top: 48px;
 }
+.aiha-site .event-list {
 
-.event-list {
     list-style: none;
     padding: 0;
     margin: 16px auto 0;
     max-width: 640px;
     text-align: left;
 }
+.aiha-site .event-list .event-message {
 
-.event-list .event-message {
     text-align: center;
     color: var(--muted-text);
     padding: 10px 0;
 }
+.aiha-site .event-item {
 
-.event-item {
     background: #ffffff;
     border: 1px solid rgba(0,0,0,0.06);
     border-radius: 12px;
@@ -1446,30 +1441,29 @@ header.header-shrink .nav-group {
     margin-bottom: 10px;
     box-shadow: 0 8px 18px rgba(22,50,79,0.06);
 }
+.aiha-site .event-date {
 
-.event-date {
     font-weight: 700;
     color: var(--primary-dark);
 }
+.aiha-site .event-title {
 
-.event-title {
     font-weight: 700;
     color: var(--navy);
     margin: 2px 0 4px;
 }
+.aiha-site .event-location, .aiha-site .event-desc {
 
-.event-location,
-.event-desc {
     font-size: 0.95rem;
     color: var(--muted-text);
 }
+.aiha-site .past-events-drawer {
 
-.past-events-drawer {
     margin-top: 44px;
     text-align: center;
 }
+.aiha-site .past-events-toggle {
 
-.past-events-toggle {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -1482,19 +1476,18 @@ header.header-shrink .nav-group {
     font: inherit;
     color: inherit;
 }
+.aiha-site .past-events-toggle:hover .section-caption, .aiha-site .past-events-toggle:focus-visible .section-caption {
 
-.past-events-toggle:hover .section-caption,
-.past-events-toggle:focus-visible .section-caption {
     color: var(--primary-color);
 }
+.aiha-site .past-events-toggle:focus-visible {
 
-.past-events-toggle:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 6px;
     border-radius: 4px;
 }
+.aiha-site .past-events-chevron {
 
-.past-events-chevron {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -1504,26 +1497,24 @@ header.header-shrink .nav-group {
     transition: transform 0.25s ease;
     margin-top: 2px;
 }
+.aiha-site .past-events-toggle[aria-expanded="true"] .past-events-chevron {
 
-.past-events-toggle[aria-expanded="true"] .past-events-chevron {
     transform: rotate(-135deg);
     margin-top: 6px;
 }
+.aiha-site .past-events-panel {
 
-.past-events-panel {
     margin-top: 8px;
     overflow: hidden;
 }
+.aiha-site .past-events-panel[hidden] {
 
-.past-events-panel[hidden] {
     display: none;
 }
+.aiha-site .past-events-panel.is-opening, .aiha-site .past-events-panel:not([hidden]) {
 
-.past-events-panel.is-opening,
-.past-events-panel:not([hidden]) {
     animation: past-events-open 0.28s ease;
 }
-
 @keyframes past-events-open {
     from {
         opacity: 0;
@@ -1534,52 +1525,52 @@ header.header-shrink .nav-group {
         transform: translateY(0);
     }
 }
-
 /* --- Support Page --- */
-.support-summary .impact-list {
+.aiha-site .support-summary .impact-list {
+
     list-style: none;
     padding: 0;
 }
+.aiha-site .support-summary .impact-list li {
 
-.support-summary .impact-list li {
     margin-bottom: 12px;
     padding-left: 18px;
     position: relative;
 }
+.aiha-site .support-summary .grid-2-col {
 
-.support-summary .grid-2-col {
     align-items: stretch;
     gap: 24px;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.3fr);
 }
+.aiha-site .support-summary .impact-list li::before {
 
-.support-summary .impact-list li::before {
     content: '\2713';
     position: absolute;
     left: 0;
     color: var(--accent-teal);
 }
-
 /* Charity / tax disclaimer (between Fundraising and FAQs) */
-.charity-disclosure.page-content {
+.aiha-site .charity-disclosure.page-content {
+
     padding-top: 28px;
     padding-bottom: 28px;
 }
+.aiha-site .charity-disclosure p {
 
-.charity-disclosure p {
     font-size: 0.92rem;
     line-height: 1.55;
     color: var(--muted-text);
     margin: 0;
     max-width: 52rem;
 }
+.aiha-site .charity-disclosure a {
 
-.charity-disclosure a {
     color: var(--primary-dark);
     word-break: break-all;
 }
+.aiha-site .giving-card {
 
-.giving-card {
     position: relative;
     background: linear-gradient(165deg, rgba(224,243,248,0.95), rgba(244,240,234,0.88));
     border-radius: 18px;
@@ -1588,43 +1579,43 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 34px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .giving-card::before {
 
-.giving-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top right, rgba(240,113,103,0.22), transparent 62%);
     pointer-events: none;
 }
+.aiha-site .giving-card * {
 
-.giving-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .giving-options {
 
-.giving-options {
     display: grid;
     gap: 18px;
     margin: 20px 0;
 }
+.aiha-site .giving-options h4 {
 
-.giving-options h4 {
     color: var(--navy);
     margin-bottom: 6px;
 }
+.aiha-site .giving-side {
 
-.giving-side {
     display: grid;
     grid-template-columns: minmax(0, 2fr) 220px;
     gap: 16px;
     align-items: stretch;
 }
+.aiha-site .giving-side * {
 
-.giving-side > * {
     height: 100%;
 }
+.aiha-site .thermo-card {
 
-.thermo-card {
     width: 100%;
     min-width: 200px;
     background: #ffffff;
@@ -1637,31 +1628,31 @@ header.header-shrink .nav-group {
     flex-direction: column;
     justify-content: space-between;
 }
+.aiha-site .thermo-card h4 {
 
-.thermo-card h4 {
     margin-bottom: 6px;
 }
+.aiha-site .giving-actions {
 
-.giving-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
     justify-content: center;
 }
+.aiha-site .giving-side {
 
-.giving-side {
     width: 100%;
     display: flex;
 }
+.aiha-site .thermo-label {
 
-.thermo-label {
     font-weight: 1000;
     color: var(--navy);
     margin-bottom: 12px;
 }
+.aiha-site .thermo-body {
 
-.thermo-body {
     position: relative;
     margin: 0 auto 12px;
     width: 34px;
@@ -1672,8 +1663,8 @@ header.header-shrink .nav-group {
     border: none;
     overflow: visible; /* allow ticks to show outside */
 }
+.aiha-site .thermo-fill {
 
-.thermo-fill {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1682,8 +1673,8 @@ header.header-shrink .nav-group {
     background: #0c7bbd;
     transition: height 0.4s ease;
 }
+.aiha-site .thermo-bulb {
 
-.thermo-bulb {
     position: absolute;
     bottom: -14px;
     left: 50%;
@@ -1695,21 +1686,21 @@ header.header-shrink .nav-group {
     border: none;
     box-shadow: 0 10px 22px rgba(22,50,79,0.18);
 }
+.aiha-site .thermo-updated {
 
-.thermo-updated {
     font-size: 0.9rem;
     color: var(--muted-text);
     margin: 6px 0 0;
 }
+.aiha-site .thermo-cta {
 
-.thermo-cta {
     display: inline-flex;
     width: 100%;
     justify-content: center;
     margin-top: 10px;
 }
+.aiha-site .zeffy-embed-card {
 
-.zeffy-embed-card {
     flex: 1 1 100%;
     height: 100%;
     background: #ffffff;
@@ -1721,21 +1712,21 @@ header.header-shrink .nav-group {
     display: grid;
     gap: 10px;
 }
+.aiha-site .zeffy-embed-card iframe {
 
-.zeffy-embed-card iframe {
     width: 100%;
     min-height: 860px;
     border: none;
     border-radius: 12px;
 }
+.aiha-site .zeffy-note {
 
-.zeffy-note {
     font-size: 0.92rem;
     color: var(--muted-text);
     margin: 0;
 }
+.aiha-site .mail-donate {
 
-.mail-donate {
     background: rgba(0,0,0,0.04);
     border-radius: 12px;
     padding: 10px 12px;
@@ -1743,14 +1734,14 @@ header.header-shrink .nav-group {
     color: var(--navy);
     text-align: left;
 }
+.aiha-site .giving-photo {
 
-.giving-photo {
     margin: 12px 0;
     display: flex;
     justify-content: center;
 }
+.aiha-site .giving-photo img {
 
-.giving-photo img {
     width: 100%;
     max-width: 340px;
     aspect-ratio: 1 / 1;
@@ -1759,8 +1750,8 @@ header.header-shrink .nav-group {
     display: block;
     object-fit: cover;
 }
+.aiha-site .thermo-ticks {
 
-.thermo-ticks {
     position: absolute;
     top: 6px;
     bottom: 6px;
@@ -1769,8 +1760,8 @@ header.header-shrink .nav-group {
     pointer-events: none;
     z-index: 5;
 }
+.aiha-site .thermo-ticks .tick {
 
-.thermo-ticks .tick {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1778,8 +1769,8 @@ header.header-shrink .nav-group {
     font-size: 0.9rem;
     color: var(--muted-text);
 }
+.aiha-site .thermo-ticks .tick-line {
 
-.thermo-ticks .tick-line {
     position: absolute;
     left: 0;
     top: 50%;
@@ -1790,17 +1781,17 @@ header.header-shrink .nav-group {
     border-radius: 2px;
     background: rgba(0,0,0,0.55);
 }
+.aiha-site .thermo-ticks .tick-label {
 
-.thermo-ticks .tick-label {
     position: absolute;
     left: 40px;
     top: 50%;
     transform: translateY(calc(-50% + var(--tick-label-offset, 0px)));
     min-width: 60px;
 }
-
 /* --- Volunteer Modal --- */
-.volunteer-modal {
+.aiha-site .volunteer-modal {
+
     position: fixed;
     inset: 0;
     display: none;
@@ -1808,19 +1799,19 @@ header.header-shrink .nav-group {
     justify-content: center;
     z-index: 3000;
 }
+.aiha-site .volunteer-modal.active {
 
-.volunteer-modal.active {
     display: flex;
 }
+.aiha-site .volunteer-backdrop {
 
-.volunteer-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(22,50,79,0.55);
     backdrop-filter: blur(6px);
 }
+.aiha-site .volunteer-dialog {
 
-.volunteer-dialog {
     position: relative;
     max-width: 960px;
     width: min(92vw, 960px);
@@ -1832,20 +1823,20 @@ header.header-shrink .nav-group {
     max-height: 90vh;
     overflow: auto;
 }
+.aiha-site .volunteer-embed {
 
-.volunteer-embed {
     width: 100%;
     min-height: 640px;
 }
+.aiha-site .volunteer-embed iframe {
 
-.volunteer-embed iframe {
     width: 100%;
     min-height: 640px;
     border: 0;
     border-radius: 12px;
 }
+.aiha-site .volunteer-close {
 
-.volunteer-close {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -1857,81 +1848,82 @@ header.header-shrink .nav-group {
     cursor: pointer;
     font-size: 1.1rem;
 }
+.aiha-site .volunteer-form {
 
-.volunteer-form {
     display: grid;
     gap: 14px;
     margin-top: 12px;
 }
+.aiha-site .volunteer-form label {
 
-.volunteer-form label {
     font-weight: 600;
     color: var(--navy);
     display: block;
     margin-bottom: 4px;
 }
+.aiha-site .volunteer-form input, .aiha-site .volunteer-form textarea {
 
-.volunteer-form input,
-.volunteer-form textarea {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid var(--border-color);
     font-family: var(--body-font);
 }
+.aiha-site .volunteer-form fieldset {
 
-.volunteer-form fieldset {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 12px;
     display: grid;
     gap: 8px;
 }
+.aiha-site .volunteer-form legend {
 
-.volunteer-form legend {
     font-weight: 700;
     color: var(--navy);
     padding: 0 6px;
 }
+.aiha-site .volunteer-form fieldset label {
 
-.volunteer-form fieldset label {
     display: grid;
     grid-template-columns: 22px 1fr;
     align-items: start;
     gap: 8px;
     font-weight: 500;
 }
+.aiha-site .volunteer-form input[type="checkbox"] {
 
-.volunteer-form input[type="checkbox"] {
     margin-top: 2px;
 }
+.aiha-site .volunteer-form textarea {
 
-.volunteer-form textarea {
     min-height: 120px;
 }
+.aiha-site .volunteer-form button[type="submit"] {
 
-.volunteer-form button[type="submit"] {
     width: 100%;
     justify-self: center;
     background: var(--dark-teal);
     border: none;
     color: #ffffff;
 }
-
 @media (max-width: 900px) {
-    .giving-side {
-        grid-template-columns: 1fr;
-    }
+    .aiha-site .giving-side {
 
-    .thermo-card {
+        grid-template-columns: 1fr;
+
+    }
+    .aiha-site .thermo-card {
+
         min-width: 0;
         max-width: 260px;
         margin-left: auto;
         margin-right: auto;
+
     }
 }
-.partner-section .partner-card,
-.volunteer-section .story-card {
+.aiha-site .partner-section .partner-card, .aiha-site .volunteer-section .story-card {
+
     position: relative;
     background: linear-gradient(170deg, rgba(255,255,255,0.98), rgba(224,243,248,0.82));
     border-radius: 16px;
@@ -1941,63 +1933,60 @@ header.header-shrink .nav-group {
     box-shadow: 0 18px 32px rgba(22,50,79,0.08);
     overflow: hidden;
 }
+.aiha-site .partner-section .partner-card::before, .aiha-site .volunteer-section .story-card::before {
 
-.partner-section .partner-card::before,
-.volunteer-section .story-card::before {
     content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top left, rgba(0,152,187,0.16), transparent 60%);
     pointer-events: none;
 }
+.aiha-site .partner-section .partner-card:nth-child(2)::before {
 
-.partner-section .partner-card:nth-child(2)::before {
     background: radial-gradient(circle at top left, rgba(240,113,103,0.18), transparent 60%);
 }
+.aiha-site .partner-section .partner-card:nth-child(3)::before {
 
-.partner-section .partner-card:nth-child(3)::before {
     background: radial-gradient(circle at top left, rgba(58,183,149,0.18), transparent 60%);
 }
+.aiha-site .partner-section .partner-card *, .aiha-site .volunteer-section .story-card * {
 
-.partner-section .partner-card > *,
-.volunteer-section .story-card > * {
     position: relative;
     z-index: 1;
 }
+.aiha-site .partner-section .partner-card:nth-child(2) {
 
-.partner-section .partner-card:nth-child(2) {
     border-left-color: var(--accent-coral);
 }
+.aiha-site .partner-section .partner-card:nth-child(3) {
 
-.partner-section .partner-card:nth-child(3) {
     border-left-color: var(--accent-teal);
 }
+.aiha-site .story-card {
 
-.story-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+.aiha-site .contact-card {
 
-.contact-card {
     background: linear-gradient(168deg, rgba(255,255,255,0.97), rgba(224,243,248,0.82));
     border-radius: 16px;
     padding: 26px;
     border: 1px solid rgba(0,152,187,0.12);
     box-shadow: 0 18px 36px rgba(22,50,79,0.08);
 }
-
 /* --- Forms --- */
-.contact-form label {
+.aiha-site .contact-form label {
+
     display: block;
     font-weight: 600;
     color: var(--navy);
     margin-bottom: 6px;
     margin-top: 14px;
 }
+.aiha-site .contact-form input, .aiha-site .contact-form textarea {
 
-.contact-form input,
-.contact-form textarea {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
@@ -2006,23 +1995,24 @@ header.header-shrink .nav-group {
     font-size: 1rem;
     background: #f9fbfc;
 }
+.aiha-site .contact-form textarea {
+ resize: vertical; 
+}
+.aiha-site .contact-form button {
 
-.contact-form textarea { resize: vertical; }
-
-.contact-form button {
     margin-top: 18px;
     cursor: pointer;
 }
-
 /* --- Footer --- */
-footer {
+.aiha-footer, footer.aiha-footer {
+
     background: var(--navy);
     color: rgba(255,255,255,0.88);
     padding-top: 48px;
     margin-top: 80px;
 }
+.aiha-footer .footer-content {
 
-.footer-content {
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 24px;
@@ -2030,124 +2020,118 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 32px;
 }
+.aiha-footer .footer-section h4 {
 
-.footer-section h4 {
     color: var(--accent-sky);
     margin-bottom: 10px;
 }
+.aiha-footer .footer-section p {
 
-.footer-section p {
     margin: 8px 0;
 }
+.aiha-footer .footer-credit {
 
-.footer-credit {
     display: grid;
     grid-template-columns: 60px 1fr;
     align-items: center;
     gap: 12px;
     margin-top: 14px;
 }
+.aiha-footer .footer-credit-logo img {
 
-.footer-credit-logo img {
     width: 60px;
     height: 60px;
     object-fit: contain;
 }
+.aiha-footer .footer-credit-text p {
 
-.footer-credit-text p {
     margin: 0;
 }
-.footer-section ul { list-style: none; padding: 0; }
+.aiha-footer .footer-section ul {
+ list-style: none; padding: 0; 
+}
+.aiha-footer .footer-section li {
+ margin-bottom: 8px; 
+}
+.aiha-footer .footer-section a {
+ color: rgba(255,255,255,0.88); 
+}
+.aiha-footer .footer-bottom {
 
-.footer-section li { margin-bottom: 8px; }
-
-.footer-section a { color: rgba(255,255,255,0.88); }
-
-.footer-bottom {
     text-align: center;
     padding: 24px;
     margin-top: 30px;
     border-top: 1px solid rgba(255,255,255,0.18);
     font-size: 0.9rem;
 }
-
 @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    .aiha-site .reveal {
+
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
         transition: none !important;
-    }
 
-    .reveal.reveal-visible {
+    }
+    .aiha-site .reveal.reveal-visible {
+
         transition: none !important;
-    }
 
-    .pillar-card,
-    .stat-card,
-    .mission-grid .card,
-    .services-grid .service-card,
-    .plan-highlight .cta-panel,
-    .phase-card,
-    .survey-to-action .data-card,
-    .giving-card,
-    .partner-section .partner-card,
-    .volunteer-section .story-card,
-    .contact-card,
-    .testimonial {
+    }
+    .aiha-site .pillar-card, .aiha-site .stat-card, .aiha-site .mission-grid .card, .aiha-site .services-grid .service-card, .aiha-site .plan-highlight .cta-panel, .aiha-site .phase-card, .aiha-site .survey-to-action .data-card, .aiha-site .giving-card, .aiha-site .partner-section .partner-card, .aiha-site .volunteer-section .story-card, .aiha-site .contact-card, .aiha-site .testimonial {
+
         transition: none !important;
-    }
 
-    .pillar-card:hover,
-    .stat-card:hover,
-    .mission-grid .card:hover,
-    .services-grid .service-card:hover,
-    .plan-highlight .cta-panel:hover,
-    .phase-card:hover,
-    .survey-to-action .data-card:hover,
-    .giving-card:hover,
-    .partner-section .partner-card:hover,
-    .volunteer-section .story-card:hover,
-    .contact-card:hover,
-    .testimonial:hover {
+    }
+    .aiha-site .pillar-card:hover, .aiha-site .stat-card:hover, .aiha-site .mission-grid .card:hover, .aiha-site .services-grid .service-card:hover, .aiha-site .plan-highlight .cta-panel:hover, .aiha-site .phase-card:hover, .aiha-site .survey-to-action .data-card:hover, .aiha-site .giving-card:hover, .aiha-site .partner-section .partner-card:hover, .aiha-site .volunteer-section .story-card:hover, .aiha-site .contact-card:hover, .aiha-site .testimonial:hover {
+
         transform: none !important;
         box-shadow: inherit !important;
         filter: none !important;
+
     }
 }
-
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-    .grid-3-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .aiha-site .grid-3-col {
+ grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    }
 }
-
 @media (max-width: 900px) {
-    .grid-2-col,
-    .survey-charts,
-    .support-preview-inner {
+    .aiha-site .grid-2-col, .aiha-site .survey-charts, .aiha-site .support-preview-inner {
+
         grid-template-columns: 1fr;
         display: grid;
-    }
 
-    .reverse-mobile {
+    }
+    .aiha-site .reverse-mobile {
+
         display: flex;
         flex-direction: column;
         gap: 32px;
-    }
 
-    .support-preview-inner {
+    }
+    .aiha-site .support-preview-inner {
+
         text-align: center;
+
     }
-
-    .support-actions { justify-content: center; }
+    .aiha-site .support-actions {
+ justify-content: center; 
+    }
 }
-
 @media (max-width: 768px) {
-    body { font-size: 0.97rem; }
-    h1 { font-size: 2.3rem; }
-    h2 { font-size: 1.85rem; }
+    body:has(.aiha-site) {
+ font-size: 0.97rem; 
+    }
+    .aiha-site h1 {
+ font-size: 2.3rem; 
+    }
+    .aiha-site h2 {
+ font-size: 1.85rem; 
+    }
+    .aiha-header .nav-links {
 
-    .nav-links {
         display: none;
         position: absolute;
         top: 72px;
@@ -2155,61 +2139,82 @@ footer {
         width: 100%;
         background: rgba(255,255,255,0.97);
         border-bottom: 1px solid rgba(0,0,0,0.05);
+
     }
+    .aiha-header .nav-links.open {
+ display: block; 
+    }
+    .aiha-header .nav-links ul {
 
-    .nav-links.open { display: block; }
-
-    .nav-links ul {
         flex-direction: column;
         gap: 0;
+
     }
+    .aiha-header .nav-links li {
+ border-bottom: 1px solid rgba(0,0,0,0.05); 
+    }
+    .aiha-header .nav-links a {
 
-    .nav-links li { border-bottom: 1px solid rgba(0,0,0,0.05); }
-
-    .nav-links a {
         display: block;
         padding: 14px 24px;
-    }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    }
+    .aiha-header .nav-links a:hover, .aiha-header .nav-links a.active {
+
         border-bottom-color: transparent;
+
     }
+    .aiha-header .hamburger-menu {
+ display: flex; 
+    }
+    .aiha-header .hamburger-menu.open span:nth-child(1) {
 
-    .hamburger-menu { display: flex; }
-
-    .hamburger-menu.open span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 6px);
+
     }
-    .hamburger-menu.open span:nth-child(2) {
+    .aiha-header .hamburger-menu.open span:nth-child(2) {
+
         opacity: 0;
+
     }
-    .hamburger-menu.open span:nth-child(3) {
+    .aiha-header .hamburger-menu.open span:nth-child(3) {
+
         transform: rotate(-45deg) translate(5px, -6px);
+
     }
-
-    .grid-3-col { grid-template-columns: 1fr; }
-
-    .page-content { padding: 46px 20px; }
-
-    .hero { padding: 80px 20px; }
+    .aiha-site .grid-3-col {
+ grid-template-columns: 1fr; 
+    }
+    .aiha-site .page-content {
+ padding: 46px 20px; 
+    }
+    .aiha-site .hero {
+ padding: 80px 20px; 
+    }
 }
-
 @media (max-width: 1000px) {
-    .nav-links { display: none; }
-    .hamburger-menu { display: flex; }
+    .aiha-header .nav-links {
+ display: none; 
+    }
+    .aiha-header .hamburger-menu {
+ display: flex; 
+    }
 }
-
 @media (max-width: 540px) {
-    .hero-actions { flex-direction: column; }
-    .stat-number { font-size: 3rem; }
-    .pillar-card { padding: 26px 20px; }
+    .aiha-site .hero-actions {
+ flex-direction: column; 
+    }
+    .aiha-site .stat-number {
+ font-size: 3rem; 
+    }
+    .aiha-site .pillar-card {
+ padding: 26px 20px; 
+    }
 }
-
 /* --- Site login gate (optional; see optional/site-login-gate/README.md) --- */
 /* When re-enabling the overlay, restore scroll lock: html:not(.site-auth-ready) body { overflow: hidden; } */
+.aiha-site .site-login-overlay {
 
-.site-login-overlay {
     position: fixed;
     inset: 0;
     z-index: 100000;
@@ -2220,14 +2225,14 @@ footer {
     background: linear-gradient(160deg, rgba(10, 79, 138, 0.92), rgba(22, 50, 79, 0.94));
     box-sizing: border-box;
 }
-
 html.site-auth-ready .site-login-overlay {
+
     display: none !important;
     visibility: hidden;
     pointer-events: none;
 }
+.aiha-site .site-login-card {
 
-.site-login-card {
     width: 100%;
     max-width: 400px;
     padding: 32px 28px 36px;
@@ -2236,8 +2241,8 @@ html.site-auth-ready .site-login-overlay {
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
+.aiha-site .site-login-brand {
 
-.site-login-brand {
     font-family: var(--header-font);
     font-size: 0.85rem;
     letter-spacing: 0.12em;
@@ -2245,29 +2250,29 @@ html.site-auth-ready .site-login-overlay {
     color: var(--primary-dark);
     margin: 0 0 8px;
 }
+.aiha-site .site-login-card h1 {
 
-.site-login-card h1 {
     font-size: 1.65rem;
     color: var(--navy);
     margin: 0 0 10px;
 }
+.aiha-site .site-login-lead {
 
-.site-login-lead {
     font-size: 0.98rem;
     color: var(--muted-text);
     margin: 0 0 22px;
     line-height: 1.5;
 }
+.aiha-site .site-login-label {
 
-.site-login-label {
     display: block;
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--navy);
     margin-bottom: 6px;
 }
+.aiha-site .site-login-input {
 
-.site-login-input {
     width: 100%;
     padding: 12px 14px;
     margin-bottom: 16px;
@@ -2277,20 +2282,20 @@ html.site-auth-ready .site-login-overlay {
     font-family: var(--body-font);
     box-sizing: border-box;
 }
+.aiha-site .site-login-input:focus {
 
-.site-login-input:focus {
     outline: 2px solid rgba(12, 123, 189, 0.45);
     outline-offset: 2px;
     border-color: rgba(12, 123, 189, 0.5);
 }
+.aiha-site .site-login-error {
 
-.site-login-error {
     font-size: 0.92rem;
     color: #b4232c;
     margin: -4px 0 14px;
 }
+.aiha-site .site-login-submit {
 
-.site-login-submit {
     width: 100%;
     margin-top: 4px;
     padding: 14px 20px;
@@ -2305,8 +2310,72 @@ html.site-auth-ready .site-login-overlay {
     box-shadow: 0 12px 28px rgba(var(--primary-dark-rgb), 0.28);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.aiha-site .site-login-submit:hover {
 
-.site-login-submit:hover {
     transform: translateY(-1px);
     box-shadow: 0 16px 32px rgba(var(--primary-dark-rgb), 0.32);
+}
+
+/* --- WordPress Additional CSS integration --- */
+
+body:has(.aiha-site) {
+    padding-top: 120px;
+}
+
+body.admin-bar:has(.aiha-site) {
+    padding-top: calc(120px + 32px);
+}
+
+body.admin-bar:has(.aiha-site) .aiha-header,
+body.admin-bar:has(.aiha-site) header.aiha-header {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar:has(.aiha-site) {
+        padding-top: calc(120px + 46px);
+    }
+
+    body.admin-bar:has(.aiha-site) .aiha-header,
+    body.admin-bar:has(.aiha-site) header.aiha-header {
+        top: 46px;
+    }
+}
+
+.aiha-site .wp-block-button__link.cta-button,
+.aiha-site .wp-block-button__link.cta-button-secondary,
+.aiha-site .wp-block-button__link.cta-button-outline,
+.aiha-site a.cta-button,
+.aiha-site a.cta-button-secondary,
+.aiha-site a.cta-button-outline {
+    text-decoration: none;
+}
+
+.aiha-header .nav-links .menu,
+.aiha-header .nav-links ul.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+.aiha-header .nav-links .menu a,
+.aiha-header .nav-links ul.menu a {
+    font-weight: 600;
+    color: var(--dark-text);
+    padding: 8px 0 10px 0;
+    border-bottom: 2px solid transparent;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.aiha-header .nav-links .menu a:hover,
+.aiha-header .nav-links .menu .current-menu-item a,
+.aiha-header .nav-links ul.menu a:hover,
+.aiha-header .nav-links ul.menu .current-menu-item a {
+    color: var(--primary-teal);
+    border-bottom-color: var(--primary-teal);
 }

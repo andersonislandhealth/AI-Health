@@ -1,0 +1,383 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Staging CMS header — merged with collections.yml by admin/merge-config.py
+
+backend:
+  name: github
+  repo: andersonislandhealth/AI-Health
+  branch: cms
+  auth_methods:
+    - oauth
+
+site_url: https://test-aiha.netlify.app
+display_url: https://test-aiha.netlify.app
+logo_url: https://test-aiha.netlify.app/assets/AI%20Health%20Custom%20Logo%20v9.png
+
+media_folder: assets
+public_folder: /assets
+
+# Asset Library folders — match repo layout (assets/photos, assets/icons, etc.)
+asset_collections:
+  - name: photos
+    label: Photos
+    icon: photo_library
+    media_folder: /assets/photos
+    public_folder: /assets/photos
+  - name: icons
+    label: Icons
+    icon: imagesmode
+    media_folder: /assets/icons
+    public_folder: /assets/icons
+  - name: site_assets
+    label: Site assets
+    icon: brand_family
+    media_folder: /assets
+    public_folder: /assets
+
+# Shared Sveltia CMS collections — merged into config.yml by admin/merge-config.py
+
+field_defaults:
+  richtext:
+    minimal: true
+    buttons: [bold, italic, link]
+
+collections:
+  - name: site_settings
+    label: Site settings
+    icon: settings
+    files:
+      - name: site_meta
+        label: Page title & SEO
+        file: content/site-meta.json
+        format: json
+        fields:
+          - { label: Browser tab title, name: pageTitle, widget: string }
+          - { label: Meta description, name: metaDescription, widget: text }
+          - { label: Floating donate button, name: floatingDonateLabel, widget: string }
+          - { label: Floating volunteer button, name: floatingVolunteerLabel, widget: string }
+
+  - divider: true
+
+  - name: hero_section
+    label: Hero
+    icon: home
+    files:
+      - name: hero
+        label: Hero banner
+        file: content/hero.json
+        format: json
+        fields:
+          - { label: Headline (line 1), name: headlineLine1, widget: string }
+          - { label: Headline (line 2), name: headlineLine2, widget: string }
+          - { label: Tagline, name: tagline, widget: text }
+          - label: Call-to-action buttons
+            name: actions
+            widget: list
+            label_singular: Button
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link (href), name: href, widget: string, hint: "Use #mission, #faqs, #giving, or # for volunteer modal." }
+              - label: Style
+                name: variant
+                widget: select
+                options: [secondary, outline, volunteer, primary]
+                default: primary
+
+  - divider: true
+
+  - name: mission_section
+    label: Mission
+    icon: favorite
+    files:
+      - name: mission
+        label: Mission section
+        file: content/mission.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - label: Left column
+            name: leftColumn
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                label_singular: Paragraph
+                field: { label: Text, name: text, widget: markdown }
+                summary: "{{fields.text}}"
+              - label: Link
+                name: link
+                widget: object
+                required: false
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Href, name: href, widget: string }
+          - label: Right column
+            name: rightColumn
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: markdown }
+              - label: Donate button
+                name: cta
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Href, name: href, widget: string }
+
+  - divider: true
+
+  - name: plans_section
+    label: Phase 1 plans
+    icon: directions_bus
+    files:
+      - name: plans
+        label: Plans section & cards
+        file: content/plans.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: intro, widget: markdown }
+          - label: Highlight pills
+            name: pills
+            widget: list
+            label_singular: Pill
+            field: { label: Text, name: text, widget: string }
+            summary: "{{fields.text}}"
+          - label: Van illustration
+            name: graphic
+            widget: object
+            fields:
+              - { label: Image path, name: src, widget: string }
+              - { label: Alt text, name: alt, widget: string }
+          - label: Timeline cards
+            name: cards
+            widget: list
+            label_singular: Card
+            summary: "{{fields.status}}"
+            hint: "The first card always appears beside the van illustration — keep your intro card at the top of the list."
+            fields:
+              - { label: Card label, name: status, widget: string }
+              - { label: Body, name: body, widget: markdown }
+              - label: Style
+                name: variant
+                widget: select
+                options: [in-progress, future]
+                default: in-progress
+              - label: Optional link
+                name: link
+                widget: object
+                required: false
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: URL, name: href, widget: string }
+                  - { label: Opens in new tab, name: external, widget: boolean, default: false }
+
+  - divider: true
+
+  - name: giving_section
+    label: Donate & giving
+    icon: volunteer_activism
+    files:
+      - name: giving_copy
+        label: Giving section copy
+        file: content/giving.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro paragraph, name: intro, widget: text }
+          - label: Impact bullets
+            name: impactItems
+            widget: list
+            label_singular: Bullet
+            field: { label: Text, name: text, widget: string }
+            summary: "{{fields.text}}"
+          - { label: Giving note, name: givingNote, widget: markdown }
+          - label: Photo
+            name: photo
+            widget: object
+            fields:
+              - { label: Image path, name: src, widget: string }
+              - { label: Alt text, name: alt, widget: string }
+          - label: Action buttons
+            name: actions
+            widget: list
+            label_singular: Button
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: href, widget: string }
+              - label: Style
+                name: variant
+                widget: select
+                options: [primary, outline]
+              - { label: Opens in new tab, name: external, widget: boolean, default: false }
+          - label: Zeffy sidebar
+            name: sidebar
+            widget: object
+            fields:
+              - { label: Progress heading, name: progressHeading, widget: string }
+              - { label: Zeffy embed URL, name: zeffyUrl, widget: string }
+              - { label: Zeffy note, name: zeffyNote, widget: string }
+              - { label: Mail-in donation text, name: mailDonate, widget: markdown }
+      - name: giving_progress
+        label: Fundraising numbers
+        file: giving-progress.json
+        format: json
+        fields:
+          - { label: Goal ($), name: goal, widget: number, value_type: int }
+          - { label: Current amount ($), name: current, widget: number, value_type: int }
+          - { label: Last updated label, name: updated, widget: string }
+          - { label: Tick label offset, name: tickLabelOffset, widget: number, value_type: int, required: false }
+          - { label: Thermometer divisions, name: divisions, widget: number, value_type: int, required: false }
+
+  - divider: true
+
+  - name: board_section
+    label: Board
+    icon: groups
+    files:
+      - name: board_intro
+        label: Board section headings
+        file: content/board-section.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Footnote, name: footnote, widget: string }
+      - name: board_members
+        label: Board members
+        file: board.json
+        format: json
+        fields:
+          - label: Members
+            name: members
+            widget: list
+            label_singular: Member
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Biography, name: bio, widget: markdown, required: false, hint: "Leave empty until ready — no expand arrow without a bio." }
+              - { label: Photo path, name: photo, widget: string, required: false }
+
+  - divider: true
+
+  - name: faqs_section
+    label: FAQs
+    icon: help
+    files:
+      - name: faqs
+        label: FAQ section & cards
+        file: content/faqs.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - label: Questions
+            name: items
+            widget: list
+            label_singular: FAQ
+            summary: "{{fields.question}}"
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: markdown }
+
+  - divider: true
+
+  - name: events_section
+    label: Events
+    icon: event
+    files:
+      - name: events_intro
+        label: Events section intro
+        file: content/events-section.json
+        format: json
+        fields:
+          - { label: Section label, name: sectionCaption, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro paragraph, name: intro, widget: text }
+          - { label: Past events drawer label, name: pastEventsLabel, widget: string }
+      - name: events_list
+        label: Event listings
+        file: events.json
+        format: json
+        fields:
+          - label: Events
+            name: events
+            widget: list
+            label_singular: Event
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: datetime, type: date, hint: "YYYY-MM-DD — shown on the site as e.g. April 29, 2026. Upcoming vs past is automatic." }
+              - { label: Location, name: location, widget: string }
+              - { label: Description, name: description, widget: text }
+
+  - divider: true
+
+  - name: contact_footer
+    label: Contact, footer & legal
+    icon: contact_page
+    files:
+      - name: contact
+        label: Contact band
+        file: content/contact.json
+        format: json
+        fields:
+          - label: Contact cards
+            name: cards
+            widget: list
+            label_singular: Card
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: markdown }
+      - name: footer
+        label: Footer
+        file: content/footer.json
+        format: json
+        fields:
+          - label: Organization blurb
+            name: organization
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Tagline, name: tagline, widget: string }
+              - { label: Design credit, name: credit, widget: markdown }
+          - label: Guiding principles
+            name: principles
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - label: Items
+                name: items
+                widget: list
+                label_singular: Principle
+                field: { label: Text, name: text, widget: string }
+                summary: "{{fields.text}}"
+          - label: Footer contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: General inquiries line, name: generalLine, widget: markdown }
+              - { label: Address line, name: addressLine, widget: markdown }
+          - { label: Copyright name, name: copyrightName, widget: string }
+      - name: volunteer_modal
+        label: Volunteer modal
+        file: content/volunteer-modal.json
+        format: json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Google Form embed URL, name: formUrl, widget: string }
+      - name: charity_disclosure
+        label: Tax & charity disclosure
+        file: content/charity-disclosure.json
+        format: json
+        fields:
+          - { label: Disclosure text, name: body, widget: markdown }

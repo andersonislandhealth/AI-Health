@@ -1,0 +1,34 @@
+{
+  "sectionCaption": "FAQs",
+  "heading": "Answers to common questions",
+  "items": [
+    {
+      "question": "Are AIHA and PCHS partners or affiliates?",
+      "answer": "No. AIHA is contracting with PCHS to bring the mobile clinic to the island. AIHA is not a medical provider."
+    },
+    {
+      "question": "Are AIHA or PCHS making money from this program?",
+      "answer": "No. PCHS mobile units operate at a loss, and AIHA anticipates needing alternative revenue such as grants to sustain services."
+    },
+    {
+      "question": "What alternative revenue sources are you exploring?",
+      "answer": "Private and public grants are in progress. If successful, we may consider a referendum for steady funding in the future."
+    },
+    {
+      "question": "If I don't like the PCHS provider, can I switch?",
+      "answer": "Yes. You can seek care elsewhere at any time. Note that primary care wait times elsewhere can be six months or longer."
+    },
+    {
+      "question": "Why is the van only here two days a month?",
+      "answer": "Funding. Initial private contributions will support two days per month. Additional donations or grants will expand availability."
+    },
+    {
+      "question": "Will AIHA have access to my medical information?",
+      "answer": "No. The contract prohibits sharing identifiable information with AIHA. PCHS may share aggregate, de-identified data for program evaluation."
+    },
+    {
+      "question": "Can I volunteer?",
+      "answer": "Yes, please! Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org). For medical volunteering, [contact PCHS directly](https://www.pchsweb.org/about/volunteering/)."
+    }
+  ]
+}
