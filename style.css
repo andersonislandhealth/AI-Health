@@ -2310,3 +2310,144 @@ html.site-auth-ready .site-login-overlay {
     transform: translateY(-1px);
     box-shadow: 0 16px 32px rgba(var(--primary-dark-rgb), 0.32);
 }
+
+/* --- Event flyer popup --- */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+body.flyer-modal-open {
+    overflow: hidden;
+}
+
+.flyer-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 4000;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.flyer-modal.active {
+    display: flex;
+}
+
+.flyer-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 50, 79, 0.72);
+    backdrop-filter: blur(6px);
+}
+
+.flyer-modal-dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: min(100%, 520px);
+    max-height: min(96dvh, 96vh);
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 28px 64px rgba(22, 50, 79, 0.28);
+    box-sizing: border-box;
+}
+
+.flyer-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(237, 242, 247, 0.95);
+    color: var(--navy);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(22, 50, 79, 0.12);
+}
+
+.flyer-modal-close:hover,
+.flyer-modal-close:focus-visible {
+    background: #ffffff;
+    outline: 2px solid rgba(var(--primary-rgb), 0.45);
+    outline-offset: 2px;
+}
+
+.flyer-modal-media {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.flyer-modal-media img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(min(96dvh, 96vh) - 96px);
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.flyer-modal-actions {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 2px;
+}
+
+.flyer-modal-cta {
+    min-width: 180px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.flyer-modal-cta:hover,
+.flyer-modal-cta:focus-visible {
+    text-decoration: none;
+}
+
+@media (max-width: 540px) {
+    .flyer-modal {
+        padding: 8px;
+    }
+
+    .flyer-modal-dialog {
+        width: 100%;
+        padding: 10px 10px 12px;
+        border-radius: 14px;
+    }
+
+    .flyer-modal-media img {
+        max-height: calc(min(96dvh, 96vh) - 88px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flyer-modal-cta {
+        transition: none;
+    }
+}

@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (progressConfig) applyGivingProgress(progressConfig);
     initThermometers(progressConfig);
     initVolunteerModal();
+    initFlyerModal();
 });
 
 async function injectNavbar(skip) {
@@ -665,4 +666,70 @@ function initVolunteerModal() {
     });
 
     // No submit handler needed; form is embedded via Google Forms iframe.
+}
+
+function initFlyerModal() {
+    const modal = document.getElementById('flyer-modal');
+    const dialog = modal?.querySelector('.flyer-modal-dialog');
+    if (!modal || !dialog) return;
+
+    const storageKey = 'aiha-flyer-aug31-seen';
+    const closers = modal.querySelectorAll('[data-flyer-close]');
+    const learnMore = modal.querySelector('[data-flyer-learn-more]');
+
+    const open = () => {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('flyer-modal-open');
+        learnMore?.focus();
+    };
+
+    const close = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('flyer-modal-open');
+        try {
+            sessionStorage.setItem(storageKey, '1');
+        } catch (err) {
+            /* ignore storage errors */
+        }
+    };
+
+    closers.forEach((btn) => btn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        close();
+    }));
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('flyer-modal-backdrop')) {
+            close();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            close();
+        }
+    });
+
+    learnMore?.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        close();
+        const target = document.getElementById('events');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#events');
+        }
+    });
+
+    let alreadySeen = false;
+    try {
+        alreadySeen = sessionStorage.getItem(storageKey) === '1';
+    } catch (err) {
+        alreadySeen = false;
+    }
+
+    if (!alreadySeen) {
+        window.setTimeout(open, 1000);
+    }
 }
