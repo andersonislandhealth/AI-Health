@@ -18,7 +18,7 @@ collections:
           - { label: Browser tab title, name: pageTitle, widget: string }
           - { label: Meta description, name: metaDescription, widget: text }
           - { label: Floating donate button, name: floatingDonateLabel, widget: string }
-          - { label: Floating volunteer button, name: floatingVolunteerLabel, widget: string }
+          - { label: Floating Book w/ PCHS button, name: floatingVolunteerLabel, widget: string }
 
   - divider: true
 
@@ -41,11 +41,11 @@ collections:
             summary: "{{fields.label}}"
             fields:
               - { label: Label, name: label, widget: string }
-              - { label: Link (href), name: href, widget: string, hint: "Use #mission, #faqs, #giving, or # for volunteer modal." }
+              - { label: Link (href), name: href, widget: string, hint: "Use #mission, #faqs, #giving, or a full URL (e.g. PCHS booking form)." }
               - label: Style
                 name: variant
                 widget: select
-                options: [secondary, outline, volunteer, primary]
+                options: [secondary, outline, appointments, volunteer, primary]
                 default: primary
 
   - divider: true

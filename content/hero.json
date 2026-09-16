@@ -5,7 +5,7 @@
   "actions": [
     { "label": "Our Purpose", "href": "#mission", "variant": "secondary" },
     { "label": "Read FAQs", "href": "#faqs", "variant": "outline" },
-    { "label": "Volunteer", "href": "#", "variant": "volunteer" },
+    { "label": "Book w/ PCHS", "href": "https://pchsweb.jotform.com/260545003472045", "variant": "appointments" },
     { "label": "Donate today", "href": "#giving", "variant": "primary" }
   ]
 }

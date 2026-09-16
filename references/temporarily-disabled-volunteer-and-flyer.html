@@ -1,0 +1,28 @@
+<!--
+  TEMPORARILY DISABLED — volunteer UI only.
+  Flyer popup is live again in index.html (Sept 2026 PCHS QR flyer).
+
+  Restore volunteer by pasting the blocks below back into index.html and
+  re-enabling initVolunteerModal() in script.js.
+
+  Also restore:
+  - partials/navbar.html Volunteer nav item
+  - script.js navbar fallback Volunteer nav item
+  - content.js renderHeroActions() volunteer filter
+-->
+
+<!-- Floating volunteer button -->
+<a class="floating-donate volunteer-trigger" href="#" data-cms-text="siteMeta.floatingVolunteerLabel" aria-label="Volunteer">Volunteer</a>
+
+<!-- Volunteer form modal -->
+<div class="volunteer-modal" aria-hidden="true">
+    <div class="volunteer-backdrop" data-volunteer-close></div>
+    <div class="volunteer-dialog" role="dialog" aria-modal="true" aria-label="Volunteer sign-up">
+        <button class="volunteer-close" type="button" data-volunteer-close aria-label="Close volunteer form">&times;</button>
+        <h3 data-cms-text="volunteerModal.heading">Volunteer with AIHA</h3>
+        <p data-cms-text="volunteerModal.intro">Share your contact info and tell us how you’d like to help.</p>
+        <div class="volunteer-embed">
+            <iframe data-cms-iframe-src="volunteerModal.formUrl" src="https://forms.gle/Mp36wZS8MKAF8osj6?embedded=true" title="Volunteer form" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

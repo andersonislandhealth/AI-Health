@@ -7,6 +7,9 @@
     --primary-teal: #036474;
     --dark-teal: #00323a;
     --donate-teal: #006378;
+    --pchs-green: #186830;
+    --pchs-green-dark: #124f24;
+    --pchs-green-rgb: 24, 104, 48;
     --accent-coral: #f5a8c1;
     --sunrise-coral: #e19ab5;
     --sunrise-coral-rgb: 225, 154, 181;
@@ -1261,6 +1264,20 @@ header.header-shrink .nav-group {
     border: none;
 }
 
+.floating-donate.pchs-appointments {
+    bottom: 96px;
+    background: var(--pchs-green) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.floating-donate.pchs-appointments:hover,
+.floating-donate.pchs-appointments:focus-visible {
+    background: var(--pchs-green-dark) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
 .floating-donate.donate-primary {
     background: var(--donate-teal) !important;
     border: none !important;
@@ -1287,6 +1304,20 @@ header.header-shrink .nav-group {
 
 .volunteer-cta:hover {
     background: var(--dark-teal) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.pchs-cta {
+    background: var(--pchs-green) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 24px rgba(var(--pchs-green-rgb), 0.28);
+}
+
+.pchs-cta:hover,
+.pchs-cta:focus-visible {
+    background: var(--pchs-green-dark) !important;
     color: #ffffff !important;
     text-decoration: none !important;
 }
@@ -1334,9 +1365,11 @@ header.header-shrink .nav-group {
 .cta-button-outline:hover,
 .cta-button.donate-primary:hover,
 .cta-button.volunteer-trigger:hover,
+.cta-button.pchs-cta:hover,
 .floating-donate:hover,
 .floating-donate.donate-primary:hover,
-.floating-donate.volunteer-trigger:hover {
+.floating-donate.volunteer-trigger:hover,
+.floating-donate.pchs-appointments:hover {
     box-shadow: var(--cta-shadow), inset 0 0 0 999px var(--cta-hover-overlay);
     color: #ffffff !important;
     transform: translateY(-2px);

@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const progressConfig = await loadGivingProgress(isFile);
     if (progressConfig) applyGivingProgress(progressConfig);
     initThermometers(progressConfig);
-    initVolunteerModal();
+    // TEMP: volunteer UI disabled (flyer popup re-enabled)
+    // initVolunteerModal();
     initFlyerModal();
 });
 
@@ -49,7 +50,7 @@ async function injectNavbar(skip) {
                             <li><a href="index.html">Home</a></li>
                             <li><a href="index.html#mission">Our mission</a></li>
                             <li><a href="index.html#faqs">FAQs</a></li>
-                            <li><a href="#" class="volunteer-trigger">Volunteer</a></li>
+                            <li><a href="https://pchsweb.jotform.com/260545003472045" target="_blank" rel="noopener noreferrer">Book w/ PCHS</a></li>
                             <li><a href="index.html#giving">Donate</a></li>
                             <li><a href="index.html#board">Board</a></li>
                             <li><a href="index.html#events">Events</a></li>
@@ -673,7 +674,7 @@ function initFlyerModal() {
     const dialog = modal?.querySelector('.flyer-modal-dialog');
     if (!modal || !dialog) return;
 
-    const storageKey = 'aiha-flyer-aug31-seen';
+    const storageKey = 'aiha-flyer-sept2026-seen';
     const closers = modal.querySelectorAll('[data-flyer-close]');
     const learnMore = modal.querySelector('[data-flyer-learn-more]');
 
@@ -715,10 +716,10 @@ function initFlyerModal() {
     learnMore?.addEventListener('click', (evt) => {
         evt.preventDefault();
         close();
-        const target = document.getElementById('events');
+        const target = document.getElementById('plans');
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            history.replaceState(null, '', '#events');
+            history.replaceState(null, '', '#plans');
         }
     });
 

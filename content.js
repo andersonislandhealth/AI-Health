@@ -156,11 +156,17 @@ function heroActionClass(variant) {
             return 'cta-button-secondary';
         case 'outline':
             return 'cta-button-outline';
+        case 'appointments':
+            return 'cta-button pchs-cta';
         case 'volunteer':
-            return 'cta-button volunteer-trigger volunteer-cta';
+            return 'cta-button volunteer-cta';
         case 'primary':
-        default:
             return 'cta-button donate-primary';
+        default: {
+            const _exhaustive = variant;
+            void _exhaustive;
+            return 'cta-button donate-primary';
+        }
     }
 }
 
@@ -168,8 +174,13 @@ function renderHeroActions(actions) {
     return (actions || [])
         .map((action) => {
             const cls = heroActionClass(action.variant);
-            const aria = action.variant === 'volunteer' ? ' aria-label="Volunteer"' : '';
-            return `<a class="${cls}" href="${escapeHtml(action.href || '#')}"${aria}>${escapeHtml(action.label || '')}</a>`;
+            const href = action.href || '#';
+            const isExternal = /^https?:\/\//i.test(href);
+            const external = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+            const aria = (action.variant === 'appointments' || action.variant === 'volunteer')
+                ? ` aria-label="${escapeHtml(action.label || 'Book w/ PCHS')}"`
+                : '';
+            return `<a class="${cls}" href="${escapeHtml(href)}"${external}${aria}>${escapeHtml(action.label || '')}</a>`;
         })
         .join('\n                    ');
 }
