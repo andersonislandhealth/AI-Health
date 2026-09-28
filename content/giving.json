@@ -1,13 +1,13 @@
 {
   "sectionCaption": "Jump In With Us",
-  "heading": "We can’t do this without you",
-  "intro": "AIHA is applying for multiple grants and expects substantial support over the next year, but immediate community giving is essential to start services and demonstrate island commitment. Every dollar helps—no contribution is too small.",
+  "heading": "Thank you for your support",
+  "intro": "We appreciate the strong community support we have received so far and have met our original fundraising goals. AIHA will need ongoing strong community support. Going forward, AIHA is applying for multiple grants and hopes to receive support from both donor and grant funding. Every dollar helps! No donation is too small.",
   "impactItems": [
-    "Launch services this fall by underwriting mobile clinic days.",
-    "Show grant foundations strong local backing.",
-    "Keep care close to home for every neighbor."
+    "Give securely via Zeffy (100% fee-free) OR mail donations to: Anderson Island Health Advocates at PO Box 88073, Steilacoom, WA 98388",
+    "Ongoing community backing helps to support grant opportunities",
+    "Help us keep care accessible and close to home",
+    "Questions? Email: info@andersonislandhealth.org"
   ],
-  "givingNote": "Give securely via Zeffy (100% fee-free) to help us reach launch. Questions about giving? Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org).",
   "photo": {
     "src": "assets/photos/DSC03466.JPG",
     "alt": "Community scene supporting Anderson Island Health"
@@ -30,6 +30,6 @@
     "progressHeading": "Live goal progress",
     "zeffyUrl": "https://www.zeffy.com/en-US/donation-form/anderson-island-healthcare-advocates",
     "zeffyNote": "Zeffy keeps this progress live and fee-free.",
-    "mailDonate": "**Prefer to mail a donation?**\n\nAnderson Island Healthcare Advocates\nP.O. Box 88073\nSteilacoom, WA 98388"
+    "mailDonate": "**Prefer to mail a donation?**\n\nAnderson Island Health Advocates\nP.O. Box 88073\nSteilacoom, WA 98388"
   }
 }

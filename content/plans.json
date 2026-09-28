@@ -34,13 +34,8 @@
     },
     {
       "status": "When services start",
-      "body": "Services begin once AIHA raises sufficient funds to underwrite each van day on the island. Target: fall launch once fundraising goals are reached.",
-      "variant": "future"
-    },
-    {
-      "status": "More information",
-      "body": "A public \"Meet and Greet\" with PCHS staff will be scheduled on-island. Questions? Email [info@andersonislandhealth.org](mailto:info@andersonislandhealth.org); we respond within two business days.",
-      "variant": "future"
+      "body": "Services started on 9/21/2026 and will continue with twice-monthly visits on the 2nd and 4th Mondays. This schedule may change after the start of 2027.",
+      "variant": "in-progress"
     }
   ]
 }

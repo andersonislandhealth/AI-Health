@@ -53,7 +53,6 @@ async function injectNavbar(skip) {
                             <li><a href="https://pchsweb.jotform.com/260545003472045" target="_blank" rel="noopener noreferrer">Book w/ PCHS</a></li>
                             <li><a href="index.html#giving">Donate</a></li>
                             <li><a href="index.html#board">Board</a></li>
-                            <li><a href="index.html#events">Events</a></li>
                             <li><a href="index.html#plans">Plans</a></li>
                         </ul>
                     </nav>
