@@ -4,7 +4,7 @@
   "items": [
     {
       "question": "Are AIHA and PCHS partners or affiliates?",
-      "answer": "No. AIHA is contracting with PCHS to bring the mobile clinic to the island. AIHA is not a medical provider."
+      "answer": "No. AIHA contracts with PCHS, which brings the mobile clinic to the island. AIHA is not a medical provider."
     },
     {
       "question": "Are AIHA or PCHS making money from this program?",
@@ -20,10 +20,10 @@
     },
     {
       "question": "Why is the van only here two days a month?",
-      "answer": "Funding. Initial private contributions will support two days per month. Additional donations or grants will expand availability."
+      "answer": "Funding. Initial private contributions support two days per month. Additional donations or grants can expand availability."
     },
     {
-      "question": "Will AIHA have access to my medical information?",
+      "question": "Does AIHA have access to my medical information?",
       "answer": "No. The contract prohibits sharing identifiable information with AIHA. PCHS may share aggregate, de-identified data for program evaluation."
     },
     {

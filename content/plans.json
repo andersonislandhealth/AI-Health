@@ -1,7 +1,7 @@
 {
   "sectionCaption": "Phase 1",
   "heading": "Mobile medical van launch",
-  "intro": "**Peninsula Community Health Services (PCHS)** will provide care through a mobile van twice a month.\nThe van will be staffed by a PCHS primary care provider accepting new patients **RIGHT NOW!**",
+  "intro": "**Peninsula Community Health Services (PCHS)** provides care through a mobile van twice a month.\nThe van is staffed by a PCHS primary care provider accepting new patients **RIGHT NOW!**",
   "pills": [
     "Most insurance accepted",
     "Uninsured patients accepted",
@@ -14,11 +14,11 @@
   "cards": [
     {
       "status": "Why this approach",
-      "body": "After exploring multiple options, a mobile clinic is the most practical and cost-effective way to begin care on the island.",
+      "body": "After exploring multiple options, a mobile clinic is the most practical and cost-effective way to provide care on the island.",
       "variant": "in-progress"
     },
     {
-      "status": "Who will provide care",
+      "status": "Who provides care",
       "body": "PCHS is under contract with AIHA to staff and operate the mobile van. They are a federally qualified health center with deep experience serving rural communities.",
       "variant": "in-progress",
       "link": {
@@ -33,8 +33,8 @@
       "variant": "in-progress"
     },
     {
-      "status": "When services start",
-      "body": "Services started on 9/21/2026 and will continue with twice-monthly visits on the 2nd and 4th Mondays. This schedule may change after the start of 2027.",
+      "status": "When services run",
+      "body": "Services began on 9/21/2026 and continue with twice-monthly visits on the 2nd and 4th Mondays. This schedule may change after the start of 2027.",
       "variant": "in-progress"
     }
   ]
